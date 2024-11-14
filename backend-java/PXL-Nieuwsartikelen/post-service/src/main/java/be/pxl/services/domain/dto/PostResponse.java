@@ -12,4 +12,6 @@ import lombok.NoArgsConstructor;
 public class PostResponse {
     private String title;
     private String content;
+    private String author;
+    private String category;
 }

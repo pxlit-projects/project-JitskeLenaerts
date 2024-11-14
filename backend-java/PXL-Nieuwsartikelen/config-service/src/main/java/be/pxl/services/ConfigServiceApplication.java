@@ -2,18 +2,18 @@ package be.pxl.services;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.config.server.EnableConfigServer;
 
 /**
- * PostServiceApplication.
+ * Config Service
  *
  */
 @SpringBootApplication
-@EnableDiscoveryClient
-public class PostServiceApplication
+@EnableConfigServer
+public class ConfigServiceApplication
 {
     public static void main( String[] args )
     {
-        SpringApplication.run(PostServiceApplication.class, args);
+        SpringApplication.run(ConfigServiceApplication.class, args);
     }
 }
