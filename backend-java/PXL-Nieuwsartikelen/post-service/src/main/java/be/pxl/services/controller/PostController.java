@@ -1,5 +1,6 @@
 package be.pxl.services.controller;
 
+import be.pxl.services.client.NotificationClient;
 import be.pxl.services.domain.Post;
 import be.pxl.services.domain.dto.PostRequest;
 import be.pxl.services.repository.PostRepository;

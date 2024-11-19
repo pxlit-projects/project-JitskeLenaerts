@@ -25,7 +25,9 @@
         <module>post-service</module>
 		<module>config-service</module>
 		<module>discovery-service</module>
-	</modules>
+		<module>notification-service</module>
+        <module>gateway-service</module>
+    </modules>
     <scm>
 		<connection/>
 		<developerConnection/>
