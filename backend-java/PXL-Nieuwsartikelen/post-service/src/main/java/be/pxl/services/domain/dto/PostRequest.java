@@ -14,4 +14,6 @@ public class PostRequest {
     private String content;
     private String author;
     private String category;
+    private Boolean concept;
+
 }

@@ -6,4 +6,5 @@ import be.pxl.services.domain.dto.PostResponse;
 
 public interface IPostService {
     PostResponse createPost(PostRequest post);
+    PostResponse saveConceptOfPost(Post post, PostRequest postRequest);
 }

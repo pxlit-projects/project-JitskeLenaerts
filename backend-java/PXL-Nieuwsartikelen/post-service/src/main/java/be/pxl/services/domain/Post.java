@@ -20,4 +20,5 @@ public class Post {
     private String content;
     private String author;
     private String category;
+    private Boolean concept;
 }
