@@ -29,4 +29,13 @@ public class PostController {
         PostResponse savedPost = postService.savePostAsConcept(id);
         return ResponseEntity.ok(savedPost);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PostResponse> updatePost(@PathVariable Long id, @RequestBody PostRequest postRequest) {
+        postRequest.setId(id);
+        PostResponse updatedPost = postService.updatePost(postRequest);
+        return ResponseEntity.ok(updatedPost);
+    }
+
+
 }

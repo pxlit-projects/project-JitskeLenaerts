@@ -13,8 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -76,6 +74,26 @@ public class PostService implements IPostService{
         notificationClient.sendNotification(notificationRequest);
 
         return mapToPostResponse(savedPost);
+    }
+
+    @Override
+    public PostResponse updatePost(PostRequest postRequest) {
+        if (postRequest.getId() == null) {
+            throw new IllegalArgumentException("Cannot update a post without an ID.");
+        }
+
+        Post post = postRepository.findById(postRequest.getId())
+                .orElseThrow(() -> new PostNotFoundException("Post not found with ID: " + postRequest.getId()));
+
+        post.setTitle(postRequest.getTitle());
+        post.setContent(postRequest.getContent());
+        post.setAuthor(postRequest.getAuthor());
+        post.setCategory(postRequest.getCategory());
+        post.setUpdatedAt(LocalDateTime.now());
+
+        postRepository.save(post);
+
+        return mapToPostResponse(post);
     }
 
 }

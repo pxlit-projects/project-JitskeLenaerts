@@ -10,4 +10,5 @@ import java.util.List;
 public interface IPostService {
     PostResponse createPost(PostRequest postRequest);
     PostResponse savePostAsConcept(Long id);
+    PostResponse updatePost(PostRequest postRequest);
 }
