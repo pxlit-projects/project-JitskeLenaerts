@@ -107,14 +107,12 @@ public class PostService implements IPostService{
     }
 
     @Override
-    public List<PostResponse> filterPosts(String title, String author, String category, LocalDateTime startDate, LocalDateTime endDate) {
+    public List<PostResponse> filterPosts(String content, String author,LocalDateTime startDate, LocalDateTime endDate) {
         List<Post> filteredPosts;
-        if (title != null && !title.isBlank()) {
-            filteredPosts = postRepository.findByTitleContainingIgnoreCase(title);
+        if (content != null && !content.isBlank()) {
+            filteredPosts = postRepository.findByContentContainingIgnoreCase(content);
         } else if (author != null && !author.isBlank()) {
-            filteredPosts = postRepository.findByAuthorIgnoreCase(author);
-        } else if (category != null && !category.isBlank()) {
-            filteredPosts = postRepository.findByCategoryIgnoreCase(category);
+            filteredPosts = postRepository.findByAuthorContainingIgnoreCase(author);
         } else if (startDate != null && endDate != null) {
             filteredPosts = postRepository.findByCreatedAtBetween(startDate, endDate);
         } else {

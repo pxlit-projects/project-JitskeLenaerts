@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/post")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class PostController {
     private final IPostService postService;
 
@@ -45,12 +46,11 @@ public class PostController {
 
     @GetMapping("/filter")
     public ResponseEntity<List<PostResponse>> filterPosts(
-            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String content,
             @RequestParam(required = false) String author,
-            @RequestParam(required = false) String category,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
-        List<PostResponse> filteredPosts = postService.filterPosts(title, author, category, startDate, endDate);
+        List<PostResponse> filteredPosts = postService.filterPosts(content, author, startDate, endDate);
         return ResponseEntity.ok(filteredPosts);
     }
 }
