@@ -11,4 +11,5 @@ public interface IPostService {
     PostResponse createPost(PostRequest postRequest);
     PostResponse savePostAsConcept(Long id);
     PostResponse updatePost(PostRequest postRequest);
+    List<PostResponse> getAllPosts();
 }

@@ -18,6 +18,12 @@ import java.util.List;
 public class PostController {
     private final IPostService postService;
 
+    @GetMapping
+    public ResponseEntity<List<PostResponse>> getAllPosts() {
+        List<PostResponse> posts = postService.getAllPosts();
+        return ResponseEntity.ok(posts);
+    }
+
     @PostMapping
     public ResponseEntity<PostResponse> createPost(@RequestBody PostRequest postRequest) {
         PostResponse createdPost = postService.createPost(postRequest);

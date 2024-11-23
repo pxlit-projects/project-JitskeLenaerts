@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -94,6 +96,14 @@ public class PostService implements IPostService{
         postRepository.save(post);
 
         return mapToPostResponse(post);
+    }
+
+    @Override
+    public List<PostResponse> getAllPosts() {
+        return postRepository.findAll()
+                .stream()
+                .map(this::mapToPostResponse)
+                .collect(Collectors.toList());
     }
 
 }
