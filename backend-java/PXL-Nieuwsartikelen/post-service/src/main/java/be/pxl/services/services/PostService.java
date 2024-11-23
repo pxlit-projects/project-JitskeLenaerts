@@ -5,13 +5,16 @@ import be.pxl.services.domain.NotificationRequest;
 import be.pxl.services.domain.Post;
 import be.pxl.services.domain.dto.PostRequest;
 import be.pxl.services.domain.dto.PostResponse;
+import be.pxl.services.exception.PostNotFoundException;
 import be.pxl.services.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,24 +23,38 @@ public class PostService implements IPostService{
     private final PostRepository postRepository;
     private final NotificationClient notificationClient;
 
+    private Post mapToPost(PostRequest postRequest) {
+        return Post.builder()
+                .id(postRequest.getId())
+                .title(postRequest.getTitle())
+                .content(postRequest.getContent())
+                .author(postRequest.getAuthor())
+                .category(postRequest.getCategory())
+                .concept(postRequest.getConcept())
+                .createdAt(postRequest.getCreatedAt())
+                .updatedAt(postRequest.getUpdatedAt())
+                .build();
+    }
+
     private PostResponse mapToPostResponse(Post post) {
         return PostResponse.builder()
+                .id(post.getId())
                 .title(post.getTitle())
                 .content(post.getContent())
                 .author(post.getAuthor())
                 .category(post.getCategory())
                 .concept(post.getConcept())
+                .createdAt(post.getCreatedAt())
+                .updatedAt(post.getUpdatedAt())
                 .build();
     }
 
+    @Override
     public PostResponse createPost(PostRequest postRequest) {
-        Post post = new Post();
-        post.setTitle(postRequest.getTitle());
-        post.setContent(postRequest.getContent());
-        post.setAuthor(postRequest.getAuthor());
-        post.setCategory(postRequest.getCategory());
+        Post post = mapToPost(postRequest);
         post.setConcept(false);
-
+        post.setCreatedAt(LocalDateTime.now());
+        post.setUpdatedAt(LocalDateTime.now());
         postRepository.save(post);
 
         NotificationRequest notificationRequest = NotificationRequest.builder().message("Post created").sender(post.getAuthor()).build();
@@ -46,30 +63,19 @@ public class PostService implements IPostService{
         return mapToPostResponse(post);
     }
 
-    public PostResponse saveConceptOfPost(Post existingPost, PostRequest postRequest) {
-        existingPost.setTitle(postRequest.getTitle());
-        existingPost.setContent(postRequest.getContent());
-        existingPost.setAuthor(postRequest.getAuthor());
-        existingPost.setCategory(postRequest.getCategory());
-        existingPost.setConcept(true);
+    @Override
+    public PostResponse savePostAsConcept(Long id) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new PostNotFoundException("Post not found with ID: " + id));
 
-        System.out.println("------");
-        System.out.println(existingPost);
-        System.out.println(postRequest);
-        postRepository.save(existingPost);
-        System.out.println("------");
+        post.setConcept(true);
+        post.setUpdatedAt(LocalDateTime.now());
+        Post savedPost = postRepository.save(post);
 
-        NotificationRequest notificationRequest = NotificationRequest.builder()
-                .message("Saved post")
-                .sender(existingPost.getAuthor())
-                .build();
-
+        NotificationRequest notificationRequest = NotificationRequest.builder().message("Post saved as concept").sender(post.getAuthor()).build();
         notificationClient.sendNotification(notificationRequest);
 
-        return mapToPostResponse(existingPost);
+        return mapToPostResponse(savedPost);
     }
-
-
-
 
 }
