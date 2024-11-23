@@ -106,4 +106,23 @@ public class PostService implements IPostService{
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<PostResponse> filterPosts(String title, String author, String category, LocalDateTime startDate, LocalDateTime endDate) {
+        List<Post> filteredPosts;
+        if (title != null && !title.isBlank()) {
+            filteredPosts = postRepository.findByTitleContainingIgnoreCase(title);
+        } else if (author != null && !author.isBlank()) {
+            filteredPosts = postRepository.findByAuthorIgnoreCase(author);
+        } else if (category != null && !category.isBlank()) {
+            filteredPosts = postRepository.findByCategoryIgnoreCase(category);
+        } else if (startDate != null && endDate != null) {
+            filteredPosts = postRepository.findByCreatedAtBetween(startDate, endDate);
+        } else {
+            filteredPosts = postRepository.findAll();
+        }
+
+        return filteredPosts.stream()
+                .map(this::mapToPostResponse)
+                .collect(Collectors.toList());
+    }
 }

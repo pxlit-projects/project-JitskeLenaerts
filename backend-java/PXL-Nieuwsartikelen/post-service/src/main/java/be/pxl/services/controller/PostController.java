@@ -43,5 +43,14 @@ public class PostController {
         return ResponseEntity.ok(updatedPost);
     }
 
-
+    @GetMapping("/filter")
+    public ResponseEntity<List<PostResponse>> filterPosts(
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String author,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+        List<PostResponse> filteredPosts = postService.filterPosts(title, author, category, startDate, endDate);
+        return ResponseEntity.ok(filteredPosts);
+    }
 }

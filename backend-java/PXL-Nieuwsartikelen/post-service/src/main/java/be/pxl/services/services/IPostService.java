@@ -12,4 +12,5 @@ public interface IPostService {
     PostResponse savePostAsConcept(Long id);
     PostResponse updatePost(PostRequest postRequest);
     List<PostResponse> getAllPosts();
+    List<PostResponse> filterPosts(String title, String author, String category, LocalDateTime startDate, LocalDateTime endDate);
 }
