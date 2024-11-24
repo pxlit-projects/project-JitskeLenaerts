@@ -10,9 +10,6 @@ import { Router } from '@angular/router';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  router: Router = inject(Router);
+  title = 'welkomst-app';
 
-  onclick(): void {
-    this.router.navigate(['/Home']);
-  }
 }

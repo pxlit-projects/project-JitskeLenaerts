@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  margin: 0;
+}
+
+.welcome-page {
+  background-image: url(../../../public/pxl4.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 93.7vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 30px 40px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-bottom: 30px;
+}
