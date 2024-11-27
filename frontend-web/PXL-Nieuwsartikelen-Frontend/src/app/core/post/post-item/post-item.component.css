@@ -1,0 +1,71 @@
+.post-card {
+  max-width: 320px;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  border: none;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.post-content {
+  padding: 20px;
+}
+
+.post-title {
+  font-size: 1.3em;
+  font-weight: 500;
+  margin-bottom: 15px;
+  color: #222;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.post-details {
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 12px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.details-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-size: 1em;
+  text-transform: uppercase;
+  background-color: #333;
+  color: #fff;
+  border-radius: 25px;
+  text-align: center;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.details-button:hover {
+  background-color: #444;
+  transform: scale(1.05);
+}
+
+.post-placeholder {
+  height: 200px;
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  color: #ccc;
+  font-weight: 300;
+  text-align: center;
+}
+

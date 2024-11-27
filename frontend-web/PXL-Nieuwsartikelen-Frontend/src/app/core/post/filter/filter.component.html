@@ -1,0 +1,13 @@
+<div class="filter-container">
+  <form #filterForm="ngForm" (ngSubmit)="onSubmit(filterForm)">
+    <div class="filter-inputs">
+      <input type="text" class="filter-input" placeholder="Search by Title" name="title" [(ngModel)]="filter.title">
+      <input type="text" class="filter-input" placeholder="Search by Author" name="author" [(ngModel)]="filter.author">
+      <input type="text" class="filter-input" placeholder="Search by Content" name="content" [(ngModel)]="filter.content">
+      <input type="text" class="filter-input" placeholder="Search by Category" name="category" [(ngModel)]="filter.category">
+
+      <input type="date" class="filter-input" name="createdAt" [(ngModel)]="filter.createdAt">
+      <button type="submit" class="filter-button">Search</button>
+    </div>
+  </form>
+</div>

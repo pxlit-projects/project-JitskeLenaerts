@@ -1,0 +1,54 @@
+<div class="form-container">
+  <div class="form-card">
+    <h2>Create Post</h2>
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input
+          id="title"
+          type="text"
+          formControlName="title"
+          placeholder="Enter the post title"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="content">Content:</label>
+        <textarea
+          id="content"
+          formControlName="content"
+          rows="4"
+          placeholder="Write your content here"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="author">Author:</label>
+        <input
+          id="author"
+          type="text"
+          formControlName="author"
+          placeholder="Author name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <input
+          id="category"
+          type="text"
+          formControlName="category"
+          placeholder="Post category"
+        />
+      </div>
+
+      <div class="form-group-inline">
+        <label for="concept">Is concept?</label>
+        <input id="concept" type="checkbox" formControlName="concept" />
+      </div>
+
+
+      <button type="submit" [disabled]="!postForm.valid">Submit</button>
+    </form>
+  </div>
+</div>

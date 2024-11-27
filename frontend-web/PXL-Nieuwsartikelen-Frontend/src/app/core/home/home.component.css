@@ -1,0 +1,27 @@
+.welcome-page {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 30px 40px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-bottom: 30px;
+}

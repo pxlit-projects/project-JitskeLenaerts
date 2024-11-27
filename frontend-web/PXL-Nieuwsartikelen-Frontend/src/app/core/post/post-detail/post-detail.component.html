@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="content">
+    <h1 class="title">{{ post.title }}</h1>
+    <ul class="details-list">
+      <li><strong class="label">Author:</strong> {{ post.author }}</li>
+      <li><strong class="label">Created at:</strong> {{ post.createdAt | date : 'dd/MM/yyyy' }}</li>
+      <li><strong class="label">Updated at:</strong> {{ post.updatedAt | date : 'dd/MM/yyyy' }}</li>
+      <li><strong class="label">Category:</strong> {{ post.category }}</li>
+      <li>
+        <strong class="label">Content:</strong>
+        <p class="content-text">{{ post.content }}</p>
+      </li>
+      <li>
+        <strong class="label">Concept:</strong>
+        <span class="concept-status" [ngClass]="post.concept ? 'concept-yes' : 'concept-no'">
+          {{ post.concept ? 'Yes' : 'No' }}
+        </span>
+      </li>
+      <button [routerLink]="['/edit', post.id]" class="edit-button">Bewerk Post</button>
+    </ul>
+  </div>
+</div>

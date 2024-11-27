@@ -52,7 +52,7 @@ public class PostService implements IPostService{
     @Override
     public PostResponse createPost(PostRequest postRequest) {
         Post post = mapToPost(postRequest);
-        post.setConcept(false);
+        post.setConcept(postRequest.getConcept());
         post.setCreatedAt(LocalDateTime.now());
         post.setUpdatedAt(LocalDateTime.now());
         postRepository.save(post);
@@ -62,6 +62,14 @@ public class PostService implements IPostService{
 
         return mapToPostResponse(post);
     }
+
+    @Override
+    public PostResponse getPostById(Long id) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new PostNotFoundException("Post not found with ID: " + id));
+        return mapToPostResponse(post);
+    }
+
 
     @Override
     public PostResponse savePostAsConcept(Long id) {
