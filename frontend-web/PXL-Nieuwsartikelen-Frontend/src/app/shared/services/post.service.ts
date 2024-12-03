@@ -28,7 +28,6 @@ export class PostService {
     return this.http.put<Post>(`${this.api}/${id}`, post);
   }
 
-
   filterPosts(filter: Filter): Observable<Post[]> {
     return this.http.get<Post[]>(this.api).pipe(
       map((posts: Post[]) => posts.filter(posts => this.isPostMatchingFilter(posts, filter)))
@@ -43,5 +42,4 @@ export class PostService {
 
     return matchesTitle && matchesAuthor && matchesContent && matchesCategory;
   }
-
 }

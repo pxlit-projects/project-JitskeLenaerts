@@ -6,6 +6,7 @@ import be.pxl.services.domain.Post;
 import be.pxl.services.domain.dto.PostRequest;
 import be.pxl.services.domain.dto.PostResponse;
 import be.pxl.services.exception.PostNotFoundException;
+import be.pxl.services.exception.TitleAlreadyExistsException;
 import be.pxl.services.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -18,12 +19,13 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class PostService implements IPostService{
+public class PostService implements IPostService {
     private static final Logger log = LoggerFactory.getLogger(PostService.class);
     private final PostRepository postRepository;
     private final NotificationClient notificationClient;
 
     private Post mapToPost(PostRequest postRequest) {
+        log.info("Mapping post request to post");
         return Post.builder()
                 .id(postRequest.getId())
                 .title(postRequest.getTitle())
@@ -37,6 +39,7 @@ public class PostService implements IPostService{
     }
 
     private PostResponse mapToPostResponse(Post post) {
+        log.info("Mapping post to post response");
         return PostResponse.builder()
                 .id(post.getId())
                 .title(post.getTitle())
@@ -51,6 +54,9 @@ public class PostService implements IPostService{
 
     @Override
     public PostResponse createPost(PostRequest postRequest) {
+        if (postRepository.findByTitle(postRequest.getTitle()).isPresent()) {
+            throw new TitleAlreadyExistsException("A post with title '" + postRequest.getTitle() + "' already exists.");
+        }
         Post post = mapToPost(postRequest);
         post.setConcept(postRequest.getConcept());
         post.setCreatedAt(LocalDateTime.now());
@@ -60,6 +66,7 @@ public class PostService implements IPostService{
         NotificationRequest notificationRequest = NotificationRequest.builder().message("Post created").sender(post.getAuthor()).build();
         notificationClient.sendNotification(notificationRequest);
 
+        log.info("Post created");
         return mapToPostResponse(post);
     }
 
@@ -67,7 +74,17 @@ public class PostService implements IPostService{
     public PostResponse getPostById(Long id) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new PostNotFoundException("Post not found with ID: " + id));
+        log.info("Fetching specific post with id {}", id);
         return mapToPostResponse(post);
+    }
+
+    @Override
+    public void deletePost(Long id) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new PostNotFoundException("Post not found with ID: " + id));
+
+        postRepository.delete(post);
+        log.info("Deleted post with ID: {}", id);
     }
 
 
@@ -82,7 +99,7 @@ public class PostService implements IPostService{
 
         NotificationRequest notificationRequest = NotificationRequest.builder().message("Post saved as concept").sender(post.getAuthor()).build();
         notificationClient.sendNotification(notificationRequest);
-
+        log.info("Post saved as concept");
         return mapToPostResponse(savedPost);
     }
 
@@ -102,33 +119,17 @@ public class PostService implements IPostService{
         post.setUpdatedAt(LocalDateTime.now());
 
         postRepository.save(post);
-
+        log.info("Post updated");
         return mapToPostResponse(post);
     }
 
     @Override
     public List<PostResponse> getAllPosts() {
+        log.info("Fetching all posts");
         return postRepository.findAll()
                 .stream()
                 .map(this::mapToPostResponse)
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public List<PostResponse> filterPosts(String content, String author,LocalDateTime startDate, LocalDateTime endDate) {
-        List<Post> filteredPosts;
-        if (content != null && !content.isBlank()) {
-            filteredPosts = postRepository.findByContentContainingIgnoreCase(content);
-        } else if (author != null && !author.isBlank()) {
-            filteredPosts = postRepository.findByAuthorContainingIgnoreCase(author);
-        } else if (startDate != null && endDate != null) {
-            filteredPosts = postRepository.findByCreatedAtBetween(startDate, endDate);
-        } else {
-            filteredPosts = postRepository.findAll();
-        }
-
-        return filteredPosts.stream()
-                .map(this::mapToPostResponse)
-                .collect(Collectors.toList());
-    }
 }
