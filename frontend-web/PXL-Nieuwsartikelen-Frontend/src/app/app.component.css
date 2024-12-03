@@ -37,6 +37,7 @@ body {
 
 .main-content {
   margin-top: 60px;
+  width: 100%;
   flex: 15;
   background-image: url('../../public/pxl4.jpg');
   background-repeat: no-repeat;

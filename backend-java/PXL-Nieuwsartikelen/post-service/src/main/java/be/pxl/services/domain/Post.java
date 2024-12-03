@@ -1,6 +1,5 @@
 package be.pxl.services.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,9 +24,6 @@ public class Post {
     private String author;
     private String category;
     private Boolean concept;
-    @JsonFormat(pattern = "dd-MM-yyyy'T'HH:mm:ss")
     private LocalDateTime createdAt;
-
-    @JsonFormat(pattern = "dd-MM-yyyy'T'HH:mm:ss")
     private LocalDateTime updatedAt;
 }
