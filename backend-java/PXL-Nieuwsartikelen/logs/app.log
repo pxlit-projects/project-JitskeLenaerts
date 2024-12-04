@@ -376,3 +376,82 @@
 2024-12-03T20:51:56.606+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
 2024-12-03T20:51:56.606+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
 2024-12-03T20:51:56.606+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Fetching all posts
+2024-12-04T09:19:13.534+0100 INFO               [main]                         be.pxl.services.ConfigServiceApplication - Starting ConfigServiceApplication using Java 22.0.2 with PID 17292 (C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\config-service\target\classes started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-04T09:19:13.536+0100 DEBUG              [main]                         be.pxl.services.ConfigServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:19:13.538+0100 INFO               [main]                         be.pxl.services.ConfigServiceApplication - The following 1 profile is active: "native"
+2024-12-04T09:19:15.616+0100 INFO               [main]                         be.pxl.services.ConfigServiceApplication - Started ConfigServiceApplication in 3.056 seconds (process running for 4.221)
+2024-12-04T09:19:29.630+0100 INFO               [main]                         be.pxl.services.DiscoveryServiceApplication - Starting DiscoveryServiceApplication using Java 22.0.2 with PID 17156 (C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\discovery-service\target\classes started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-04T09:19:29.631+0100 DEBUG              [main]                         be.pxl.services.DiscoveryServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:19:29.632+0100 INFO               [main]                         be.pxl.services.DiscoveryServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:19:33.285+0100 INFO               [main]                         be.pxl.services.DiscoveryServiceApplication - Started DiscoveryServiceApplication in 5.747 seconds (process running for 6.906)
+2024-12-04T09:19:54.904+0100 INFO               [main]                         be.pxl.services.GatewayServiceApplication - Starting GatewayServiceApplication using Java 22.0.2 with PID 14168 (C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\gateway-service\target\classes started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-04T09:19:54.907+0100 DEBUG              [main]                         be.pxl.services.GatewayServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:19:54.908+0100 INFO               [main]                         be.pxl.services.GatewayServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:19:59.311+0100 INFO               [main]                         be.pxl.services.GatewayServiceApplication - Started GatewayServiceApplication in 6.33 seconds (process running for 7.902)
+2024-12-04T09:20:09.544+0100 INFO               [main]                         be.pxl.services.MessagingServiceApplication - Starting MessagingServiceApplication using Java 22.0.2 with PID 22920 (C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\messaging-service\target\classes started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-04T09:20:09.546+0100 DEBUG              [main]                         be.pxl.services.MessagingServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:20:09.547+0100 INFO               [main]                         be.pxl.services.MessagingServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:20:11.859+0100 INFO               [main]                         be.pxl.services.MessagingServiceApplication - Started MessagingServiceApplication in 3.162 seconds (process running for 5.332)
+2024-12-04T09:20:28.776+0100 INFO               [main]                         be.pxl.services.NotificationServiceApplication - Starting NotificationServiceApplication using Java 22.0.2 with PID 4280 (C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\notification-service\target\classes started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-04T09:20:28.778+0100 DEBUG              [main]                         be.pxl.services.NotificationServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:20:28.779+0100 INFO               [main]                         be.pxl.services.NotificationServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:20:31.339+0100 INFO               [main]                         be.pxl.services.NotificationServiceApplication - Started NotificationServiceApplication in 4.1 seconds (process running for 5.289)
+2024-12-04T09:20:37.783+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - Starting PostServiceApplication using Java 22.0.2 with PID 5996 (C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service\target\classes started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-04T09:20:37.785+0100 DEBUG              [main]                         be.pxl.services.PostServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:20:37.788+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:20:46.614+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - Started PostServiceApplication in 10.541 seconds (process running for 11.717)
+2024-12-04T09:21:47.468+0100 INFO               [http-nio-8084-exec-1]         be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T09:21:47.469+0100 INFO               [http-nio-8084-exec-1]         be.pxl.services.service.NotificationService - Sending ... Post created
+2024-12-04T09:21:47.469+0100 INFO               [http-nio-8084-exec-1]         be.pxl.services.service.NotificationService - TO author
+2024-12-04T09:27:12.242+0100 INFO               [http-nio-8084-exec-5]         be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T09:27:12.242+0100 INFO               [http-nio-8084-exec-5]         be.pxl.services.service.NotificationService - Sending ... Post created
+2024-12-04T09:27:12.242+0100 INFO               [http-nio-8084-exec-5]         be.pxl.services.service.NotificationService - TO author
+2024-12-04T09:30:49.216+0100 INFO               [http-nio-8084-exec-3]         be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T09:30:49.216+0100 INFO               [http-nio-8084-exec-3]         be.pxl.services.service.NotificationService - Sending ... Post created
+2024-12-04T09:30:49.216+0100 INFO               [http-nio-8084-exec-3]         be.pxl.services.service.NotificationService - TO author
+2024-12-04T09:32:44.717+0100 INFO               [http-nio-8084-exec-7]         be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T09:32:44.717+0100 INFO               [http-nio-8084-exec-7]         be.pxl.services.service.NotificationService - Sending ... Post saved as concept
+2024-12-04T09:32:44.717+0100 INFO               [http-nio-8084-exec-7]         be.pxl.services.service.NotificationService - TO author
+2024-12-04T09:42:01.590+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - Starting PostServiceApplication using Java 22.0.2 with PID 19468 (C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service\target\classes started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-04T09:42:01.592+0100 DEBUG              [main]                         be.pxl.services.PostServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:42:01.593+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:42:06.656+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - Started PostServiceApplication in 6.58 seconds (process running for 7.48)
+2024-12-04T09:44:08.649+0100 INFO               [http-nio-8084-exec-9]         be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T09:44:08.650+0100 INFO               [http-nio-8084-exec-9]         be.pxl.services.service.NotificationService - Sending ... Post saved as concept
+2024-12-04T09:44:08.650+0100 INFO               [http-nio-8084-exec-9]         be.pxl.services.service.NotificationService - TO author
+2024-12-04T09:44:08.752+0100 INFO               [http-nio-8084-exec-4]         be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T09:44:08.753+0100 INFO               [http-nio-8084-exec-4]         be.pxl.services.service.NotificationService - Sending ... Post created
+2024-12-04T09:44:08.753+0100 INFO               [http-nio-8084-exec-4]         be.pxl.services.service.NotificationService - TO author
+2024-12-04T09:49:41.863+0100 INFO               [http-nio-8084-exec-2]         be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T09:49:41.863+0100 INFO               [http-nio-8084-exec-2]         be.pxl.services.service.NotificationService - Sending ... Post saved as concept
+2024-12-04T09:49:41.863+0100 INFO               [http-nio-8084-exec-2]         be.pxl.services.service.NotificationService - TO author
+2024-12-04T09:49:41.962+0100 INFO               [http-nio-8084-exec-5]         be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T09:49:41.962+0100 INFO               [http-nio-8084-exec-5]         be.pxl.services.service.NotificationService - Sending ... Post created
+2024-12-04T09:49:41.962+0100 INFO               [http-nio-8084-exec-5]         be.pxl.services.service.NotificationService - TO author
+2024-12-04T09:55:31.173+0100 INFO               [http-nio-8084-exec-3]         be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T09:55:31.174+0100 INFO               [http-nio-8084-exec-3]         be.pxl.services.service.NotificationService - Sending ... Post created
+2024-12-04T09:55:31.174+0100 INFO               [http-nio-8084-exec-3]         be.pxl.services.service.NotificationService - TO Author
+2024-12-04T09:55:31.310+0100 INFO               [http-nio-8084-exec-10]        be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T09:55:31.310+0100 INFO               [http-nio-8084-exec-10]        be.pxl.services.service.NotificationService - Sending ... Post saved as concept
+2024-12-04T09:55:31.310+0100 INFO               [http-nio-8084-exec-10]        be.pxl.services.service.NotificationService - TO author
+2024-12-04T09:55:31.354+0100 INFO               [http-nio-8084-exec-7]         be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T09:55:31.355+0100 INFO               [http-nio-8084-exec-7]         be.pxl.services.service.NotificationService - Sending ... Post created
+2024-12-04T09:55:31.355+0100 INFO               [http-nio-8084-exec-7]         be.pxl.services.service.NotificationService - TO author
+2024-12-04T10:01:16.090+0100 INFO               [http-nio-8084-exec-9]         be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T10:01:16.090+0100 INFO               [http-nio-8084-exec-9]         be.pxl.services.service.NotificationService - Sending ... Post created
+2024-12-04T10:01:16.090+0100 INFO               [http-nio-8084-exec-9]         be.pxl.services.service.NotificationService - TO Author
+2024-12-04T10:01:16.245+0100 INFO               [http-nio-8084-exec-4]         be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T10:01:16.246+0100 INFO               [http-nio-8084-exec-4]         be.pxl.services.service.NotificationService - Sending ... Post saved as concept
+2024-12-04T10:01:16.246+0100 INFO               [http-nio-8084-exec-4]         be.pxl.services.service.NotificationService - TO author
+2024-12-04T10:01:16.292+0100 INFO               [http-nio-8084-exec-1]         be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T10:01:16.292+0100 INFO               [http-nio-8084-exec-1]         be.pxl.services.service.NotificationService - Sending ... Post created
+2024-12-04T10:01:16.292+0100 INFO               [http-nio-8084-exec-1]         be.pxl.services.service.NotificationService - TO author
+2024-12-04T10:04:57.645+0100 INFO               [http-nio-8084-exec-5]         be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T10:04:57.646+0100 INFO               [http-nio-8084-exec-5]         be.pxl.services.service.NotificationService - Sending ... Post created
+2024-12-04T10:04:57.646+0100 INFO               [http-nio-8084-exec-5]         be.pxl.services.service.NotificationService - TO Author
+2024-12-04T10:04:57.882+0100 INFO               [http-nio-8084-exec-6]         be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T10:04:57.882+0100 INFO               [http-nio-8084-exec-6]         be.pxl.services.service.NotificationService - Sending ... Post saved as concept
+2024-12-04T10:04:57.883+0100 INFO               [http-nio-8084-exec-6]         be.pxl.services.service.NotificationService - TO author
+2024-12-04T10:04:57.951+0100 INFO               [http-nio-8084-exec-3]         be.pxl.services.service.NotificationService - Receiving notification...
+2024-12-04T10:04:57.951+0100 INFO               [http-nio-8084-exec-3]         be.pxl.services.service.NotificationService - Sending ... Post created
+2024-12-04T10:04:57.951+0100 INFO               [http-nio-8084-exec-3]         be.pxl.services.service.NotificationService - TO author

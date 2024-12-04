@@ -116,6 +116,7 @@ public class PostService implements IPostService {
         post.setContent(postRequest.getContent());
         post.setAuthor(postRequest.getAuthor());
         post.setCategory(postRequest.getCategory());
+        post.setConcept(postRequest.getConcept());
         post.setUpdatedAt(LocalDateTime.now());
 
         postRepository.save(post);

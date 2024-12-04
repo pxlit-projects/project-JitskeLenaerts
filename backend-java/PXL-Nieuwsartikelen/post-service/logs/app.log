@@ -1,0 +1,196 @@
+2024-12-04T09:17:03.828+0100 INFO               [main]                         be.pxl.services.PostTest      - Starting PostTest using Java 22.0.2 with PID 1832 (started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service)
+2024-12-04T09:17:03.829+0100 DEBUG              [main]                         be.pxl.services.PostTest      - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:17:03.830+0100 INFO               [main]                         be.pxl.services.PostTest      - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:17:11.195+0100 INFO               [main]                         be.pxl.services.PostTest      - Started PostTest in 8.571 seconds (process running for 42.664)
+2024-12-04T09:21:37.730+0100 INFO               [main]                         be.pxl.services.PostTest      - Starting PostTest using Java 22.0.2 with PID 1648 (started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service)
+2024-12-04T09:21:37.733+0100 DEBUG              [main]                         be.pxl.services.PostTest      - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:21:37.735+0100 INFO               [main]                         be.pxl.services.PostTest      - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:21:46.044+0100 INFO               [main]                         be.pxl.services.PostTest      - Started PostTest in 9.878 seconds (process running for 51.762)
+2024-12-04T09:21:47.082+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post request to post
+2024-12-04T09:21:47.474+0100 INFO               [main]                         be.pxl.services.services.PostService - Post created
+2024-12-04T09:21:47.475+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:21:47.476+0100 INFO               [main]                         be.pxl.services.controller.PostController - Creating new post
+2024-12-04T09:27:03.221+0100 INFO               [main]                         be.pxl.services.PostTest      - Starting PostTest using Java 22.0.2 with PID 10772 (started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service)
+2024-12-04T09:27:03.223+0100 DEBUG              [main]                         be.pxl.services.PostTest      - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:27:03.224+0100 INFO               [main]                         be.pxl.services.PostTest      - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:27:10.651+0100 INFO               [main]                         be.pxl.services.PostTest      - Started PostTest in 8.715 seconds (process running for 46.59)
+2024-12-04T09:27:11.706+0100 INFO               [main]                         be.pxl.services.services.PostService - Fetching specific post with id 1
+2024-12-04T09:27:11.706+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:27:11.708+0100 INFO               [main]                         be.pxl.services.controller.PostController - Fetching specific post with id 1
+2024-12-04T09:27:12.057+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post request to post
+2024-12-04T09:27:12.245+0100 INFO               [main]                         be.pxl.services.services.PostService - Post created
+2024-12-04T09:27:12.246+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:27:12.246+0100 INFO               [main]                         be.pxl.services.controller.PostController - Creating new post
+2024-12-04T09:27:12.284+0100 INFO               [main]                         be.pxl.services.services.PostService - Fetching all posts
+2024-12-04T09:27:12.295+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:27:12.295+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:27:12.295+0100 INFO               [main]                         be.pxl.services.controller.PostController - Fetching all posts
+2024-12-04T09:30:38.740+0100 INFO               [main]                         be.pxl.services.PostTest      - Starting PostTest using Java 22.0.2 with PID 1288 (started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service)
+2024-12-04T09:30:38.742+0100 DEBUG              [main]                         be.pxl.services.PostTest      - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:30:38.743+0100 INFO               [main]                         be.pxl.services.PostTest      - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:30:47.748+0100 INFO               [main]                         be.pxl.services.PostTest      - Started PostTest in 10.723 seconds (process running for 43.682)
+2024-12-04T09:30:48.769+0100 INFO               [main]                         be.pxl.services.services.PostService - Fetching specific post with id 2
+2024-12-04T09:30:48.769+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:30:48.770+0100 INFO               [main]                         be.pxl.services.controller.PostController - Fetching specific post with id 2
+2024-12-04T09:30:49.066+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post request to post
+2024-12-04T09:30:49.219+0100 INFO               [main]                         be.pxl.services.services.PostService - Post created
+2024-12-04T09:30:49.219+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:30:49.219+0100 INFO               [main]                         be.pxl.services.controller.PostController - Creating new post
+2024-12-04T09:30:49.266+0100 INFO               [main]                         be.pxl.services.services.PostService - Fetching all posts
+2024-12-04T09:30:49.286+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:30:49.286+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:30:49.286+0100 INFO               [main]                         be.pxl.services.controller.PostController - Fetching all posts
+2024-12-04T09:30:49.330+0100 INFO               [main]                         be.pxl.services.services.PostService - Deleted post with ID: 7
+2024-12-04T09:30:49.330+0100 INFO               [main]                         be.pxl.services.controller.PostController - Deleted post with ID: 7
+2024-12-04T09:32:35.788+0100 INFO               [main]                         be.pxl.services.PostTest      - Starting PostTest using Java 22.0.2 with PID 13272 (started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service)
+2024-12-04T09:32:35.789+0100 DEBUG              [main]                         be.pxl.services.PostTest      - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:32:35.790+0100 INFO               [main]                         be.pxl.services.PostTest      - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:32:43.562+0100 INFO               [main]                         be.pxl.services.PostTest      - Started PostTest in 9.215 seconds (process running for 41.148)
+2024-12-04T09:32:44.417+0100 INFO               [main]                         be.pxl.services.services.PostService - Post updated
+2024-12-04T09:32:44.418+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:32:44.419+0100 INFO               [main]                         be.pxl.services.controller.PostController - Updating post with id 1
+2024-12-04T09:32:44.721+0100 INFO               [main]                         be.pxl.services.services.PostService - Post saved as concept
+2024-12-04T09:32:44.721+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:32:44.721+0100 INFO               [main]                         be.pxl.services.controller.PostController - Save post as concept
+2024-12-04T09:36:12.918+0100 INFO               [main]                         be.pxl.services.PostTest      - Starting PostTest using Java 22.0.2 with PID 17904 (started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service)
+2024-12-04T09:36:12.921+0100 DEBUG              [main]                         be.pxl.services.PostTest      - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:36:12.924+0100 INFO               [main]                         be.pxl.services.PostTest      - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:36:20.127+0100 INFO               [main]                         be.pxl.services.PostTest      - Started PostTest in 8.364 seconds (process running for 44.825)
+2024-12-04T09:36:21.215+0100 INFO               [main]                         be.pxl.services.services.PostService - Post updated
+2024-12-04T09:36:21.215+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:36:21.216+0100 INFO               [main]                         be.pxl.services.controller.PostController - Updating post with id 1
+2024-12-04T09:43:04.479+0100 INFO               [main]                         be.pxl.services.PostTest      - Starting PostTest using Java 22.0.2 with PID 15952 (started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service)
+2024-12-04T09:43:04.480+0100 DEBUG              [main]                         be.pxl.services.PostTest      - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:43:04.482+0100 INFO               [main]                         be.pxl.services.PostTest      - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:43:11.590+0100 INFO               [main]                         be.pxl.services.PostTest      - Started PostTest in 8.454 seconds (process running for 44.842)
+2024-12-04T09:43:12.515+0100 INFO               [main]                         be.pxl.services.services.PostService - Post updated
+2024-12-04T09:43:12.515+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:43:12.517+0100 INFO               [main]                         be.pxl.services.controller.PostController - Updating post with id 1
+2024-12-04T09:43:59.341+0100 INFO               [main]                         be.pxl.services.PostTest      - Starting PostTest using Java 22.0.2 with PID 12636 (started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service)
+2024-12-04T09:43:59.343+0100 DEBUG              [main]                         be.pxl.services.PostTest      - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:43:59.343+0100 INFO               [main]                         be.pxl.services.PostTest      - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:44:07.155+0100 INFO               [main]                         be.pxl.services.PostTest      - Started PostTest in 8.901 seconds (process running for 41.865)
+2024-12-04T09:44:08.185+0100 INFO               [main]                         be.pxl.services.services.PostService - Post updated
+2024-12-04T09:44:08.186+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:44:08.187+0100 INFO               [main]                         be.pxl.services.controller.PostController - Updating post with id 1
+2024-12-04T09:44:08.387+0100 INFO               [main]                         be.pxl.services.services.PostService - Fetching specific post with id 2
+2024-12-04T09:44:08.387+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:44:08.388+0100 INFO               [main]                         be.pxl.services.controller.PostController - Fetching specific post with id 2
+2024-12-04T09:44:08.655+0100 INFO               [main]                         be.pxl.services.services.PostService - Post saved as concept
+2024-12-04T09:44:08.656+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:44:08.656+0100 INFO               [main]                         be.pxl.services.controller.PostController - Save post as concept
+2024-12-04T09:44:08.735+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post request to post
+2024-12-04T09:44:08.754+0100 INFO               [main]                         be.pxl.services.services.PostService - Post created
+2024-12-04T09:44:08.754+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:44:08.754+0100 INFO               [main]                         be.pxl.services.controller.PostController - Creating new post
+2024-12-04T09:44:08.820+0100 INFO               [main]                         be.pxl.services.services.PostService - Fetching all posts
+2024-12-04T09:44:08.839+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:44:08.839+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:44:08.839+0100 INFO               [main]                         be.pxl.services.controller.PostController - Fetching all posts
+2024-12-04T09:44:08.948+0100 INFO               [main]                         be.pxl.services.services.PostService - Deleted post with ID: 7
+2024-12-04T09:44:08.949+0100 INFO               [main]                         be.pxl.services.controller.PostController - Deleted post with ID: 7
+2024-12-04T09:49:33.575+0100 INFO               [main]                         be.pxl.services.PostTest      - Starting PostTest using Java 22.0.2 with PID 3004 (started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service)
+2024-12-04T09:49:33.578+0100 DEBUG              [main]                         be.pxl.services.PostTest      - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:49:33.580+0100 INFO               [main]                         be.pxl.services.PostTest      - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:49:40.527+0100 INFO               [main]                         be.pxl.services.PostTest      - Started PostTest in 8.675 seconds (process running for 44.045)
+2024-12-04T09:49:41.507+0100 INFO               [main]                         be.pxl.services.services.PostService - Post updated
+2024-12-04T09:49:41.507+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:49:41.509+0100 INFO               [main]                         be.pxl.services.controller.PostController - Updating post with id 1
+2024-12-04T09:49:41.618+0100 INFO               [main]                         be.pxl.services.services.PostService - Fetching specific post with id 2
+2024-12-04T09:49:41.618+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:49:41.618+0100 INFO               [main]                         be.pxl.services.controller.PostController - Fetching specific post with id 2
+2024-12-04T09:49:41.870+0100 INFO               [main]                         be.pxl.services.services.PostService - Post saved as concept
+2024-12-04T09:49:41.872+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:49:41.873+0100 INFO               [main]                         be.pxl.services.controller.PostController - Save post as concept
+2024-12-04T09:49:41.938+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post request to post
+2024-12-04T09:49:41.963+0100 INFO               [main]                         be.pxl.services.services.PostService - Post created
+2024-12-04T09:49:41.964+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:49:41.964+0100 INFO               [main]                         be.pxl.services.controller.PostController - Creating new post
+2024-12-04T09:49:42.003+0100 INFO               [main]                         be.pxl.services.services.PostService - Fetching all posts
+2024-12-04T09:49:42.017+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:49:42.017+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:49:42.017+0100 INFO               [main]                         be.pxl.services.controller.PostController - Fetching all posts
+2024-12-04T09:49:42.061+0100 INFO               [main]                         be.pxl.services.services.PostService - Deleted post with ID: 7
+2024-12-04T09:49:42.062+0100 INFO               [main]                         be.pxl.services.controller.PostController - Deleted post with ID: 7
+2024-12-04T09:55:22.887+0100 INFO               [main]                         be.pxl.services.PostTest      - Starting PostTest using Java 22.0.2 with PID 23776 (started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service)
+2024-12-04T09:55:22.888+0100 DEBUG              [main]                         be.pxl.services.PostTest      - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:55:22.889+0100 INFO               [main]                         be.pxl.services.PostTest      - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:55:29.968+0100 INFO               [main]                         be.pxl.services.PostTest      - Started PostTest in 8.135 seconds (process running for 43.132)
+2024-12-04T09:55:30.894+0100 INFO               [main]                         be.pxl.services.services.PostService - Post updated
+2024-12-04T09:55:30.894+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:55:30.895+0100 INFO               [main]                         be.pxl.services.controller.PostController - Updating post with id 1
+2024-12-04T09:55:31.000+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post request to post
+2024-12-04T09:55:31.177+0100 INFO               [main]                         be.pxl.services.services.PostService - Post created
+2024-12-04T09:55:31.177+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:55:31.253+0100 INFO               [main]                         be.pxl.services.services.PostService - Fetching specific post with id 3
+2024-12-04T09:55:31.253+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:55:31.253+0100 INFO               [main]                         be.pxl.services.controller.PostController - Fetching specific post with id 3
+2024-12-04T09:55:31.311+0100 INFO               [main]                         be.pxl.services.services.PostService - Post saved as concept
+2024-12-04T09:55:31.312+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:55:31.312+0100 INFO               [main]                         be.pxl.services.controller.PostController - Save post as concept
+2024-12-04T09:55:31.347+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post request to post
+2024-12-04T09:55:31.356+0100 INFO               [main]                         be.pxl.services.services.PostService - Post created
+2024-12-04T09:55:31.356+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:55:31.356+0100 INFO               [main]                         be.pxl.services.controller.PostController - Creating new post
+2024-12-04T09:55:31.400+0100 INFO               [main]                         be.pxl.services.services.PostService - Fetching all posts
+2024-12-04T09:55:31.417+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:55:31.417+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T09:55:31.417+0100 INFO               [main]                         be.pxl.services.controller.PostController - Fetching all posts
+2024-12-04T09:55:31.493+0100 INFO               [main]                         be.pxl.services.services.PostService - Deleted post with ID: 8
+2024-12-04T09:55:31.493+0100 INFO               [main]                         be.pxl.services.controller.PostController - Deleted post with ID: 8
+2024-12-04T09:59:38.394+0100 INFO               [main]                         be.pxl.services.PostTest      - Starting PostTest using Java 22.0.2 with PID 20580 (started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service)
+2024-12-04T09:59:38.394+0100 DEBUG              [main]                         be.pxl.services.PostTest      - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T09:59:38.396+0100 INFO               [main]                         be.pxl.services.PostTest      - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:59:45.898+0100 INFO               [main]                         be.pxl.services.PostTest      - Started PostTest in 8.545 seconds (process running for 42.355)
+2024-12-04T10:01:08.135+0100 INFO               [main]                         be.pxl.services.PostTest      - Starting PostTest using Java 22.0.2 with PID 17884 (started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service)
+2024-12-04T10:01:08.136+0100 DEBUG              [main]                         be.pxl.services.PostTest      - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T10:01:08.136+0100 INFO               [main]                         be.pxl.services.PostTest      - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T10:01:14.929+0100 INFO               [main]                         be.pxl.services.PostTest      - Started PostTest in 7.858 seconds (process running for 40.382)
+2024-12-04T10:01:15.807+0100 INFO               [main]                         be.pxl.services.services.PostService - Post updated
+2024-12-04T10:01:15.808+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T10:01:15.809+0100 INFO               [main]                         be.pxl.services.controller.PostController - Updating post with id 1
+2024-12-04T10:01:15.911+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post request to post
+2024-12-04T10:01:16.094+0100 INFO               [main]                         be.pxl.services.services.PostService - Post created
+2024-12-04T10:01:16.094+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T10:01:16.159+0100 INFO               [main]                         be.pxl.services.services.PostService - Fetching specific post with id 3
+2024-12-04T10:01:16.159+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T10:01:16.159+0100 INFO               [main]                         be.pxl.services.controller.PostController - Fetching specific post with id 3
+2024-12-04T10:01:16.247+0100 INFO               [main]                         be.pxl.services.services.PostService - Post saved as concept
+2024-12-04T10:01:16.247+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T10:01:16.247+0100 INFO               [main]                         be.pxl.services.controller.PostController - Save post as concept
+2024-12-04T10:01:16.281+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post request to post
+2024-12-04T10:01:16.294+0100 INFO               [main]                         be.pxl.services.services.PostService - Post created
+2024-12-04T10:01:16.294+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T10:01:16.294+0100 INFO               [main]                         be.pxl.services.controller.PostController - Creating new post
+2024-12-04T10:01:16.337+0100 INFO               [main]                         be.pxl.services.services.PostService - Fetching all posts
+2024-12-04T10:01:16.349+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T10:01:16.350+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T10:01:16.350+0100 INFO               [main]                         be.pxl.services.controller.PostController - Fetching all posts
+2024-12-04T10:01:16.393+0100 INFO               [main]                         be.pxl.services.services.PostService - Deleted post with ID: 8
+2024-12-04T10:01:16.393+0100 INFO               [main]                         be.pxl.services.controller.PostController - Deleted post with ID: 8
+2024-12-04T10:04:48.802+0100 INFO               [main]                         be.pxl.services.PostTest      - Starting PostTest using Java 22.0.2 with PID 18044 (started by jitsk in C:\Users\jitsk\Documents\pxl\TIN\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service)
+2024-12-04T10:04:48.804+0100 DEBUG              [main]                         be.pxl.services.PostTest      - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-04T10:04:48.805+0100 INFO               [main]                         be.pxl.services.PostTest      - No active profile set, falling back to 1 default profile: "default"
+2024-12-04T10:04:56.311+0100 INFO               [main]                         be.pxl.services.PostTest      - Started PostTest in 8.671 seconds (process running for 42.481)
+2024-12-04T10:04:57.308+0100 INFO               [main]                         be.pxl.services.services.PostService - Post updated
+2024-12-04T10:04:57.308+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T10:04:57.309+0100 INFO               [main]                         be.pxl.services.controller.PostController - Updating post with id 1
+2024-12-04T10:04:57.430+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post request to post
+2024-12-04T10:04:57.651+0100 INFO               [main]                         be.pxl.services.services.PostService - Post created
+2024-12-04T10:04:57.653+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T10:04:57.788+0100 INFO               [main]                         be.pxl.services.services.PostService - Fetching specific post with id 3
+2024-12-04T10:04:57.789+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T10:04:57.789+0100 INFO               [main]                         be.pxl.services.controller.PostController - Fetching specific post with id 3
+2024-12-04T10:04:57.884+0100 INFO               [main]                         be.pxl.services.services.PostService - Post saved as concept
+2024-12-04T10:04:57.884+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T10:04:57.884+0100 INFO               [main]                         be.pxl.services.controller.PostController - Save post as concept
+2024-12-04T10:04:57.932+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post request to post
+2024-12-04T10:04:57.952+0100 INFO               [main]                         be.pxl.services.services.PostService - Post created
+2024-12-04T10:04:57.952+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T10:04:57.952+0100 INFO               [main]                         be.pxl.services.controller.PostController - Creating new post
+2024-12-04T10:04:58.057+0100 INFO               [main]                         be.pxl.services.services.PostService - Fetching all posts
+2024-12-04T10:04:58.087+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T10:04:58.087+0100 INFO               [main]                         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-04T10:04:58.087+0100 INFO               [main]                         be.pxl.services.controller.PostController - Fetching all posts
+2024-12-04T10:04:58.145+0100 INFO               [main]                         be.pxl.services.services.PostService - Deleted post with ID: 8
+2024-12-04T10:04:58.145+0100 INFO               [main]                         be.pxl.services.controller.PostController - Deleted post with ID: 8
