@@ -40,6 +40,20 @@ export class PostService {
     const matchesContent = post.content.toLowerCase().includes(filter.content.toLowerCase());
     const matchesCategory = post.category.toLowerCase().includes(filter.category.toLowerCase());
 
-    return matchesTitle && matchesAuthor && matchesContent && matchesCategory;
+    const filterCreatedAtDate = filter.createdAt ? this.normalizeDate(new Date(filter.createdAt)) : null;
+    const postCreatedAtDate = this.normalizeDate(new Date(post.createdAt));
+
+    const matchesCreatedAt = filterCreatedAtDate && !isNaN(filterCreatedAtDate.getTime())
+      ? postCreatedAtDate.getTime() === filterCreatedAtDate.getTime()
+      : true;
+
+    return matchesTitle && matchesAuthor && matchesContent && matchesCategory && matchesCreatedAt;
   }
+
+  private normalizeDate(date: Date): Date {
+    if (isNaN(date.getTime())) return date;
+    date.setHours(0, 0, 0, 0);
+    return date;
+  }
+
 }

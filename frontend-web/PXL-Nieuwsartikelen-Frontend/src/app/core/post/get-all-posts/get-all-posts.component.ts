@@ -26,6 +26,7 @@ export class GetAllPostsComponent implements OnInit {
   }
 
   handleFilter(filter: Filter) {
+    
     this.postService.filterPosts(filter).subscribe({
       next: posts => {
         this.filteredData = posts;

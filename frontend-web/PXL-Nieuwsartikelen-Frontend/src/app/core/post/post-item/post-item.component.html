@@ -1,8 +1,4 @@
-<div
-  [ngClass]="{
-    'border-yellow': post.concept,
-    'border-green': !post.concept
-  }"
+<div [ngClass]="{'border-yellow': post.concept,'border-green': !post.concept}"
   class="post-card">
   <div class="post-content">
     <h2 class="post-title">{{ post.title }}</h2>
@@ -18,10 +14,7 @@
     <p class="post-details">
       <strong>Category:</strong> {{ post.category }}
     </p>
-    <button
-      [routerLink]="['/post/', post.id]"
-      routerLinkActive="router-link-active"
-      class="details-button">
+    <button [routerLink]="['/post/', post.id]" routerLinkActive="router-link-active" class="details-button">
       Details
     </button>
   </div>

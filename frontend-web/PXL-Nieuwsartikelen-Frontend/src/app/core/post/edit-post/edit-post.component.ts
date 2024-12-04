@@ -44,11 +44,7 @@ export class EditPostComponent implements OnInit{
   }
 
   onUpdate() {
-    console.log('Ik kom erin de valid');
-    console.log(this.postId);
-
     if (this.updateForm.valid) {
-      console.log('Formulier is geldig');
 
       const updatedPost: Post = { ...this.updateForm.value };
       this.postService.updatePost(this.postId, updatedPost).subscribe(() => {
@@ -56,8 +52,7 @@ export class EditPostComponent implements OnInit{
         this.router.navigate(['/posts']);
       });
     } else {
-      console.log('Formulier is ongeldig:', this.updateForm.errors);
-      console.log('Formulierwaarden:', this.updateForm.value);
+      alert('Please fill in all fields');
     }
   }
 
