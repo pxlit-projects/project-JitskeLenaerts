@@ -47,10 +47,19 @@
     </div>
 
     <div class="form-actions">
-      <button type="submit" [disabled]="!updateForm.valid" class="btn btn-primary">
-        Update Post
+      <button [disabled]="!updateForm.valid"
+      class="btn btn-primary"
+        mat-raised-button
+        matTooltip="This is a update button"
+        aria-label="Button that displays a tooltip when focused or hovered over"
+      >
+      Update Post
       </button>
-      <button type="button" (click)="onCancel()" class="btn btn-secondary">
+      <button (click)="onCancel()" class="btn btn-secondary"
+        mat-raised-button
+        matTooltip="This is a cancel button"
+        aria-label="Button that displays a tooltip when focused or hovered over"
+      >
         Cancel
       </button>
     </div>

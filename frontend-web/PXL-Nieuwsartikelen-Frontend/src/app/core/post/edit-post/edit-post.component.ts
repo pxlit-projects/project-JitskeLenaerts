@@ -5,11 +5,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../../../shared/models/post.model';
 import { PostService } from '../../../shared/services/post.service';
 import { Observable } from 'rxjs';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-edit-post',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,MatButtonModule, MatTooltipModule],
   templateUrl: './edit-post.component.html',
   styleUrl: './edit-post.component.css'
 })

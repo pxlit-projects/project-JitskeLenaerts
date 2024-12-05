@@ -2,6 +2,6 @@ body{
   padding: 0;
   margin: 0;
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Parkinsas, sans-serif; }
