@@ -1,104 +1,95 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddPostComponent } from './add-post.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { PostService } from '../../../shared/services/post.service';
+import { Router } from '@angular/router';
 import { of } from 'rxjs';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { Post } from '../../../shared/models/post.model';
+import { CommonModule } from '@angular/common';
 
 describe('AddPostComponent', () => {
   let component: AddPostComponent;
   let fixture: ComponentFixture<AddPostComponent>;
-  let mockPostService: jasmine.SpyObj<PostService>;
-  let mockRouter: jasmine.SpyObj<Router>;
+  let postService: jasmine.SpyObj<PostService>;
+  let router: jasmine.SpyObj<Router>;
 
   beforeEach(async () => {
-    mockPostService = jasmine.createSpyObj('PostService', ['createPost']);
-    mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    const postServiceSpy = jasmine.createSpyObj('PostService', ['createPost']);
+    const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
-      imports: [
-        ReactiveFormsModule,
-        FormsModule,
-        AddPostComponent, // Import the standalone component here
-      ],
+      imports: [AddPostComponent, ReactiveFormsModule, CommonModule], 
       providers: [
-        { provide: PostService, useValue: mockPostService },
-        { provide: Router, useValue: mockRouter }
-      ],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
-    .compileComponents();
+        { provide: PostService, useValue: postServiceSpy },
+        { provide: Router, useValue: routerSpy }
+      ]
+    }).compileComponents();
 
+    postService = TestBed.inject(PostService) as jasmine.SpyObj<PostService>;
+    router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
+  });
+
+  beforeEach(() => {
     fixture = TestBed.createComponent(AddPostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the component', () => {
     expect(component).toBeTruthy();
   });
 
   it('should initialize form with default values', () => {
-    expect(component.postForm).toBeDefined();
-    expect(component.postForm.get('title')!.value).toBe('');
-    expect(component.postForm.get('content')!.value).toBe('');
-    expect(component.postForm.get('author')!.value).toBe('');
-    expect(component.postForm.get('category')!.value).toBe('');
-    expect(component.postForm.get('createdAt')!.value).toBeDefined();
-    expect(component.postForm.get('updatedAt')!.value).toBeDefined();
+    expect(component.postForm.value.title).toBe('');
+    expect(component.postForm.value.content).toBe('');
+    expect(component.postForm.value.author).toBe('');
+    expect(component.postForm.value.category).toBe('');
+    expect(component.postForm.value.createdAt).toBeDefined();
+    expect(component.postForm.value.updatedAt).toBeDefined();
+    expect(component.postForm.value.concept).toBe(false);
   });
 
-  it('should call postService.createPost when form is valid', () => {
-    // Set valid form values
+  it('should call createPost when form is valid', () => {
     component.postForm.setValue({
-      title: 'Test Title',
-      content: 'Test Content',
-      author: 'Test Author',
-      category: 'Test Category',
-      createdAt: new Date(),  // Directly using Date object
-      updatedAt: new Date(),  // Directly using Date object
+      title: 'New Post',
+      content: 'Post content',
+      author: 'Author',
+      category: 'Category',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
       concept: false
     });
 
-    // Mock the return value of createPost
-    const mockPost: Post = {
-      title: 'Test Title',
-      content: 'Test Content',
-      author: 'Test Author',
-      category: 'Test Category',
-      createdAt: new Date(),  // Directly using Date object
-      updatedAt: new Date(),  // Directly using Date object
-      concept: false
-    };
-
-    mockPostService.createPost.and.returnValue(of(mockPost));
+    postService.createPost.and.returnValue(of({
+      id: 1,
+      title: 'New Post',
+      author: 'Author',
+      content: 'Post content',
+      category: 'Category',
+      concept: false,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    })); 
 
     component.onSubmit();
 
-    expect(mockPostService.createPost).toHaveBeenCalledWith(jasmine.objectContaining({
-      title: 'Test Title',
-      content: 'Test Content',
-      author: 'Test Author',
-      category: 'Test Category'
-    }));
-
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/posts']);
+    expect(postService.createPost).toHaveBeenCalledWith(jasmine.objectContaining({ title: 'New Post' }));
+    expect(router.navigate).toHaveBeenCalledWith(['/posts']);
   });
 
-  it('should not call postService.createPost if form is invalid', () => {
+  it('should not call createPost if form is invalid', () => {
     component.postForm.setValue({
       title: '',
-      content: 'Test Content',
-      author: 'Test Author',
-      category: 'Test Category',
-      createdAt: new Date(),
+      content: '',
+      author: '',
+      category: '',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
       concept: false
     });
 
     component.onSubmit();
 
-    expect(mockPostService.createPost).not.toHaveBeenCalled();
+    expect(postService.createPost).not.toHaveBeenCalled();
+    expect(router.navigate).not.toHaveBeenCalled();
   });
 });
