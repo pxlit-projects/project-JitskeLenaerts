@@ -249,3 +249,23 @@
 2024-12-05T21:00:30.186+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Fetching specific post with id 2
 2024-12-05T21:00:30.187+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Mapping post to post response
 2024-12-05T21:00:30.187+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.controller.PostController - Fetching specific post with id 2
+2024-12-05T22:05:16.831+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Fetching all posts
+2024-12-05T22:05:16.852+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-05T22:05:16.852+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-05T22:05:16.852+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Fetching all posts
+2024-12-05T22:09:41.779+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Fetching all posts
+2024-12-05T22:09:41.786+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-05T22:09:41.786+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-05T22:09:41.787+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Fetching all posts
+2024-12-05T22:16:23.274+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Fetching all posts
+2024-12-05T22:16:23.281+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-05T22:16:23.281+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-05T22:16:23.281+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Fetching all posts
+2024-12-05T22:22:30.253+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Fetching all posts
+2024-12-05T22:22:30.260+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-05T22:22:30.260+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-05T22:22:30.260+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Fetching all posts
+2024-12-05T22:39:06.352+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Fetching all posts
+2024-12-05T22:39:06.359+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-05T22:39:06.360+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Mapping post to post response
+2024-12-05T22:39:06.360+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.controller.PostController - Fetching all posts

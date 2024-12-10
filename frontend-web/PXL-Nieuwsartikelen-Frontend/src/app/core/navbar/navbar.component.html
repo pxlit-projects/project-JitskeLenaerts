@@ -3,5 +3,10 @@
     <li><a [routerLink]="['/']">Home</a></li>
     <li><a [routerLink]="['/add']">Add post</a></li>
     <li><a [routerLink]="['/posts']">All posts</a></li>
+    @if (isLoggedIn) {
+    <li>
+      <button (click)="logout()" class="logout-btn">Uitloggen</button>
+    </li>
+    }
   </ul>
 </nav>
