@@ -12,6 +12,10 @@ export class PostService {
   private api: string = environment.apiUrl + 'post/api/post';
   private http: HttpClient = inject(HttpClient);
 
+  // createPost(post: Post, username: string, id: number): Observable<Post> {
+  //   const headers = { username: username, id: id.toString() };
+  //   return this.http.post<Post>(this.api, post,{headers});
+  // }
   createPost(post: Post): Observable<Post> {
     return this.http.post<Post>(this.api, post);
   }
@@ -24,7 +28,7 @@ export class PostService {
     return this.http.get<Post>(`${this.api}/${id}`);
   }
 
-  updatePost(id:number, post:Post): Observable<Post> {
+  updatePost(id: number, post: Post): Observable<Post> {
     return this.http.put<Post>(`${this.api}/${id}`, post);
   }
 

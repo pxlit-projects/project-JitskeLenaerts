@@ -1,22 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { Filter } from '../../../shared/models/filter.model';
 import { Post } from '../../../shared/models/post.model';
 import { PostService } from '../../../shared/services/post.service';
-import { Filter } from '../../../shared/models/filter.model';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { FilterComponent } from "../filter/filter.component";
 import { PostItemComponent } from "../post-item/post-item.component";
+import { FilterComponent } from "../filter/filter.component";
 
 @Component({
-  selector: 'app-get-all-posts',
+  selector: 'app-post-list-published',
   standalone: true,
-  imports: [RouterModule, CommonModule, FilterComponent, PostItemComponent],
-  templateUrl: './get-all-posts.component.html',
-  styleUrl: './get-all-posts.component.css'
+  imports: [PostItemComponent, FilterComponent],
+  templateUrl: './post-list-published.component.html',
+  styleUrl: './post-list-published.component.css'
 })
-export class GetAllPostsComponent implements OnInit {
+export class PostListPublishedComponent implements OnInit {
   filteredData!: Post[];
-  conceptPosts!: Post[];
   publishedPosts!: Post[];
 
   constructor(private postService: PostService) {}
@@ -26,11 +23,11 @@ export class GetAllPostsComponent implements OnInit {
   }
 
   handleFilter(filter: Filter) {
-    
+
     this.postService.filterPosts(filter).subscribe({
       next: posts => {
         this.filteredData = posts;
-        this.splitPostsByConcept(posts);
+        this.splitPostsByPublished(posts);
       }
     });
   }
@@ -39,13 +36,12 @@ export class GetAllPostsComponent implements OnInit {
     this.postService.getAllPosts().subscribe({
       next: posts => {
         this.filteredData = posts;
-        this.splitPostsByConcept(posts);
+        this.splitPostsByPublished(posts);
       }
     });
   }
 
-  splitPostsByConcept(posts: Post[]): void {
-    this.conceptPosts = posts.filter(post => post.concept);
+  splitPostsByPublished(posts: Post[]): void {
     this.publishedPosts = posts.filter(post => !post.concept);
   }
 }

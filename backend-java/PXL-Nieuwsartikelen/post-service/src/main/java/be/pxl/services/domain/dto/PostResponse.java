@@ -1,5 +1,6 @@
 package be.pxl.services.domain.dto;
 
+import be.pxl.services.domain.State;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +18,7 @@ public class PostResponse {
     private String content;
     private String author;
     private String category;
-    private Boolean concept;
+    private State state;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

@@ -12,14 +12,4 @@
     </div>
   </div>
 
-  <div class="posts-section">
-    <h1>Published Posts</h1>
-    <div class="posts-grid">
-      @for (post of publishedPosts; track post.id) {
-        <app-post-item [post]="post"></app-post-item>
-      } @empty {
-        <p class="empty-message">No published posts available.</p>
-      }
-    </div>
-  </div>
 </div>

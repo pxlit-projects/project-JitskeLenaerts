@@ -3,6 +3,7 @@ package be.pxl.services.services;
 import be.pxl.services.client.NotificationClient;
 import be.pxl.services.domain.NotificationRequest;
 import be.pxl.services.domain.Post;
+import be.pxl.services.domain.State;
 import be.pxl.services.domain.dto.PostRequest;
 import be.pxl.services.domain.dto.PostResponse;
 import be.pxl.services.exception.PostNotFoundException;
@@ -32,7 +33,7 @@ public class PostService implements IPostService {
                 .content(postRequest.getContent())
                 .author(postRequest.getAuthor())
                 .category(postRequest.getCategory())
-                .concept(postRequest.getConcept())
+                .state(postRequest.getState())
                 .createdAt(postRequest.getCreatedAt())
                 .updatedAt(postRequest.getUpdatedAt())
                 .build();
@@ -46,7 +47,7 @@ public class PostService implements IPostService {
                 .content(post.getContent())
                 .author(post.getAuthor())
                 .category(post.getCategory())
-                .concept(post.getConcept())
+                .state(post.getState())
                 .createdAt(post.getCreatedAt())
                 .updatedAt(post.getUpdatedAt())
                 .build();
@@ -58,7 +59,7 @@ public class PostService implements IPostService {
             throw new TitleAlreadyExistsException("A post with title '" + postRequest.getTitle() + "' already exists.");
         }
         Post post = mapToPost(postRequest);
-        post.setConcept(postRequest.getConcept());
+        post.setState(postRequest.getState());
         post.setCreatedAt(LocalDateTime.now());
         post.setUpdatedAt(LocalDateTime.now());
         postRepository.save(post);
@@ -93,7 +94,7 @@ public class PostService implements IPostService {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new PostNotFoundException("Post not found with ID: " + id));
 
-        post.setConcept(true);
+        post.setState(State.CONCEPT);
         post.setUpdatedAt(LocalDateTime.now());
         Post savedPost = postRepository.save(post);
 
@@ -116,7 +117,7 @@ public class PostService implements IPostService {
         post.setContent(postRequest.getContent());
         post.setAuthor(postRequest.getAuthor());
         post.setCategory(postRequest.getCategory());
-        post.setConcept(postRequest.getConcept());
+        post.setState(postRequest.getState());
         post.setUpdatedAt(LocalDateTime.now());
 
         postRepository.save(post);
@@ -125,12 +126,25 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public List<PostResponse> getAllPosts() {
+    public List<PostResponse> getAllConceptPosts() {
         log.info("Fetching all posts");
         return postRepository.findAll()
                 .stream()
+                .filter(p -> p.getState() == State.CONCEPT)
                 .map(this::mapToPostResponse)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<PostResponse> getAllPublishedPosts() {
+        log.info("Fetching all posts");
+        return postRepository.findAll()
+                .stream()
+                .filter(p -> p.getState() == State.PUBLISHED)
+                .map(this::mapToPostResponse)
+                .collect(Collectors.toList());
+    }
+
+
 
 }

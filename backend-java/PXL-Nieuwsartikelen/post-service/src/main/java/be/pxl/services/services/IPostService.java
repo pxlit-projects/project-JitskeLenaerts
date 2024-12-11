@@ -11,7 +11,8 @@ public interface IPostService {
     PostResponse createPost(PostRequest postRequest);
     PostResponse savePostAsConcept(Long id);
     PostResponse updatePost(PostRequest postRequest);
-    List<PostResponse> getAllPosts();
+    List<PostResponse> getAllConceptPosts();
+    List<PostResponse> getAllPublishedPosts();
     PostResponse getPostById(Long id);
     void deletePost(Long id);
 }

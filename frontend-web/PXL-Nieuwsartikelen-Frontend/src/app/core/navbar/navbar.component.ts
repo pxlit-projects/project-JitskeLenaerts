@@ -10,22 +10,18 @@ import { AuthService } from '../../shared/services/auth.service';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  isLoggedIn: boolean = false;
-
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {
-    this.checkLoginStatus();
+  isLoggedIn(): boolean {
+    return this.authService.getCurrentUser() !== null;
   }
 
-  
-  checkLoginStatus() {
-    this.isLoggedIn = this.authService.isLoggedIn();
+  isRedacteur(): boolean {
+    return this.authService.isRedacteur();
   }
 
   logout() {
     this.authService.logout();
-    this.isLoggedIn = false;
     this.router.navigate(['/']);
   }
 }

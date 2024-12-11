@@ -19,11 +19,17 @@ public class PostController {
     private final IPostService postService;
     private static final Logger log = LoggerFactory.getLogger(PostController.class);
 
+    @GetMapping
+    public ResponseEntity<List<PostResponse>> getAllConceptPosts() {
+        List<PostResponse> posts = postService.getAllConceptPosts();
+        log.info("Fetching all concept posts");
+        return ResponseEntity.ok(posts);
+    }
 
     @GetMapping
-    public ResponseEntity<List<PostResponse>> getAllPosts() {
-        List<PostResponse> posts = postService.getAllPosts();
-        log.info("Fetching all posts");
+    public ResponseEntity<List<PostResponse>> getAllPublishedPosts() {
+        List<PostResponse> posts = postService.getAllPublishedPosts();
+        log.info("Fetching all published posts");
         return ResponseEntity.ok(posts);
     }
 

@@ -21,9 +21,10 @@ public class Post {
     @Column(unique = true)
     private String title;
     private String content;
+    @Column(unique = true)
     private String author;
     private String category;
-    private Boolean concept;
+    private State state;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

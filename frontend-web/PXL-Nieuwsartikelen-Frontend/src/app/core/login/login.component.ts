@@ -20,7 +20,7 @@ export class LoginComponent {
 
   login() {
     if (this.authService.login(this.username, this.password)) {
-      this.router.navigate(['/home']); 
+      this.router.navigate(['/home']);
      } else {
       this.errorMessage = 'Ongeldige gebruikersnaam of wachtwoord.';
     }

@@ -1,12 +1,24 @@
 <nav class="navbar">
-  <ul class="navbar-links">
-    <li><a [routerLink]="['/']">Home</a></li>
-    <li><a [routerLink]="['/add']">Add post</a></li>
-    <li><a [routerLink]="['/posts']">All posts</a></li>
-    @if (isLoggedIn) {
-    <li>
-      <button (click)="logout()" class="logout-btn">Uitloggen</button>
-    </li>
-    }
-  </ul>
+  <div class="navbar-left">
+    <ul class="navbar-links">
+      @if (!isLoggedIn()) {
+        <li><a [routerLink]="['/']">Login</a></li>
+      } @else if (isLoggedIn() && isRedacteur()) {
+        <li><a [routerLink]="['/home']">Home</a></li>
+        <li><a [routerLink]="['/add']">Add post</a></li>
+        <li><a [routerLink]="[':id/published/posts']">All published posts</a></li>
+        <li><a [routerLink]="[':id/concept/posts']">All concept posts</a></li>
+      } @else if (isLoggedIn() && !isRedacteur()) {
+        <li><a [routerLink]="['/home']">Home</a></li>
+        <li><a [routerLink]="['/add']">Add post</a></li>
+        <li><a [routerLink]="['published/posts']">All published posts</a></li>
+        <li><a [routerLink]="['concept/posts']">All concept posts</a></li>
+      }
+    </ul>
+  </div>
+  @if (isLoggedIn()) {
+  <div class="navbar-right">
+    <button (click)="logout()" class="logout-btn">Uitloggen</button>
+  </div>
+  }
 </nav>
