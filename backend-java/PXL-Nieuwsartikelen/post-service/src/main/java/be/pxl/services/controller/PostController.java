@@ -19,17 +19,24 @@ public class PostController {
     private final IPostService postService;
     private static final Logger log = LoggerFactory.getLogger(PostController.class);
 
-    @GetMapping
+    @GetMapping("/concept")
     public ResponseEntity<List<PostResponse>> getAllConceptPosts() {
         List<PostResponse> posts = postService.getAllConceptPosts();
         log.info("Fetching all concept posts");
         return ResponseEntity.ok(posts);
     }
 
-    @GetMapping
+    @GetMapping("/published")
     public ResponseEntity<List<PostResponse>> getAllPublishedPosts() {
         List<PostResponse> posts = postService.getAllPublishedPosts();
         log.info("Fetching all published posts");
+        return ResponseEntity.ok(posts);
+    }
+
+    @GetMapping("/{authorId}/posts")
+    public ResponseEntity<List<PostResponse>> getAllPersonalPosts(@PathVariable Long authorId) {
+        List<PostResponse> posts = postService.getAllPersonalPosts(authorId);
+        log.info("Fetching all personal posts");
         return ResponseEntity.ok(posts);
     }
 
@@ -48,8 +55,8 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<PostResponse> createPost(@RequestBody PostRequest postRequest) {
-        PostResponse createdPost = postService.createPost(postRequest);
+    public ResponseEntity<PostResponse> createPost(@RequestBody PostRequest postRequest,@RequestHeader String username, @RequestHeader int id) {
+        PostResponse createdPost = postService.createPost(postRequest,username,id);
         log.info("Creating new post");
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPost);
     }

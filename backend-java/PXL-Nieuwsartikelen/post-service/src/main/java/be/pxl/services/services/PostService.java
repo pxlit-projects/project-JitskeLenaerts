@@ -32,6 +32,7 @@ public class PostService implements IPostService {
                 .title(postRequest.getTitle())
                 .content(postRequest.getContent())
                 .author(postRequest.getAuthor())
+                .authorId(postRequest.getAuthorId())
                 .category(postRequest.getCategory())
                 .state(postRequest.getState())
                 .createdAt(postRequest.getCreatedAt())
@@ -46,6 +47,7 @@ public class PostService implements IPostService {
                 .title(post.getTitle())
                 .content(post.getContent())
                 .author(post.getAuthor())
+                .authorId(post.getAuthorId())
                 .category(post.getCategory())
                 .state(post.getState())
                 .createdAt(post.getCreatedAt())
@@ -54,11 +56,17 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public PostResponse createPost(PostRequest postRequest) {
+    public PostResponse createPost(PostRequest postRequest,String username, int id) {
         if (postRepository.findByTitle(postRequest.getTitle()).isPresent()) {
             throw new TitleAlreadyExistsException("A post with title '" + postRequest.getTitle() + "' already exists.");
         }
+
         Post post = mapToPost(postRequest);
+        post.setTitle(postRequest.getTitle());
+        post.setContent(postRequest.getContent());
+        post.setAuthor(username);
+        post.setAuthorId(id);
+        post.setCategory(postRequest.getCategory());
         post.setState(postRequest.getState());
         post.setCreatedAt(LocalDateTime.now());
         post.setUpdatedAt(LocalDateTime.now());
@@ -88,7 +96,6 @@ public class PostService implements IPostService {
         log.info("Deleted post with ID: {}", id);
     }
 
-
     @Override
     public PostResponse savePostAsConcept(Long id) {
         Post post = postRepository.findById(id)
@@ -116,6 +123,7 @@ public class PostService implements IPostService {
         post.setTitle(postRequest.getTitle());
         post.setContent(postRequest.getContent());
         post.setAuthor(postRequest.getAuthor());
+        post.setAuthorId(postRequest.getAuthorId());
         post.setCategory(postRequest.getCategory());
         post.setState(postRequest.getState());
         post.setUpdatedAt(LocalDateTime.now());
@@ -127,7 +135,7 @@ public class PostService implements IPostService {
 
     @Override
     public List<PostResponse> getAllConceptPosts() {
-        log.info("Fetching all posts");
+        log.info("Fetching all concept posts");
         return postRepository.findAll()
                 .stream()
                 .filter(p -> p.getState() == State.CONCEPT)
@@ -137,7 +145,7 @@ public class PostService implements IPostService {
 
     @Override
     public List<PostResponse> getAllPublishedPosts() {
-        log.info("Fetching all posts");
+        log.info("Fetching all published posts");
         return postRepository.findAll()
                 .stream()
                 .filter(p -> p.getState() == State.PUBLISHED)
@@ -145,6 +153,13 @@ public class PostService implements IPostService {
                 .collect(Collectors.toList());
     }
 
-
-
+    @Override
+    public List<PostResponse> getAllPersonalPosts(Long authorId) {
+        log.info("Fetching all my personal posts");
+        return postRepository.findAll()
+                .stream()
+                .filter(p -> p.getAuthorId() == authorId)
+                .map(this::mapToPostResponse)
+                .collect(Collectors.toList());
+    }
 }

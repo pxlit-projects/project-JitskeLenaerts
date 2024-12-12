@@ -1,27 +1,32 @@
+import { State } from './state.enum';
+
 export class Post {
   id?: number;
   title: string;
   author: string;
+  authorId: number;
   content: string;
   category: string;
-  concept: boolean;
+  state: State;
   createdAt: Date;
   updatedAt: Date;
 
   constructor(
     title: string,
     author: string,
+    authorId: number,
     content: string,
     category: string,
-    concept: boolean,
+    state: State,
     createdAt: string,
     updatedAt: string
   ) {
     this.title = title;
     this.author = author;
+    this.authorId = authorId;
     this.content = content;
     this.category = category;
-    this.concept = concept;
+    this.state = state;
     this.createdAt = new Date(createdAt);
     this.updatedAt = new Date(updatedAt);
   }

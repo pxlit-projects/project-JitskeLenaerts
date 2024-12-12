@@ -1,5 +1,5 @@
-<div [ngClass]="{'border-yellow': post.concept,'border-green': !post.concept}"
-  class="post-card">
+<div [ngClass]="{'border-yellow': post.state === State.CONCEPT, 'border-green': post.state !== State.SUBMITTED}"
+     class="post-card">
   <div class="post-content">
     <h2 class="post-title">{{ post.title }}</h2>
     <p class="post-details">

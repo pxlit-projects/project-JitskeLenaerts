@@ -11,12 +11,12 @@
         <p class="content-text">{{ post.content }}</p>
       </li>
       <li>
-        <strong class="label">Concept:</strong>
-        <span class="concept-status" [ngClass]="post.concept ? 'concept-yes' : 'concept-no'">
-          {{ post.concept ? 'Yes' : 'No' }}
+        <strong class="label">State:</strong>
+        <span class="state-status" [ngClass]="post.state === 'CONCEPT' ? 'state-concept' : 'state-submitted'">
+          {{ post.state === 'CONCEPT' ? 'Concept' : 'Submitted' }}
         </span>
       </li>
-      <button [routerLink]="['/edit', post.id]" class="edit-button">Bewerk Post</button>
+      <button [routerLink]="['/edit', post.id]" class="edit-button">Update Post</button>
     </ul>
   </div>
 </div>

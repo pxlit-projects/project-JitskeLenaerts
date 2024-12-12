@@ -5,9 +5,6 @@
     <form (submit)="login()">
       <div class="form-group">
         <label for="username">Gebruikersnaam</label>
-        @if (username =="") {
-        <p class="error">Gebruikersnaam is verplicht</p>
-        }
         <input
           type="text"
           id="username"
@@ -19,9 +16,6 @@
       </div>
       <div class="form-group">
         <label for="password">Wachtwoord</label>
-        @if (password =="") {
-        <p class="error">Wachtwoord is verplicht</p>
-        }
         <input
           type="password"
           id="password"

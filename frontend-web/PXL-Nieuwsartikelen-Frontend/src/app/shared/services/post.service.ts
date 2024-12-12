@@ -12,16 +12,17 @@ export class PostService {
   private api: string = environment.apiUrl + 'post/api/post';
   private http: HttpClient = inject(HttpClient);
 
-  // createPost(post: Post, username: string, id: number): Observable<Post> {
-  //   const headers = { username: username, id: id.toString() };
-  //   return this.http.post<Post>(this.api, post,{headers});
-  // }
-  createPost(post: Post): Observable<Post> {
-    return this.http.post<Post>(this.api, post);
+  createPost(post: Post, username: string, id: number): Observable<Post> {
+    const headers = { username: username, id: id.toString() };
+    return this.http.post<Post>(this.api, post, { headers });
   }
 
-  getAllPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.api);
+  getConceptPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(this.api + '/concept');
+  }
+
+  getPublishedPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(this.api + '/published');
   }
 
   getPostById(id: number): Observable<Post> {

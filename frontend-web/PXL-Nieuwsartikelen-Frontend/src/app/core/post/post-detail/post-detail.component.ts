@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Post } from '../../../shared/models/post.model';
 import { PostService } from '../../../shared/services/post.service';
@@ -7,11 +7,11 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-post-detail',
   standalone: true,
-  imports: [CommonModule,RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './post-detail.component.html',
-  styleUrl: './post-detail.component.css'
+  styleUrl: './post-detail.component.css',
 })
-export class PostDetailComponent {
+export class PostDetailComponent implements OnInit {
   router: Router = inject(Router);
   postService: PostService = inject(PostService);
   route: ActivatedRoute = inject(ActivatedRoute);
@@ -19,22 +19,22 @@ export class PostDetailComponent {
   post!: Post;
 
   ngOnInit(): void {
-    const postId = +this.route.snapshot.paramMap.get('id')!;
+    const postId = Number(this.route.snapshot.paramMap.get('id')!);
     this.fetchPost(postId);
   }
 
-  goToEditPage(postId: number) {
+  goToEditPage(postId: number): void {
     this.router.navigate(['/edit', postId]);
   }
 
   fetchPost(id: number): void {
     this.postService.getPostById(id).subscribe({
-      next: post => {
+      next: (post) => {
         this.post = post;
       },
       error: (err) => {
         console.error('Fout bij het ophalen van de post:', err);
-      }
+      },
     });
   }
 }

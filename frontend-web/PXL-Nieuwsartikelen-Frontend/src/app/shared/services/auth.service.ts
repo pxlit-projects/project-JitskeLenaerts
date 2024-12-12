@@ -11,8 +11,8 @@ export class AuthService {
   constructor(private router: Router) {}
 
   private users: User[] = [
-    { username: 'redacteur', password: 'redacteur123', role: 'redacteur' },
-    { username: 'gebruiker', password: 'gebruiker123', role: 'gebruiker' },
+    { username: 'redacteur', password: 'redacteur123', role: 'redacteur',id:1 , authorName: 'Redacteur Driesen' },
+    { username: 'gebruiker', password: 'gebruiker123', role: 'gebruiker',id:2  , authorName: 'Gebruiker Lenaerts' },
   ];
 
   login(username: string, password: string): boolean {

@@ -8,11 +8,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface IPostService {
-    PostResponse createPost(PostRequest postRequest);
+    PostResponse createPost(PostRequest postRequest,String username, int id);
     PostResponse savePostAsConcept(Long id);
     PostResponse updatePost(PostRequest postRequest);
     List<PostResponse> getAllConceptPosts();
     List<PostResponse> getAllPublishedPosts();
+    List<PostResponse> getAllPersonalPosts(Long authorId);
     PostResponse getPostById(Long id);
     void deletePost(Long id);
 }
