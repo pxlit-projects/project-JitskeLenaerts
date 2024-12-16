@@ -20,28 +20,50 @@ export class PostListConceptComponent implements OnInit {
   conceptPosts!: Post[];
   authService: AuthService = inject(AuthService);
   user: User | null | undefined;
+  userRole: string | null = null;
 
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService) { }
 
   ngOnInit(): void {
+    this.userRole = this.authService.getCurrentUserRole();
     this.fetchData();
   }
 
   handleFilter(filter: Filter) {
-    this.postService.filterPosts(filter).subscribe({
-      next: posts => {
-        this.filteredData = posts;
-      }
-    });
+    if (this.userRole === 'redacteur' || this.userRole === 'gebruiker') {
+      this.postService.filterInPublishedPosts(filter).subscribe({
+        next: posts => {
+          this.conceptPosts = posts;
+        },
+        error: err => {
+          console.error('Error filtering posts:', err);
+        }
+      });
+    }
   }
 
   fetchData(): void {
+    if (this.userRole === 'redacteur') {
       this.postService.getConceptPosts().subscribe({
         next: posts => {
-          this.filteredData = posts;
           this.conceptPosts = posts.filter(post => post.state === State.CONCEPT);
+        },
+        error: err => {
+          console.error('Error fetching concept posts:', err);
         }
       });
+    } else {
+      this.user = this.authService.getCurrentUser();
+      if (this.user) {
+        this.postService.getPersonalConceptPosts(this.user.id).subscribe({
+          next: posts => {
+            this.conceptPosts = posts.filter(post => post.state === State.CONCEPT);
+          },
+          error: err => {
+            console.error('Error fetching personal concept posts:', err);
+          }
+        });
+      }
+    }
   }
-
 }

@@ -1,4 +1,3 @@
-/* General Styles */
 body {
   font-family: 'Merriweather', serif;
   background-color: #f5f7fa;
@@ -16,7 +15,6 @@ body {
   padding: 20px;
 }
 
-/* Form Card */
 .form-card {
   background-color: #ffffff;
   border-radius: 10px;
@@ -40,7 +38,6 @@ body {
   font-weight: bold;
 }
 
-/* Form Groups */
 .form-group {
   margin-bottom: 20px;
 }
@@ -68,13 +65,11 @@ input:focus, textarea:focus, select:focus {
   outline: none;
 }
 
-/* Textarea */
 textarea {
   resize: vertical;
   min-height: 150px;
 }
 
-/* Dropdown */
 select {
   background-color: #f9f9f9;
 }
@@ -83,7 +78,6 @@ select option {
   padding: 10px;
 }
 
-/* Submit Button */
 button {
   display: block;
   width: 100%;
@@ -108,14 +102,23 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Error Messages */
 .error-message {
   font-size: 0.9em;
   color: #d9534f;
   margin-top: 5px;
 }
 
-/* Media Queries */
+input.input-error {
+  border-color: #d9534f;
+  background-color: #fef0f0;
+}
+
+input.input-error:focus {
+  border-color: #d9534f;
+  outline: none;
+  background-color: #fef0f0;
+}
+
 @media (max-width: 768px) {
   .form-card {
     padding: 20px;

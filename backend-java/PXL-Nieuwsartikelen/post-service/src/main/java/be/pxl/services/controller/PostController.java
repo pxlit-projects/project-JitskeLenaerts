@@ -33,9 +33,16 @@ public class PostController {
         return ResponseEntity.ok(posts);
     }
 
-    @GetMapping("/{authorId}/posts")
-    public ResponseEntity<List<PostResponse>> getAllPersonalPosts(@PathVariable Long authorId) {
-        List<PostResponse> posts = postService.getAllPersonalPosts(authorId);
+    @GetMapping("/{authorId}/concept/posts")
+    public ResponseEntity<List<PostResponse>> getAllPersonalConceptPosts(@PathVariable Long authorId) {
+        List<PostResponse> posts = postService.getAllPersonalConceptPosts(authorId);
+        log.info("Fetching all personal posts");
+        return ResponseEntity.ok(posts);
+    }
+
+    @GetMapping("/{authorId}/published/posts")
+    public ResponseEntity<List<PostResponse>> getAllPersonalPublishedPosts(@PathVariable Long authorId) {
+        List<PostResponse> posts = postService.getAllPersonalPublishedPosts(authorId);
         log.info("Fetching all personal posts");
         return ResponseEntity.ok(posts);
     }

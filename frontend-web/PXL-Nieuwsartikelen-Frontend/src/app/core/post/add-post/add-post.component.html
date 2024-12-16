@@ -9,7 +9,13 @@
           type="text"
           formControlName="title"
           placeholder="Enter the post title"
+          [class.input-error]="errorMessage"
         />
+        @if(errorMessage){
+        <div class="error-message">
+          {{ errorMessage }}
+        </div>
+        }
       </div>
 
       <div class="form-group">
@@ -36,11 +42,11 @@
         <label for="state">State:</label>
         <select id="state" formControlName="state">
           <option value="CONCEPT">Concept</option>
-          <option value="SUBMITTED">Submit</option>
+          <option value="PUBLISHED">Publish</option>
         </select>
       </div>
 
-      <button type="submit" >Submit</button>
+      <button type="submit">Submit</button>
     </form>
   </div>
 </div>

@@ -13,7 +13,8 @@ public interface IPostService {
     PostResponse updatePost(PostRequest postRequest);
     List<PostResponse> getAllConceptPosts();
     List<PostResponse> getAllPublishedPosts();
-    List<PostResponse> getAllPersonalPosts(Long authorId);
+    List<PostResponse> getAllPersonalConceptPosts(Long authorId);
+    List<PostResponse> getAllPersonalPublishedPosts(Long authorId);
     PostResponse getPostById(Long id);
     void deletePost(Long id);
 }

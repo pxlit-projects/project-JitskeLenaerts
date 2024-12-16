@@ -8,12 +8,19 @@ import { User } from '../models/user.model';
 export class AuthService {
   private currentUser: User | null = null;
 
-  constructor(private router: Router) {}
-
   private users: User[] = [
-    { username: 'redacteur', password: 'redacteur123', role: 'redacteur',id:1 , authorName: 'Redacteur Driesen' },
-    { username: 'gebruiker', password: 'gebruiker123', role: 'gebruiker',id:2  , authorName: 'Gebruiker Lenaerts' },
+    { username: 'gebruiker1', password: 'gebruiker123', role: 'gebruiker', id: 1, authorName: 'Gebruiker Gevens' },
+    { username: 'gebruiker2', password: 'gebruiker123', role: 'gebruiker', id: 2, authorName: 'Gebruiker Lenaerts' },
+    { username: 'redacteur1', password: 'redacteur123', role: 'redacteur', id: 3, authorName: 'Redacteur Swinnen' },
+    { username: 'redacteur2', password: 'redacteur123', role: 'gebruiker', id: 4, authorName: 'Redacteur Subron' },
   ];
+
+  constructor(private router: Router) {
+    const storedUser = localStorage.getItem('currentUser');
+    if (storedUser) {
+      this.currentUser = JSON.parse(storedUser);
+    }
+  }
 
   login(username: string, password: string): boolean {
     const user = this.users.find((u) => u.username === username && u.password === password);
@@ -39,8 +46,16 @@ export class AuthService {
   isRedacteur(): boolean {
     return this.currentUser?.role === 'redacteur';
   }
+  
+  getCurrentUserRole(): User['role'] | null {
+    return this.currentUser ? this.currentUser.role : null;
+  }
 
   getCurrentUser(): User | null {
     return this.currentUser;
+  }
+
+  getUserById(userId: number): User | undefined {
+    return this.users.find(user => user.id === userId);
   }
 }

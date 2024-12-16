@@ -154,12 +154,23 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public List<PostResponse> getAllPersonalPosts(Long authorId) {
-        log.info("Fetching all my personal posts");
+    public List<PostResponse> getAllPersonalConceptPosts(Long authorId) {
+        log.info("Fetching all my personal concept posts");
         return postRepository.findAll()
                 .stream()
-                .filter(p -> p.getAuthorId() == authorId)
+                .filter(p -> p.getAuthorId() == authorId && p.getState() == State.CONCEPT)
                 .map(this::mapToPostResponse)
                 .collect(Collectors.toList());
     }
+    @Override
+    public List<PostResponse> getAllPersonalPublishedPosts(Long authorId) {
+        log.info("Fetching all my personal published posts");
+        return postRepository.findAll()
+                .stream()
+                .filter(p -> p.getAuthorId() == authorId && p.getState() == State.PUBLISHED)
+                .map(this::mapToPostResponse)
+                .collect(Collectors.toList());
+    }
+
+
 }

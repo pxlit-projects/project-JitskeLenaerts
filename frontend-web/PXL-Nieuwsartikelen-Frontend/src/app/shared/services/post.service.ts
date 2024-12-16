@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
-import { map, Observable } from 'rxjs';
+import { forkJoin, map, Observable } from 'rxjs';
 import { Filter } from '../models/filter.model';
 import { Post } from '../models/post.model';
 
@@ -25,6 +25,26 @@ export class PostService {
     return this.http.get<Post[]>(this.api + '/published');
   }
 
+  checkIfTitleExists(title: string): Observable<boolean> {
+    return forkJoin({
+      conceptPosts: this.getConceptPosts(),
+      publishedPosts: this.getPublishedPosts()
+    }).pipe(
+      map(({ conceptPosts, publishedPosts }) => {
+        const allTitles = [...conceptPosts, ...publishedPosts].map(post => post.title.toLowerCase());
+        return allTitles.includes(title.toLowerCase());
+      })
+    );
+  }
+
+  getPersonalConceptPosts(authorId: number): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.api}/${authorId}/concept/posts`);
+  }
+
+  getPersonalPublishedPosts(authorId: number): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.api}/${authorId}/published/posts`);
+  }
+
   getPostById(id: number): Observable<Post> {
     return this.http.get<Post>(`${this.api}/${id}`);
   }
@@ -33,8 +53,8 @@ export class PostService {
     return this.http.put<Post>(`${this.api}/${id}`, post);
   }
 
-  filterPosts(filter: Filter): Observable<Post[]> {
-    return this.http.get<Post[]>(this.api).pipe(
+  filterInPublishedPosts(filter: Filter): Observable<Post[]> {
+    return this.http.get<Post[]>(this.api + '/published').pipe(
       map((posts: Post[]) => posts.filter(posts => this.isPostMatchingFilter(posts, filter)))
     );
   }

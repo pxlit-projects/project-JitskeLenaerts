@@ -1,10 +1,10 @@
 <div class="login-container">
   <div class="login-card">
-    <h2>Welkom !</h2>
-    <p>Log in om door te gaan</p>
-    <form (submit)="login()">
+    <h2>Welcome !</h2>
+    <p>Log in to continue</p>
+    <form #loginForm="ngForm" (ngSubmit)="login()">
       <div class="form-group">
-        <label for="username">Gebruikersnaam</label>
+        <label for="username">Username</label>
         <input
           type="text"
           id="username"
@@ -15,7 +15,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="password">Wachtwoord</label>
+        <label for="password">Password</label>
         <input
           type="password"
           id="password"
@@ -25,10 +25,8 @@
           required
         />
       </div>
-      <button type="submit" class="btn">Inloggen</button>
+      <button type="submit" class="btn" >Log in</button>
     </form>
-    @if (errorMessage) {
-    <p class="error">{{ errorMessage }}</p>
-    }
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
   </div>
 </div>

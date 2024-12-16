@@ -19,17 +19,14 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Size(max = 255, message = "Title cannot exceed 255 characters")
-    @Column(unique = true,columnDefinition = "LONGTEXT")
+    @Column(unique = true,columnDefinition = "longtext")
     private String title;
-    @Size(max = 255, message = "content cannot exceed 255 characters")
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "longtext")
     private String content;
     @Column(unique = true)
     private String author;
     private int authorId;
-    @Size(max = 255, message = "category cannot exceed 255 characters")
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "longtext")
     private String category;
     @Enumerated(EnumType.STRING)
     private State state;
