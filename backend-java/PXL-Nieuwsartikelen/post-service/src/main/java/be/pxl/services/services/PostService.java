@@ -9,9 +9,12 @@ import be.pxl.services.domain.dto.PostResponse;
 import be.pxl.services.exception.PostNotFoundException;
 import be.pxl.services.exception.TitleAlreadyExistsException;
 import be.pxl.services.repository.PostRepository;
+import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -24,6 +27,21 @@ public class PostService implements IPostService {
     private static final Logger log = LoggerFactory.getLogger(PostService.class);
     private final PostRepository postRepository;
     private final NotificationClient notificationClient;
+
+    @Autowired
+    private AmqpTemplate amqpTemplate;
+
+    public void submitForReview(Post post) {
+        log.info("Preparing to submit post for review: {}", post.getTitle());
+        try {
+            amqpTemplate.convertAndSend("postExchange", "post.routingkey", post);
+            log.info("Successfully sent post to RabbitMQ: {}", post.getTitle());
+        } catch (Exception e) {
+            log.error("Error sending post for review: {}", post.getTitle(), e);
+            throw new RuntimeException("Failed to send post for review", e);
+        }
+    }
+
 
     private Post mapToPost(PostRequest postRequest) {
         log.info("Mapping post request to post");
@@ -172,5 +190,8 @@ public class PostService implements IPostService {
                 .collect(Collectors.toList());
     }
 
-
+    @PreDestroy
+    public void cleanUp() {
+        log.info("Cleaning up RabbitMQ connections before shutdown.");
+    }
 }

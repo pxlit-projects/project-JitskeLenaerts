@@ -27,7 +27,7 @@
 		<module>discovery-service</module>
         <module>gateway-service</module>
 		<module>notification-service</module>
-        <module>messaging-service</module>
+		<module>review-service</module>
     </modules>
     <scm>
 		<connection/>
@@ -71,7 +71,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 
 	<build>
 		<plugins>

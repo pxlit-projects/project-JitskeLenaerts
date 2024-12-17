@@ -5,9 +5,9 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
- * Unit test for simple MessagingServiceApplication.
+ * Unit test for simple ReviewServiceApplication.
  */
-public class MessagingServiceApplicationTest
+public class ReviewServiceApplicationTest
     extends TestCase
 {
     /**
@@ -15,7 +15,7 @@ public class MessagingServiceApplicationTest
      *
      * @param testName name of the test case
      */
-    public MessagingServiceApplicationTest(String testName )
+    public ReviewServiceApplicationTest(String testName )
     {
         super( testName );
     }
@@ -25,7 +25,7 @@ public class MessagingServiceApplicationTest
      */
     public static Test suite()
     {
-        return new TestSuite( MessagingServiceApplicationTest.class );
+        return new TestSuite( ReviewServiceApplicationTest.class );
     }
 
     /**

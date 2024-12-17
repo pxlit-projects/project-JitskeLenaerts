@@ -17,4 +17,3 @@
         <appender-ref ref="APP_LOGGER"/>
     </logger>
 </configuration>
-

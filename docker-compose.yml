@@ -1,7 +1,7 @@
-# This file will contain a script in orde to start up the system (all microservices) 
 version: '3.8'
 
 services:
+  # MySQL database voor post service
   mysql-db-post:
     image: mysql:8.0
     container_name: mysql-db-post
@@ -15,6 +15,30 @@ services:
     volumes:
       - mysql-data-1:/var/lib/mysql
 
+  # MySQL database voor review service
+  mysql-db-review:
+    image: mysql:8.0
+    container_name: mysql-db-review
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: reviewservice_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:  
+      - "3307:3306"
+    volumes:
+      - mysql-data-2:/var/lib/mysql
+
+  rabbitmq:
+    image: rabbitmq:4.0-management 
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"     
+      - "15672:15672"   
+    environment:
+      RABBITMQ_DEFAULT_USER: admin   
+      RABBITMQ_DEFAULT_PASS: admin   
+
 volumes:
   mysql-data-1:
-
+  mysql-data-2:
