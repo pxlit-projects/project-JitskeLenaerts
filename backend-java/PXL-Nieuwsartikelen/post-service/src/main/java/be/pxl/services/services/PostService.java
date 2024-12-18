@@ -66,6 +66,14 @@ public class PostService implements IPostService {
     }
 
     @Override
+    public List<PostResponse> getAllPosts() {
+        List<Post> posts = postRepository.findAll();
+        return posts.stream()
+                .map(this::mapToPostResponse)
+                .toList();
+    }
+
+    @Override
     public List<PostResponse> getPostsByState(State state) {
         List<Post> posts = postRepository.findPostsByState(state);
         return posts.stream()

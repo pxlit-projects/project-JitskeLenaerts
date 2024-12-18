@@ -14,30 +14,42 @@ export class PostService {
   private http: HttpClient = inject(HttpClient);
 
   createPost(post: Post, username: string, id: number): Observable<Post> {
-    const headers = { username: username, id: id.toString() };
+    const headers = { username: username, id: id.toString(),'Content-Type': 'application/json'  };
     return this.http.post<Post>(this.api, post, { headers });
   }
 
   getPostsByAuthorIdAndState(authorId: number, state: string): Observable<Post[]> {
-    const headers = { authorId: authorId.toString() };
+    const headers = { authorId: authorId.toString(),'Content-Type': 'application/json'  };
     return this.http.get<Post[]>(`${this.api}/filter/${state}`, { headers: headers });
   }
 
+  approvePost(postId: number): Observable<void> {
+    return this.http.post<void>(`${this.api}/${postId}/approve`, {});
+  }
+
+  rejectPost(postId: number): Observable<void> {
+    return this.http.post<void>(`${this.api}/${postId}/reject`, {});
+  }
+
+
+
+  getAllPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(this.api);
+  }
+
   getPostsByState(state: State): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.api}/filter/${state}`);
+    return this.http.get<Post[]>(`${this.api}/state/${state}`);
   }
 
   checkIfTitleExists(title: string): Observable<boolean> {
-    return forkJoin({
-      conceptPosts: this.getPostsByState(State.CONCEPT),
-      publishedPosts: this.getPostsByState(State.PUBLISHED)
-    }).pipe(
-      map(({ conceptPosts, publishedPosts }) => {
-        const allTitles = [...conceptPosts, ...publishedPosts].map(post => post.title.toLowerCase());
+    return this.getAllPosts().pipe(
+      map((posts) => {
+        const allTitles = posts.map(post => post.title.toLowerCase());
         return allTitles.includes(title.toLowerCase());
       })
     );
   }
+
 
   getPostById(id: number): Observable<Post> {
     return this.http.get<Post>(`${this.api}/${id}`);
@@ -47,8 +59,8 @@ export class PostService {
     return this.http.put<Post>(`${this.api}/${id}`, post);
   }
 
-  filterInPosts(filter: Filter): Observable<Post[]> {
-    return this.http.get<Post[]>(this.api + '/published').pipe(
+  filterInPostsByState(filter: Filter, state: State): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.api}/state/${state}`).pipe(
       map((posts: Post[]) => posts.filter(posts => this.isPostMatchingFilter(posts, filter)))
     );
   }

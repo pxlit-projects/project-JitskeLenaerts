@@ -8,6 +8,9 @@ import { PostListPublishedComponent } from './core/post/post-list-published/post
 import { PostListConceptComponent } from './core/post/post-list-concept/post-list-concept.component';
 import { AuthGuard } from './shared/guards/auth-guard.guard';
 import { ConfirmLeaveGuard } from './shared/guards/confirm-leave.guard';
+import { PostListRejectedComponent } from './core/post/post-list-rejected/post-list-rejected.component';
+import { PostListApprovedComponent } from './core/post/post-list-approved/post-list-approved.component';
+import { EditorReviewComponentComponent } from './core/review/editor-review-component/editor-review-component.component';
 
 
 export const routes: Routes = [
@@ -15,8 +18,11 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'add', component: AddPostComponent,canActivate: [AuthGuard],canDeactivate: [ConfirmLeaveGuard] },
+  { path: 'review/posts', component: EditorReviewComponentComponent,canActivate: [AuthGuard] },
   { path: 'published/posts', component: PostListPublishedComponent,canActivate: [AuthGuard] },
   { path: 'concept/posts', component: PostListConceptComponent,canActivate: [AuthGuard] },
+  { path: 'rejected/posts', component: PostListRejectedComponent,canActivate: [AuthGuard] },
+  { path: 'approved/posts', component: PostListApprovedComponent,canActivate: [AuthGuard] },
   { path: 'post/:id', component: PostDetailComponent,canActivate: [AuthGuard] },
   { path: 'edit/:id', component: EditPostComponent,canActivate: [AuthGuard],canDeactivate: [ConfirmLeaveGuard] },
   { path: '**', component: LoginComponent }

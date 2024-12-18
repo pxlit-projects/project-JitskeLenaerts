@@ -30,7 +30,7 @@ export class PostListPublishedComponent implements OnInit {
 
   handleFilter(filter: Filter) {
     if (this.userRole === 'redacteur' || this.userRole === 'gebruiker') {
-      this.postService.filterInPosts(filter).subscribe({
+      this.postService.filterInPostsByState(filter,State.PUBLISHED).subscribe({
         next: posts => {
           this.publishedPosts = posts;
         },

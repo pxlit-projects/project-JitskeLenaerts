@@ -17,5 +17,8 @@
     <button [routerLink]="['/post/', post.id]" routerLinkActive="router-link-active" class="details-button">
       Details
     </button>
+    <button *ngIf="showReviewsButton" (click)="onViewReviews()" class="view-reviews-button">
+      View Reviews
+    </button>
   </div>
 </div>

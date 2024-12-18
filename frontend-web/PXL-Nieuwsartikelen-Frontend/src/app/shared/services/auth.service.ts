@@ -12,7 +12,7 @@ export class AuthService {
     { username: 'gebruiker1', password: 'gebruiker123', role: 'gebruiker', id: 1, authorName: 'Gebruiker Gevens' },
     { username: 'gebruiker2', password: 'gebruiker123', role: 'gebruiker', id: 2, authorName: 'Gebruiker Lenaerts' },
     { username: 'redacteur1', password: 'redacteur123', role: 'redacteur', id: 3, authorName: 'Redacteur Swinnen' },
-    { username: 'redacteur2', password: 'redacteur123', role: 'gebruiker', id: 4, authorName: 'Redacteur Subron' },
+    { username: 'redacteur2', password: 'redacteur123', role: 'redacteur', id: 4, authorName: 'Redacteur Subron' },
   ];
 
   constructor(private router: Router) {
@@ -46,7 +46,7 @@ export class AuthService {
   isRedacteur(): boolean {
     return this.currentUser?.role === 'redacteur';
   }
-  
+
   getCurrentUserRole(): User['role'] | null {
     return this.currentUser ? this.currentUser.role : null;
   }

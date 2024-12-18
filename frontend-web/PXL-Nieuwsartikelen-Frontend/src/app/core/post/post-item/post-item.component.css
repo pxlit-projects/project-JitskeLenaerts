@@ -70,3 +70,24 @@
   text-align: center;
 }
 
+
+
+.view-reviews-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 10px;
+  font-size: 1em;
+  text-transform: uppercase;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 25px;
+  text-align: center;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.view-reviews-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}

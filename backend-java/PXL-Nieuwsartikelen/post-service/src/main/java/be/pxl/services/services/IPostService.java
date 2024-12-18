@@ -13,6 +13,7 @@ public interface IPostService {
     PostResponse savePostAsConcept(Long id);
     PostResponse updatePost(PostRequest postRequest);
     List<PostResponse> getPostsByAuthorIdAndState(Long authorId, State state);
+    List<PostResponse> getAllPosts();
     List<PostResponse> getPostsByState(State state);
     PostResponse publishPost(Long id);
     PostResponse getPostById(Long id);

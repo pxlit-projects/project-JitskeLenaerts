@@ -42,13 +42,13 @@ export class AddPostComponent implements CanComponentDeactivate {
       this.router.navigate(['/login']);
       return;
     }
-  
-    const newPost = { 
-      ...this.postForm.value, 
-      author: this.user.authorName, 
-      authorId: this.user.id 
+
+    const newPost = {
+      ...this.postForm.value,
+      author: this.user.authorName,
+      authorId: this.user.id
     };
-  
+
     this.postService.checkIfTitleExists(newPost.title).subscribe({
       next: (exists) => {
         if (exists) {
@@ -70,7 +70,7 @@ export class AddPostComponent implements CanComponentDeactivate {
       }
     });
   }
-  
+
 
   canDeactivate(): boolean {
     if (this.postForm.dirty) {
@@ -82,7 +82,7 @@ export class AddPostComponent implements CanComponentDeactivate {
   // canDeactivate(): boolean {
   //   if (this.postForm.dirty) {
   //     this.isModalOpen = true;
-  //     return false;  
+  //     return false;
   //   }
   //   return true;
   // }

@@ -31,7 +31,7 @@ export class PostListConceptComponent implements OnInit {
 
   handleFilter(filter: Filter) {
     if (this.userRole === 'redacteur' || this.userRole === 'gebruiker') {
-      this.postService.filterInPosts(filter).subscribe({
+      this.postService.filterInPostsByState(filter,State.CONCEPT).subscribe({
         next: posts => {
           this.conceptPosts = posts;
         },

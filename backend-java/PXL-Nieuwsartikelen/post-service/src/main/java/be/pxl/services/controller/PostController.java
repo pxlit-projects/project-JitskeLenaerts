@@ -30,6 +30,12 @@ public class PostController {
         return ResponseEntity.ok(postService.getPostsByAuthorIdAndState(authorId, state));
     }
 
+    @GetMapping
+    public ResponseEntity getAllPosts(){
+        log.info("Calling endpoint [GET] /api/post");
+        return new ResponseEntity(postService.getAllPosts(), HttpStatus.OK);
+    }
+
     @GetMapping("/state/{state}")  
     public ResponseEntity<?> getPostsByState(@PathVariable State state) {
         log.info("Handling request [GET] /api/post/state/{}", state.name());
