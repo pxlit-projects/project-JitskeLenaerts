@@ -66,6 +66,14 @@ public class PostService implements IPostService {
     }
 
     @Override
+    public List<PostResponse> getPostsByState(State state) {
+        List<Post> posts = postRepository.findPostsByState(state);
+        return posts.stream()
+                .map(this::mapToPostResponse)
+                .toList();
+    }
+
+    @Override
     public PostResponse createPost(PostRequest postRequest, String username, Long authorId) {
         if (postRepository.findByTitle(postRequest.getTitle()).isPresent()) {
             throw new TitleAlreadyExistsException("A post with title '" + postRequest.getTitle() + "' already exists.");

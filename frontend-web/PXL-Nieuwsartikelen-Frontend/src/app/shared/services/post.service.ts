@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment.development';
 import { forkJoin, map, Observable } from 'rxjs';
 import { Filter } from '../models/filter.model';
 import { Post } from '../models/post.model';
+import { State } from '../models/state.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -17,32 +18,25 @@ export class PostService {
     return this.http.post<Post>(this.api, post, { headers });
   }
 
-  getConceptPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.api + '/concept');
+  getPostsByAuthorIdAndState(authorId: number, state: string): Observable<Post[]> {
+    const headers = { authorId: authorId.toString() };
+    return this.http.get<Post[]>(`${this.api}/filter/${state}`, { headers: headers });
   }
 
-  getPublishedPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.api + '/published');
+  getPostsByState(state: State): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.api}/filter/${state}`);
   }
 
   checkIfTitleExists(title: string): Observable<boolean> {
     return forkJoin({
-      conceptPosts: this.getConceptPosts(),
-      publishedPosts: this.getPublishedPosts()
+      conceptPosts: this.getPostsByState(State.CONCEPT),
+      publishedPosts: this.getPostsByState(State.PUBLISHED)
     }).pipe(
       map(({ conceptPosts, publishedPosts }) => {
         const allTitles = [...conceptPosts, ...publishedPosts].map(post => post.title.toLowerCase());
         return allTitles.includes(title.toLowerCase());
       })
     );
-  }
-
-  getPersonalConceptPosts(authorId: number): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.api}/${authorId}/concept/posts`);
-  }
-
-  getPersonalPublishedPosts(authorId: number): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.api}/${authorId}/published/posts`);
   }
 
   getPostById(id: number): Observable<Post> {
@@ -53,7 +47,7 @@ export class PostService {
     return this.http.put<Post>(`${this.api}/${id}`, post);
   }
 
-  filterInPublishedPosts(filter: Filter): Observable<Post[]> {
+  filterInPosts(filter: Filter): Observable<Post[]> {
     return this.http.get<Post[]>(this.api + '/published').pipe(
       map((posts: Post[]) => posts.filter(posts => this.isPostMatchingFilter(posts, filter)))
     );

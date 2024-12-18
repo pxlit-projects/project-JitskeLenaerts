@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/post")
@@ -31,10 +30,16 @@ public class PostController {
         return ResponseEntity.ok(postService.getPostsByAuthorIdAndState(authorId, state));
     }
 
+    @GetMapping("/state/{state}")  
+    public ResponseEntity<?> getPostsByState(@PathVariable State state) {
+        log.info("Handling request [GET] /api/post/state/{}", state.name());
+        return ResponseEntity.ok(postService.getPostsByState(state));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<PostResponse> getPostById(@PathVariable Long id) {
         PostResponse postResponse = postService.getPostById(id);
-        log.info("Fetching specific post with id {}",id);
+        log.info("Fetching specific post with id {}", id);
         return ResponseEntity.ok(postResponse);
     }
 
@@ -53,8 +58,8 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<PostResponse> createPost(@RequestBody PostRequest postRequest,@RequestHeader String username, @RequestHeader Long id) {
-        PostResponse createdPost = postService.createPost(postRequest,username,id);
+    public ResponseEntity<PostResponse> createPost(@RequestBody PostRequest postRequest, @RequestHeader String username, @RequestHeader Long id) {
+        PostResponse createdPost = postService.createPost(postRequest, username, id);
         log.info("Creating new post");
         rabbitTemplate.convertAndSend("postQueue", "Added post from author: " + username);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPost);
@@ -71,7 +76,7 @@ public class PostController {
     public ResponseEntity<PostResponse> updatePost(@PathVariable Long id, @RequestBody PostRequest postRequest) {
         postRequest.setId(id);
         PostResponse updatedPost = postService.updatePost(postRequest);
-        log.info("Updating post with id {}",id);
+        log.info("Updating post with id {}", id);
         return ResponseEntity.ok(updatedPost);
     }
 }

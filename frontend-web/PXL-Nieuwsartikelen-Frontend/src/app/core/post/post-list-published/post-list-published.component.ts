@@ -30,7 +30,7 @@ export class PostListPublishedComponent implements OnInit {
 
   handleFilter(filter: Filter) {
     if (this.userRole === 'redacteur' || this.userRole === 'gebruiker') {
-      this.postService.filterInPublishedPosts(filter).subscribe({
+      this.postService.filterInPosts(filter).subscribe({
         next: posts => {
           this.publishedPosts = posts;
         },
@@ -42,21 +42,23 @@ export class PostListPublishedComponent implements OnInit {
   }
 
   fetchData(): void {
+    const state = State.PUBLISHED;
+
     if (this.userRole === 'redacteur') {
-      this.postService.getPublishedPosts().subscribe({
+      this.postService.getPostsByAuthorIdAndState(0, state).subscribe({
         next: posts => {
-          this.publishedPosts = posts.filter(post => post.state === State.PUBLISHED);
+          this.publishedPosts = posts;
         },
         error: err => {
-          console.error('Error fetching published posts:', err);
+          console.error('Error fetching published posts for editor:', err);
         }
       });
     } else {
       this.user = this.authService.getCurrentUser();
       if (this.user) {
-        this.postService.getPersonalPublishedPosts(this.user.id).subscribe({
+        this.postService.getPostsByAuthorIdAndState(this.user.id, state).subscribe({
           next: posts => {
-            this.publishedPosts = posts.filter(post => post.state === State.PUBLISHED);
+            this.publishedPosts = posts;
           },
           error: err => {
             console.error('Error fetching personal published posts:', err);
