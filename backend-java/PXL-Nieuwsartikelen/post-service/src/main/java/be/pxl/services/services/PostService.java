@@ -13,13 +13,10 @@ import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,21 +24,6 @@ public class PostService implements IPostService {
     private static final Logger log = LoggerFactory.getLogger(PostService.class);
     private final PostRepository postRepository;
     private final NotificationClient notificationClient;
-
-    @Autowired
-    private AmqpTemplate amqpTemplate;
-
-    public void submitForReview(Post post) {
-        log.info("Preparing to submit post for review: {}", post.getTitle());
-        try {
-            amqpTemplate.convertAndSend("postExchange", "post.routingkey", post);
-            log.info("Successfully sent post to RabbitMQ: {}", post.getTitle());
-        } catch (Exception e) {
-            log.error("Error sending post for review: {}", post.getTitle(), e);
-            throw new RuntimeException("Failed to send post for review", e);
-        }
-    }
-
 
     private Post mapToPost(PostRequest postRequest) {
         log.info("Mapping post request to post");
@@ -74,7 +56,17 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public PostResponse createPost(PostRequest postRequest,String username, int id) {
+    public List<PostResponse> getPostsByAuthorIdAndState(Long authorId, State state) {
+        log.info("Fetching all posts with state {} by author ID: {}", state.name(), authorId);
+        List<Post> posts = postRepository.findPostsByAuthorIdAndState(authorId, state);
+        log.info("Converting posts to PostResponse objects");
+        return posts.stream()
+                .map(this::mapToPostResponse)
+                .toList();
+    }
+
+    @Override
+    public PostResponse createPost(PostRequest postRequest, String username, Long authorId) {
         if (postRepository.findByTitle(postRequest.getTitle()).isPresent()) {
             throw new TitleAlreadyExistsException("A post with title '" + postRequest.getTitle() + "' already exists.");
         }
@@ -83,7 +75,7 @@ public class PostService implements IPostService {
         post.setTitle(postRequest.getTitle());
         post.setContent(postRequest.getContent());
         post.setAuthor(username);
-        post.setAuthorId(id);
+        post.setAuthorId(authorId);
         post.setCategory(postRequest.getCategory());
         post.setState(postRequest.getState());
         post.setCreatedAt(LocalDateTime.now());
@@ -152,42 +144,16 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public List<PostResponse> getAllConceptPosts() {
-        log.info("Fetching all concept posts");
-        return postRepository.findAll()
+    public PostResponse publishPost(Long id) {
+        Post post = postRepository.findById(id)
                 .stream()
-                .filter(p -> p.getState() == State.CONCEPT)
-                .map(this::mapToPostResponse)
-                .collect(Collectors.toList());
-    }
+                .filter(p -> p.getState() == State.SUBMITTED && p.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Post not found or not in SUBMITTED state"));
 
-    @Override
-    public List<PostResponse> getAllPublishedPosts() {
-        log.info("Fetching all published posts");
-        return postRepository.findAll()
-                .stream()
-                .filter(p -> p.getState() == State.PUBLISHED)
-                .map(this::mapToPostResponse)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<PostResponse> getAllPersonalConceptPosts(Long authorId) {
-        log.info("Fetching all my personal concept posts");
-        return postRepository.findAll()
-                .stream()
-                .filter(p -> p.getAuthorId() == authorId && p.getState() == State.CONCEPT)
-                .map(this::mapToPostResponse)
-                .collect(Collectors.toList());
-    }
-    @Override
-    public List<PostResponse> getAllPersonalPublishedPosts(Long authorId) {
-        log.info("Fetching all my personal published posts");
-        return postRepository.findAll()
-                .stream()
-                .filter(p -> p.getAuthorId() == authorId && p.getState() == State.PUBLISHED)
-                .map(this::mapToPostResponse)
-                .collect(Collectors.toList());
+        post.setState(State.PUBLISHED);
+        postRepository.save(post);
+        return mapToPostResponse(post);
     }
 
     @PreDestroy

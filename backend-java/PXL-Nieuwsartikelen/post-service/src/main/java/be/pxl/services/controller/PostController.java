@@ -1,11 +1,14 @@
 package be.pxl.services.controller;
 
+import be.pxl.services.domain.State;
 import be.pxl.services.domain.dto.PostRequest;
 import be.pxl.services.domain.dto.PostResponse;
 import be.pxl.services.services.IPostService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,32 +22,13 @@ public class PostController {
     private final IPostService postService;
     private static final Logger log = LoggerFactory.getLogger(PostController.class);
 
-    @GetMapping("/concept")
-    public ResponseEntity<List<PostResponse>> getAllConceptPosts() {
-        List<PostResponse> posts = postService.getAllConceptPosts();
-        log.info("Fetching all concept posts");
-        return ResponseEntity.ok(posts);
-    }
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
-    @GetMapping("/published")
-    public ResponseEntity<List<PostResponse>> getAllPublishedPosts() {
-        List<PostResponse> posts = postService.getAllPublishedPosts();
-        log.info("Fetching all published posts");
-        return ResponseEntity.ok(posts);
-    }
-
-    @GetMapping("/{authorId}/concept/posts")
-    public ResponseEntity<List<PostResponse>> getAllPersonalConceptPosts(@PathVariable Long authorId) {
-        List<PostResponse> posts = postService.getAllPersonalConceptPosts(authorId);
-        log.info("Fetching all personal posts");
-        return ResponseEntity.ok(posts);
-    }
-
-    @GetMapping("/{authorId}/published/posts")
-    public ResponseEntity<List<PostResponse>> getAllPersonalPublishedPosts(@PathVariable Long authorId) {
-        List<PostResponse> posts = postService.getAllPersonalPublishedPosts(authorId);
-        log.info("Fetching all personal posts");
-        return ResponseEntity.ok(posts);
+    @GetMapping("/filter/{state}")
+    public ResponseEntity<?> getPostsByAuthorAndState(@RequestHeader Long authorId, @PathVariable State state) {
+        log.info("Handling request [GET] /api/post/filter/{}", state.name());
+        return ResponseEntity.ok(postService.getPostsByAuthorIdAndState(authorId, state));
     }
 
     @GetMapping("/{id}")
@@ -61,10 +45,18 @@ public class PostController {
         return ResponseEntity.noContent().build();
     }
 
+    @PostMapping("/{id}/publish")
+    public ResponseEntity<PostResponse> publishPost(@PathVariable Long id) {
+        log.info("Publishing post with ID {}.", id);
+        PostResponse publishedPost = postService.publishPost(id);
+        return ResponseEntity.ok(publishedPost);
+    }
+
     @PostMapping
-    public ResponseEntity<PostResponse> createPost(@RequestBody PostRequest postRequest,@RequestHeader String username, @RequestHeader int id) {
+    public ResponseEntity<PostResponse> createPost(@RequestBody PostRequest postRequest,@RequestHeader String username, @RequestHeader Long id) {
         PostResponse createdPost = postService.createPost(postRequest,username,id);
         log.info("Creating new post");
+        rabbitTemplate.convertAndSend("postQueue", "Added post from author: " + username);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPost);
     }
 

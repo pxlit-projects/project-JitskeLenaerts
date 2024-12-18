@@ -19,7 +19,7 @@ public class PostRequest {
     private String title;
     private String content;
     private String author;
-    private int authorId;
+    private Long authorId;
     private String category;
     private State state;
     private LocalDateTime createdAt;
