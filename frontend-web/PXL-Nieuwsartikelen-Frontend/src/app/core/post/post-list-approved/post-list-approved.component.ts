@@ -12,13 +12,12 @@ import { FilterComponent } from "../filter/filter.component";
 @Component({
   selector: 'app-post-list-approved',
   standalone: true,
-  imports: [NgIf, NgFor, PostItemComponent, FilterComponent],
+  imports: [PostItemComponent, FilterComponent],
   templateUrl: './post-list-approved.component.html',
   styleUrl: './post-list-approved.component.css'
 })
 export class PostListApprovedComponent implements OnInit {
-  posts: Post[] = [];
-  isLoading: boolean = false;
+  approvedPosts: Post[] = [];
   authService: AuthService = inject(AuthService);
   user: User | null | undefined;
   userRole: string | null = null;
@@ -30,10 +29,10 @@ export class PostListApprovedComponent implements OnInit {
     this.loadApprovedPosts();
   }
   handleFilter(filter: Filter) {
-    if (this.userRole === 'redacteur' || this.userRole === 'gebruiker') {
+    if (this.user != null) {
       this.postService.filterInPostsByState(filter, State.APPROVED).subscribe({
         next: posts => {
-          this.posts = posts;
+          this.approvedPosts = posts;
         },
         error: err => {
           console.error('Error filtering posts:', err);
@@ -43,18 +42,13 @@ export class PostListApprovedComponent implements OnInit {
   }
 
   loadApprovedPosts(): void {
-    this.isLoading = true;
-    this.postService.getPostsByState(State.PUBLISHED).subscribe({
+    this.postService.getPostsByState(State.APPROVED).subscribe({
       next: (posts: Post[]) => {
-        this.posts = posts;
-        this.isLoading = false;
+        this.approvedPosts = posts;
       },
       error: (error) => {
         console.error('Error fetching approved posts:', error);
-        this.isLoading = false;
       }
     });
-
-
   }
 }

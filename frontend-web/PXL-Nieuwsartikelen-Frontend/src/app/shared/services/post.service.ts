@@ -23,16 +23,6 @@ export class PostService {
     return this.http.get<Post[]>(`${this.api}/filter/${state}`, { headers: headers });
   }
 
-  approvePost(postId: number): Observable<void> {
-    return this.http.post<void>(`${this.api}/${postId}/approve`, {});
-  }
-
-  rejectPost(postId: number): Observable<void> {
-    return this.http.post<void>(`${this.api}/${postId}/reject`, {});
-  }
-
-
-
   getAllPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(this.api);
   }
@@ -49,7 +39,6 @@ export class PostService {
       })
     );
   }
-
 
   getPostById(id: number): Observable<Post> {
     return this.http.get<Post>(`${this.api}/${id}`);
@@ -86,5 +75,4 @@ export class PostService {
     date.setHours(0, 0, 0, 0);
     return date;
   }
-
 }

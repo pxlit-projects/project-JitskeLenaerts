@@ -3,7 +3,7 @@ import { CommonModule, NgClass, NgIf } from "@angular/common";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { Post } from '../../../shared/models/post.model';
 import { State } from '../../../shared/models/state.enum';
-import { AuthService } from '../../../shared/services/auth.service';  // Import AuthService
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-post-item',
@@ -14,8 +14,8 @@ import { AuthService } from '../../../shared/services/auth.service';  // Import 
 })
 export class PostItemComponent implements OnInit {
   @Input() post!: Post;
-  @Input() showReviewsButton: boolean = false; // Controls visibility of "View Reviews" button
-  @Output() viewReviews = new EventEmitter<number>(); // Emits post ID when "View Reviews" is clicked
+  @Input() showReviewsButton: boolean = false; 
+  @Output() viewReviews = new EventEmitter<number>();
 
   authorName: string = '';
 
@@ -30,7 +30,6 @@ export class PostItemComponent implements OnInit {
     }
   }
 
-  // Emit the post ID when the "View Reviews" button is clicked
   onViewReviews(): void {
     this.viewReviews.emit(this.post.id);
   }

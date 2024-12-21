@@ -28,6 +28,7 @@
         formControlName="content"
         rows="6"
         placeholder="Enter post content"
+        (input)="onTextAreaInput($event)"
       ></textarea>
     </div>
 
@@ -41,21 +42,29 @@
       />
     </div>
 
-    <div class="form-group-inline">
-      <label for="concept">Is Concept</label>
-      <input id="concept" type="checkbox" formControlName="concept" />
+    <!-- Dropdown for concept (state) -->
+    <div class="form-group">
+      <label for="concept">State</label>
+      <select id="concept" formControlName="concept">
+        <option *ngFor="let state of stateOptions" [value]="state">
+          {{ state }}
+        </option>
+      </select>
     </div>
 
     <div class="form-actions">
-      <button [disabled]="!updateForm.valid"
-      class="btn btn-primary"
+      <button
+        [disabled]="!updateForm.valid"
+        class="btn btn-primary"
         mat-raised-button
         matTooltip="This is a update button"
         aria-label="Button that displays a tooltip when focused or hovered over"
       >
-      Update Post
+        Update Post
       </button>
-      <button (click)="onCancel()" class="btn btn-secondary"
+      <button
+        (click)="onCancel()"
+        class="btn btn-secondary"
         mat-raised-button
         matTooltip="This is a cancel button"
         aria-label="Button that displays a tooltip when focused or hovered over"

@@ -1,11 +1,9 @@
 package be.pxl.services.services;
 
-import be.pxl.services.client.NotificationClient;
 import be.pxl.services.client.PostClient;
 import be.pxl.services.domain.Review;
-import be.pxl.services.domain.State;
 import be.pxl.services.domain.dto.PostResponse;
-import be.pxl.services.domain.dto.ReviewRequest;
+import be.pxl.services.domain.dto.RejectReview;
 import be.pxl.services.domain.dto.ReviewResponse;
 import be.pxl.services.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +34,7 @@ public class ReviewService implements IReviewService {
                 .id(review.getId())
                 .postId(review.getPostId())
                 .createdAt(review.getCreatedAt())
-                .review(review.getReview())
+                .reason(review.getReason())
                 .reviewer(review.getReviewer())
                 .reviewerId(review.getReviewerId())
                 .build();
@@ -49,7 +47,7 @@ public class ReviewService implements IReviewService {
     }
 
     @Override
-    public void rejectPost(Long postId, String reviewer, Long reviewerId, ReviewRequest reviewRequest) {
+    public void rejectPost(Long postId, String reviewer, Long reviewerId, RejectReview rejectReview) {
         PostResponse post = postClient.getPostById(postId);
 
         rabbitTemplate.convertAndSend("postRejectedPostQueue", postId);
@@ -58,7 +56,7 @@ public class ReviewService implements IReviewService {
         Review review = Review.builder()
                 .postId(post.getId())
                 .createdAt(LocalDateTime.now())
-                .review(reviewRequest.getReview())
+                .reason(rejectReview.getReason())
                 .reviewer(reviewer)
                 .reviewerId(reviewerId)
                 .build();

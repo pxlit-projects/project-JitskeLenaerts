@@ -1,7 +1,7 @@
 import { State } from './state.enum';
 
 export class Post {
-  id?: number;
+  id: number;
   title: string;
   author: string;
   authorId: number;
@@ -12,6 +12,7 @@ export class Post {
   updatedAt: Date;
 
   constructor(
+    id: number,
     title: string,
     author: string,
     authorId: number,
@@ -21,6 +22,7 @@ export class Post {
     createdAt: string,
     updatedAt: string
   ) {
+    this.id = id;
     this.title = title;
     this.author = author;
     this.authorId = authorId;

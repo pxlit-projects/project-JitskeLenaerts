@@ -1,9 +1,9 @@
 package be.pxl.services.domain.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Builder;
 
 import java.time.LocalDateTime;
 
@@ -11,11 +11,9 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReviewRequest {
+public class RejectReview {
     private Long id;
     private Long postId;
-    private String review;
-    private String reviewer;
-    private Long reviewerId;
+    private String reason;
     private LocalDateTime createdAt;
 }

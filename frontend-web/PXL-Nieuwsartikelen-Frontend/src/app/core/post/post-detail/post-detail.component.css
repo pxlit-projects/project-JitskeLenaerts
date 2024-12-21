@@ -50,13 +50,28 @@
 }
 
 .state-concept {
-  background-color: #f0e68c;
+  background-color: #ffee4d;
   color: #555;
 }
 
 .state-submitted {
-  background-color: #90ee90;
-  color: #fff;
+  background-color: #a54ad5;
+  color: #ffbaff;
+}
+
+.state-rejected {
+  background-color: #ffcccb; 
+  color: #a94442;
+}
+
+.state-approved {
+  background-color: #90ee90; 
+  color: #3c763d;
+}
+
+.state-published {
+  background-color: #cce5ff; 
+  color: #004085;
 }
 
 .edit-button {
