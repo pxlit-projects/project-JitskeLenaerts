@@ -37,10 +37,10 @@ export class PostItemComponent implements OnInit {
   }
 
   onPublishButton(): void {
-    this.post.state = State.PUBLISHED;
   
     this.postService.updatePost(this.post.id, this.post).subscribe({
       next: (updatedPost) => {
+    this.post.state = State.PUBLISHED;
         this.post = updatedPost; 
       },
       error: (err) => {
@@ -48,7 +48,4 @@ export class PostItemComponent implements OnInit {
       }
     });
   }
-  
-
-
 }

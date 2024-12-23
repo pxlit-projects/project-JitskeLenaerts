@@ -41,22 +41,20 @@
 
 .edit-form .form-group textarea {
   width: 100%;
-  min-height: 100px; /* Minimum height for the textarea */
+  min-height: 100px;
   padding: 10px;
   font-size: 1em;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
-  resize: vertical; /* Allow vertical resizing */
-  overflow: hidden; /* Hide horizontal scrollbar */
+  resize: vertical;
+  overflow: hidden; 
 }
 
-/* Optional: Resize the textarea vertically as user types */
 textarea {
   resize: vertical;
 }
 
-/* Form actions and buttons */
 .form-actions {
   display: flex;
   justify-content: space-between;

@@ -22,7 +22,6 @@ export class FilterComponent {
     createdAt: null,
   };
 
-
   onSubmit(form: any) {
     if (form.valid) {
       this.filter.title = this.filter.title.toLowerCase();
@@ -33,5 +32,4 @@ export class FilterComponent {
       this.filterChanged.emit(this.filter);
     }
   }
-
 }

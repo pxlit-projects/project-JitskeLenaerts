@@ -32,10 +32,9 @@
   color: #555;
   margin-bottom: 12px;
   line-height: 1.6;
-  font-weight: 400;
 }
 
-.details-button {
+.details-button, .publish-button {
   display: inline-block;
   padding: 10px 20px;
   margin-top: 20px;
@@ -71,7 +70,7 @@
 
 
 
-.view-reviews-button,.publish-button {
+.view-reviews-button {
   display: inline-block;
   padding: 10px 20px;
   margin-top: 10px;
@@ -86,7 +85,7 @@
   cursor: pointer;
 }
 
-.view-reviews-button:hover ,.publish-button:hover{
+.view-reviews-button:hover {
   background-color: #0056b3;
   transform: scale(1.05);
 }

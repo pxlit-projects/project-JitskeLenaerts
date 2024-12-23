@@ -28,6 +28,7 @@ export class EditPostComponent implements OnInit {
   user: User | null | undefined;
   postId: number = this.route.snapshot.params['id'];
   postWithId: Observable<Post> = this.postService.getPostById(this.postId);
+  hasEditableState: boolean = true;
 
   updateForm: FormGroup = this.fb.group({
     title: ['', [Validators.required]],
@@ -35,7 +36,6 @@ export class EditPostComponent implements OnInit {
     category: ['', [Validators.required]],
     state: [State.CONCEPT],
   });
-
 
   ngOnInit(): void {
     this.user = this.authService.getCurrentUser();
@@ -50,10 +50,10 @@ export class EditPostComponent implements OnInit {
         category: post.category,
         state: post.state,
       });
+      this.hasEditableState = post.state === State.CONCEPT || post.state === State.SUBMITTED;
       this.adjustTextAreaHeight();
     });
   }
-  
 
   adjustTextAreaHeight(): void {
     const textarea = document.getElementById('content') as HTMLTextAreaElement;
@@ -71,7 +71,12 @@ export class EditPostComponent implements OnInit {
 
   onUpdate(): void {
     if (this.updateForm.valid) {
-      const updatedPost: Post = { ...this.updateForm.value,author: this.user?.authorName, authorId: this.user?.id };
+      const updatedPost: Post = {
+        ...this.updateForm.value,
+        state: this.hasEditableState ? this.updateForm.get('state')?.value : this.updateForm.get('state')?.value,
+        author: this.user?.authorName,
+        authorId: this.user?.id,
+      };
       this.postService.updatePost(this.postId, updatedPost).subscribe(() => {
         this.updateForm.reset();
         if (updatedPost.state === State.SUBMITTED) {
@@ -84,6 +89,7 @@ export class EditPostComponent implements OnInit {
       alert('Please fill in all fields');
     }
   }
+  
 
   onCancel(): void {
     const state = this.updateForm.get('state')?.value;

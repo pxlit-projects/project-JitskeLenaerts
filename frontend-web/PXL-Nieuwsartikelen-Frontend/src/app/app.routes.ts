@@ -19,7 +19,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'add', component: AddPostComponent,canActivate: [AuthGuard],canDeactivate: [ConfirmLeaveGuard] },
-  { path: 'review/posts', component: SubmittedReviewCheckComponent,canActivate: [AuthGuard] },
+  { path: 'review/posts', component: SubmittedReviewCheckComponent,canActivate: [AuthGuard] , data: { role: 'redacteur' }},
   { path: 'published/posts', component: PostListPublishedComponent,canActivate: [AuthGuard] },
   { path: 'submitted/posts', component: PostListSubmittedComponent,canActivate: [AuthGuard] },
   { path: 'concept/posts', component: PostListConceptComponent,canActivate: [AuthGuard] },

@@ -3,8 +3,14 @@
     <h1 class="title">{{ post.title }}</h1>
     <ul class="details-list">
       <li><strong class="label">Author:</strong> {{ authorName }}</li>
-      <li><strong class="label">Created at:</strong> {{ post.createdAt | date : 'dd/MM/yyyy' }}</li>
-      <li><strong class="label">Updated at:</strong> {{ post.updatedAt | date : 'dd/MM/yyyy' }}</li>
+      <li>
+        <strong class="label">Created at:</strong>
+        {{ post.createdAt | date : "dd/MM/yyyy" }}
+      </li>
+      <li>
+        <strong class="label">Updated at:</strong>
+        {{ post.updatedAt | date : "dd/MM/yyyy" }}
+      </li>
       <li><strong class="label">Category:</strong> {{ post.category }}</li>
       <li>
         <strong class="label">Content:</strong>
@@ -16,7 +22,62 @@
           {{ getStateLabel(post.state) }}
         </span>
       </li>
-      <button [routerLink]="['/edit/', post.id]" class="edit-button">Update Post</button>
+      <button [routerLink]="['/edit/', post.id]" class="edit-button">
+        Update Post
+      </button>
     </ul>
+
+    <div class="comments-section">
+      <h3>Comments</h3>
+      @if (errorMessage) {
+        <div class="error-message">
+          {{ errorMessage }}
+        </div>
+        } 
+      @if (isUserLoggedIn) {
+      <div>
+        <textarea
+          [(ngModel)]="newCommentText"
+          placeholder="Write your comment..."
+          class="comment-input"
+        ></textarea>
+        <button (click)="submitComment()" class="submit-comment-button">
+          Post Comment
+        </button>
+      </div>
+      } 
+      @for ( comment of comments; track comment.id) {
+      <div>
+        <div class="comment-item">
+          <div class="comment-author">
+            <strong>{{ comment.author }}</strong>
+            <br />
+            <span>{{ comment.createdAt | date : "dd/MM/yyyy" }}</span>
+          </div>
+
+          @if (editingCommentId === comment.id) {
+          <div>
+            <textarea
+              [(ngModel)]="editingCommentText"
+              class="comment-input"
+            ></textarea>
+            <button (click)="saveEditedComment()">Save</button>
+            <button (click)="editingCommentId = null">Cancel</button>
+          </div>
+          } @if (editingCommentId !== comment.id) {
+          <div>
+            <p>{{ comment.comment }}</p>
+            @if (comment.author === authorName) {
+              <div class="comment-actions">
+                <button (click)="editComment(comment)" class="edit-comment-button">Edit</button>
+                <button (click)="deleteComment(comment.id)" class="delete-comment-button">Delete</button>
+              </div>
+            }
+          </div>
+          }
+        </div>
+      </div>
+      }
+    </div>
   </div>
 </div>

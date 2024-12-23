@@ -5,9 +5,12 @@
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: 1px solid #e0e0e0;
-  padding: 16px;
+  padding: 20px;
   max-height: 800px;
-  overflow-y: auto; 
+  overflow-y: auto;
+  width: 1400px;
+  margin-top: 30px;
+  box-sizing: border-box;
 }
 
 .content {
@@ -39,7 +42,7 @@
 .content-text {
   margin-top: 8px;
   color: #606060;
-  line-height: 1.6;
+  line-height: 1.8;
 }
 
 .state-status {
@@ -50,54 +53,122 @@
 }
 
 .state-concept {
-  background-color: #fff599; /* Soft pastel yellow */
-  color: #7c6100; /* Dark mustard */
+  background-color: #fff599; 
+  color: #7c6100; 
 }
 
 .state-submitted {
-  background-color: #f8c3fc; /* Light magenta */
-  color: #82268a; /* Deep purple */
+  background-color: #f8c3fc; 
+  color: #82268a; 
 }
 
 .state-rejected {
-  background-color: #ff9999; /* Bright salmon pink */
-  color: #8b0000; /* Dark brick red */
+  background-color: #ff9999; 
+  color: #8b0000;
 }
 
 .state-approved {
-  background-color: #98fb98; /* Pale green */
-  color: #2e8b57; /* Forest green */
+  background-color: #98fb98;
+  color: #2e8b57;
 }
 
 .state-published {
-  background-color: #99ccff; /* Sky blue */
-  color: #003366; /* Navy blue */
+  background-color: #99ccff; 
+  color: #003366; 
 }
 
+.comment-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
 
-.edit-button {
-  padding: 12px 24px;
-  background-color: #2563eb;
-  color: white;
-  font-weight: 600;
+.edit-button, .submit-comment-button, .edit-comment-button, .delete-comment-button {
+  padding: 10px 20px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
+.edit-button {
+  background-color: #2563eb;
+  color: white;
+}
+
 .edit-button:hover {
   background-color: #1d4ed8;
 }
 
-.edit-button:focus {
-  outline: 2px solid #93c5fd;
-  outline-offset: 2px;
+.submit-comment-button {
+  background-color: #007bff;
+  color: white;
 }
 
-.loading {
-  text-align: center;
-  color: #4a4a4a;
-  font-size: 1.2rem;
-  padding-top: 40px;
+.submit-comment-button:hover {
+  background-color: #0056b3;
+}
+
+.edit-comment-button, .delete-comment-button {
+  background-color: #4d4d4d;
+  color: white;
+}
+
+.edit-comment-button:hover, .delete-comment-button:hover {
+  background-color: #cc7a00;
+}
+
+.comment-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  resize: vertical;
+}
+
+.comments-section {
+  margin-top: 20px;
+}
+
+.comment-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-top: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.comment-item:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+
+.comment-author {
+  font-weight: bold;
+}
+
+.comment-text {
+  margin-top: 5px;
+}
+
+.comment-item .comment-actions {
+  margin-top: 10px;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.edit-button:focus, 
+.submit-comment-button:focus, 
+.edit-comment-button:focus, 
+.delete-comment-button:focus, 
+.comment-input:focus {
+  outline: 3px solid #2563eb;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
 }
