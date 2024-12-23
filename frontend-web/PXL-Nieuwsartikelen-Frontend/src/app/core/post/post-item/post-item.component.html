@@ -21,5 +21,11 @@
       View Reviews
     </button>
     }
+    @if (post.state == State.APPROVED) {
+    <button (click)="onPublishButton()" class="publish-button">
+      Publish
+    </button>
+    }
+    
   </div>
 </div>

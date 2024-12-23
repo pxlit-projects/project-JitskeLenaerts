@@ -12,6 +12,8 @@ import { Filter } from '../../../shared/models/filter.model';
 })
 
 export class FilterComponent {
+  @Output() filterChanged = new EventEmitter<Filter>();
+
   filter: Filter = {
     title: '',
     author: '',
@@ -20,7 +22,6 @@ export class FilterComponent {
     createdAt: null,
   };
 
-  @Output() filterChanged = new EventEmitter<Filter>();
 
   onSubmit(form: any) {
     if (form.valid) {
@@ -28,7 +29,6 @@ export class FilterComponent {
       this.filter.author = this.filter.author.toLowerCase();
       this.filter.content = this.filter.content.toLowerCase();
       this.filter.category = this.filter.category.toLowerCase();
-
       this.filter.createdAt = form.value.createdAt;
       this.filterChanged.emit(this.filter);
     }

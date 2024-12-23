@@ -75,7 +75,7 @@ export class EditPostComponent implements OnInit {
       this.postService.updatePost(this.postId, updatedPost).subscribe(() => {
         this.updateForm.reset();
         if (updatedPost.state === State.SUBMITTED) {
-          this.router.navigate(['/submission-status']);
+          this.router.navigate(['/submitted/posts']);
         } else {
           this.router.navigate(['/concept/posts']);
         }
@@ -88,7 +88,7 @@ export class EditPostComponent implements OnInit {
   onCancel(): void {
     const state = this.updateForm.get('state')?.value;
     if (state === State.SUBMITTED) {
-      this.router.navigate(['/submission-status']);
+      this.router.navigate(['/submitted/posts']);
     } else {
       this.router.navigate(['/concept/posts']);
     }

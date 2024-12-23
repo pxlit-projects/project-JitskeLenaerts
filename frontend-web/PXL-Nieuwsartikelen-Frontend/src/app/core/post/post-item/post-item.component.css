@@ -71,7 +71,7 @@
 
 
 
-.view-reviews-button {
+.view-reviews-button,.publish-button {
   display: inline-block;
   padding: 10px 20px;
   margin-top: 10px;
@@ -86,7 +86,7 @@
   cursor: pointer;
 }
 
-.view-reviews-button:hover {
+.view-reviews-button:hover ,.publish-button:hover{
   background-color: #0056b3;
   transform: scale(1.05);
 }

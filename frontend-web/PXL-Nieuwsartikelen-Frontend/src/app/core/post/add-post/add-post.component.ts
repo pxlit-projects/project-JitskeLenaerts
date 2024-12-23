@@ -58,7 +58,7 @@
               next: () => {
                 this.postForm.reset();
                 if (newPost.state === State.SUBMITTED) {
-                  this.router.navigate(['/submission-status']);
+                  this.router.navigate(['/submitted/posts']);
                 } else {
                   this.router.navigate(['/concept/posts']);
                 }              },
