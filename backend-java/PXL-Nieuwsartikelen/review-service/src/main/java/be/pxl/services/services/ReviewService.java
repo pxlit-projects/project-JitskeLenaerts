@@ -10,11 +10,11 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,9 +25,7 @@ public class ReviewService implements IReviewService {
 
     private final ReviewRepository reviewRepository;
     private final PostClient postClient;
-
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private final RabbitTemplate rabbitTemplate;
 
     private ReviewResponse mapToReviewResponse(Review review) {
         return ReviewResponse.builder()
@@ -42,29 +40,55 @@ public class ReviewService implements IReviewService {
 
     @Override
     public void approvePost(Long postId) {
-        rabbitTemplate.convertAndSend("postApprovedPostQueue", postId);
-        log.info("Post with ID {} approved.", postId);
+        sendNotificationToQueue("postApprovedPostQueue", postId);
+        logPostStatusChange(postId, "approved");
     }
 
     @Override
     public void rejectPost(Long postId, String reviewer, Long reviewerId, RejectReview rejectReview) {
-        PostResponse post = postClient.getPostById(postId);
+        Optional<PostResponse> post = Optional.ofNullable(postClient.getPostById(postId));
 
-        rabbitTemplate.convertAndSend("postRejectedPostQueue", postId);
-        log.info("Post with ID {} rejected by reviewer {} (ID {}).", postId, reviewer, reviewerId);
+        if (post.isEmpty()) {
+            log.error("Post with ID {} not found.", postId);
+            return;
+        }
 
-        Review review = Review.builder()
+        sendNotificationToQueue("postRejectedPostQueue", postId);
+        logPostStatusChange(postId, "rejected", reviewer, reviewerId);
+
+        saveReview(post.get(), rejectReview, reviewer, reviewerId);
+    }
+
+    private void sendNotificationToQueue(String queueName, Long postId) {
+        rabbitTemplate.convertAndSend(queueName, postId);
+        log.info("Notification sent for post ID {} to queue {}.", postId, queueName);
+    }
+
+    private void logPostStatusChange(Long postId, String status) {
+        log.info("Post with ID {} has been {}.", postId, status);
+    }
+
+    private void logPostStatusChange(Long postId, String status, String reviewer, Long reviewerId) {
+        log.info("Post with ID {} has been {} by reviewer {} (ID {}).", postId, status, reviewer, reviewerId);
+    }
+
+    private void saveReview(PostResponse post, RejectReview rejectReview, String reviewer, Long reviewerId) {
+        Review review = buildReview(post, rejectReview, reviewer, reviewerId);
+        reviewRepository.save(review);
+        log.info("Review for post ID {} saved to repository.", post.getId());
+    }
+
+    private Review buildReview(PostResponse post, RejectReview rejectReview, String reviewer, Long reviewerId) {
+        return Review.builder()
                 .postId(post.getId())
                 .createdAt(LocalDateTime.now())
                 .reason(rejectReview.getReason())
                 .reviewer(reviewer)
                 .reviewerId(reviewerId)
                 .build();
-
-        reviewRepository.save(review);
-        log.info("Review for post ID {} saved to repository.", postId);
     }
 
+    @Override
     public List<ReviewResponse> getReviewById(Long postId) {
         List<Review> reviews = reviewRepository.findAllByPostId(postId);
         log.info("Retrieved {} reviews for post ID {}.", reviews.size(), postId);

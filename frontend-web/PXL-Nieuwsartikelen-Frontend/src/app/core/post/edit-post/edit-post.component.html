@@ -12,16 +12,6 @@
     </div>
 
     <div class="form-group">
-      <label for="author">Author</label>
-      <input
-        id="author"
-        type="text"
-        formControlName="author"
-        placeholder="Enter author name"
-      />
-    </div>
-
-    <div class="form-group">
       <label for="content">Content</label>
       <textarea
         id="content"
@@ -42,15 +32,14 @@
       />
     </div>
 
-    <!-- Dropdown for concept (state) -->
     <div class="form-group">
-      <label for="concept">State</label>
-      <select id="concept" formControlName="concept">
-        <option *ngFor="let state of stateOptions" [value]="state">
-          {{ state }}
-        </option>
+      <label for="state">State</label>
+      <select id="state" formControlName="state" class="form-control">
+        <option [value]="State.CONCEPT">Concept</option>
+        <option [value]="State.SUBMITTED">Submit</option>
       </select>
     </div>
+    
 
     <div class="form-actions">
       <button

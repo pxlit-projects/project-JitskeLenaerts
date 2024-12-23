@@ -57,8 +57,11 @@
             this.postService.createPost(newPost, this.user!.username, this.user!.id).subscribe({
               next: () => {
                 this.postForm.reset();
-                this.router.navigate([newPost.state === State.CONCEPT ? '/concept/posts' : '/submitted/posts']);
-              },
+                if (newPost.state === State.SUBMITTED) {
+                  this.router.navigate(['/submission-status']);
+                } else {
+                  this.router.navigate(['/concept/posts']);
+                }              },
               error: (error) => {
                 this.errorMessage = 'An error occurred while creating the post. Please try again.';
               }
@@ -70,7 +73,6 @@
         }
       });
     }
-
 
     canDeactivate(): boolean {
       if (this.postForm.dirty) {

@@ -8,7 +8,7 @@ import { AuthService } from '../../../shared/services/auth.service';
 @Component({
   selector: 'app-post-item',
   standalone: true,
-  imports: [NgClass, RouterLink, RouterLinkActive, CommonModule,NgIf],
+  imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './post-item.component.html',
   styleUrls: ['./post-item.component.css']
 })

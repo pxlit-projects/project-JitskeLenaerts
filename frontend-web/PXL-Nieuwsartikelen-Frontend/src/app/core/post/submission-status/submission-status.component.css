@@ -1,0 +1,49 @@
+.submission-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .submission-title {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 16px;
+  }
+  
+  .submission-text {
+    font-size: 16px;
+    color: #555555;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  
+  .submission-status {
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 16px;
+  }
+  
+  .status-highlight {
+    color: #007BFF;
+    font-weight: bold;
+  }
+  
+  .submission-link {
+    font-size: 16px;
+    color: #555555;
+  }
+  
+  .status-link {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .status-link:hover {
+    text-decoration: underline;
+  }
+  

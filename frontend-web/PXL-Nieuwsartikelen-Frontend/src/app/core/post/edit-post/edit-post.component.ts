@@ -7,15 +7,9 @@ import { PostService } from '../../../shared/services/post.service';
 import { Observable } from 'rxjs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
-
-// Enum for State (backend enum)
-export enum State {
-  CONCEPT = "CONCEPT",
-  SUBMITTED = "SUBMITTED",
-  REJECTED = "REJECTED",
-  APPROVED = "APPROVED",
-  PUBLISHED = "PUBLISHED"
-}
+import { State } from '../../../shared/models/state.enum';
+import { AuthService } from '../../../shared/services/auth.service';
+import { User } from '../../../shared/models/user.model';
 
 @Component({
   selector: 'app-edit-post',
@@ -28,33 +22,38 @@ export class EditPostComponent implements OnInit {
   postService: PostService = inject(PostService);
   router: Router = inject(Router);
   fb: FormBuilder = inject(FormBuilder);
+  authService: AuthService = inject(AuthService);
   route: ActivatedRoute = inject(ActivatedRoute);
-
+  State = State;
+  user: User | null | undefined;
   postId: number = this.route.snapshot.params['id'];
-  postWithId$: Observable<Post> = this.postService.getPostById(this.postId);
+  postWithId: Observable<Post> = this.postService.getPostById(this.postId);
 
   updateForm: FormGroup = this.fb.group({
     title: ['', [Validators.required]],
-    author: ['', [Validators.required]],
     content: ['', [Validators.required]],
     category: ['', [Validators.required]],
-    state: [State.CONCEPT], 
+    state: [State.CONCEPT],
   });
 
-  stateOptions = Object.values(State);
 
   ngOnInit(): void {
-    this.postWithId$.subscribe((post) => {
+    this.user = this.authService.getCurrentUser();
+    if (!this.user) {
+      console.error('User is not authenticated or could not be fetched!');
+    }
+  
+    this.postWithId.subscribe((post) => {
       this.updateForm.patchValue({
         title: post.title,
         content: post.content,
-        author: post.author,
         category: post.category,
-        state: post.state
+        state: post.state,
       });
       this.adjustTextAreaHeight();
     });
   }
+  
 
   adjustTextAreaHeight(): void {
     const textarea = document.getElementById('content') as HTMLTextAreaElement;
@@ -72,12 +71,14 @@ export class EditPostComponent implements OnInit {
 
   onUpdate(): void {
     if (this.updateForm.valid) {
-      const updatedPost: Post = { ...this.updateForm.value };
-      updatedPost.state = updatedPost.state; 
-
+      const updatedPost: Post = { ...this.updateForm.value,author: this.user?.authorName, authorId: this.user?.id };
       this.postService.updatePost(this.postId, updatedPost).subscribe(() => {
         this.updateForm.reset();
-        this.router.navigate(['/posts']);
+        if (updatedPost.state === State.SUBMITTED) {
+          this.router.navigate(['/submission-status']);
+        } else {
+          this.router.navigate(['/concept/posts']);
+        }
       });
     } else {
       alert('Please fill in all fields');
@@ -85,6 +86,11 @@ export class EditPostComponent implements OnInit {
   }
 
   onCancel(): void {
-    this.router.navigate(['/posts']);
+    const state = this.updateForm.get('state')?.value;
+    if (state === State.SUBMITTED) {
+      this.router.navigate(['/submission-status']);
+    } else {
+      this.router.navigate(['/concept/posts']);
+    }
   }
 }

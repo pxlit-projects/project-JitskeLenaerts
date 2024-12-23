@@ -1,522 +1,70 @@
-2024-12-21T10:54:06.548+0100 INFO               [main]                         be.pxl.services.ConfigServiceApplication - Starting ConfigServiceApplication using Java 22.0.2 with PID 29936 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\config-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
-2024-12-21T10:54:06.553+0100 DEBUG              [main]                         be.pxl.services.ConfigServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
-2024-12-21T10:54:06.554+0100 INFO               [main]                         be.pxl.services.ConfigServiceApplication - The following 1 profile is active: "native"
-2024-12-21T10:54:07.596+0100 INFO               [main]                         be.pxl.services.ConfigServiceApplication - Started ConfigServiceApplication in 1.399 seconds (process running for 3.012)
-2024-12-21T10:54:14.703+0100 INFO               [main]                         be.pxl.services.DiscoveryServiceApplication - Starting DiscoveryServiceApplication using Java 22.0.2 with PID 9156 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\discovery-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
-2024-12-21T10:54:14.704+0100 DEBUG              [main]                         be.pxl.services.DiscoveryServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
-2024-12-21T10:54:14.704+0100 INFO               [main]                         be.pxl.services.DiscoveryServiceApplication - No active profile set, falling back to 1 default profile: "default"
-2024-12-21T10:54:16.626+0100 INFO               [main]                         be.pxl.services.DiscoveryServiceApplication - Started DiscoveryServiceApplication in 2.544 seconds (process running for 4.76)
-2024-12-21T10:54:21.557+0100 INFO               [main]                         be.pxl.services.GatewayServiceApplication - Starting GatewayServiceApplication using Java 22.0.2 with PID 14844 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\gateway-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
-2024-12-21T10:54:21.558+0100 DEBUG              [main]                         be.pxl.services.GatewayServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
-2024-12-21T10:54:21.558+0100 INFO               [main]                         be.pxl.services.GatewayServiceApplication - No active profile set, falling back to 1 default profile: "default"
-2024-12-21T10:54:23.020+0100 INFO               [main]                         be.pxl.services.GatewayServiceApplication - Started GatewayServiceApplication in 1.972 seconds (process running for 3.074)
-2024-12-21T10:54:28.201+0100 INFO               [main]                         be.pxl.services.NotificationServiceApplication - Starting NotificationServiceApplication using Java 22.0.2 with PID 24968 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\notification-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
-2024-12-21T10:54:28.201+0100 DEBUG              [main]                         be.pxl.services.NotificationServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
-2024-12-21T10:54:28.202+0100 INFO               [main]                         be.pxl.services.NotificationServiceApplication - No active profile set, falling back to 1 default profile: "default"
-2024-12-21T10:54:29.221+0100 INFO               [main]                         be.pxl.services.NotificationServiceApplication - Started NotificationServiceApplication in 1.532 seconds (process running for 1.853)
-2024-12-21T10:54:33.560+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - Starting PostServiceApplication using Java 22.0.2 with PID 16264 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
-2024-12-21T10:54:33.561+0100 DEBUG              [main]                         be.pxl.services.PostServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
-2024-12-21T10:54:33.561+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
-2024-12-21T10:54:36.538+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - Started PostServiceApplication in 3.461 seconds (process running for 4.583)
-2024-12-21T10:54:40.714+0100 INFO               [main]                         be.pxl.services.ReviewServiceApplication - Starting ReviewServiceApplication using Java 22.0.2 with PID 29984 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\review-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
-2024-12-21T10:54:40.714+0100 DEBUG              [main]                         be.pxl.services.ReviewServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
-2024-12-21T10:54:40.715+0100 INFO               [main]                         be.pxl.services.ReviewServiceApplication - No active profile set, falling back to 1 default profile: "default"
-2024-12-21T10:54:43.207+0100 INFO               [main]                         be.pxl.services.ReviewServiceApplication - Started ReviewServiceApplication in 2.995 seconds (process running for 3.333)
-2024-12-21T10:57:26.429+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/SUBMITTED
-2024-12-21T10:57:27.736+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/PUBLISHED
-2024-12-21T10:57:28.411+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T10:57:28.424+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T10:57:28.425+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T10:57:30.600+0100 INFO               [http-nio-8082-exec-1]         be.pxl.services.controller.ReviewController - Fetching reviews for post ID 2.
-2024-12-21T10:57:30.706+0100 INFO               [http-nio-8082-exec-1]         be.pxl.services.services.ReviewService - Retrieved 1 reviews for post ID 2.
-2024-12-21T11:35:45.778+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T11:35:45.787+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:35:45.787+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:39:09.259+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/SUBMITTED
-2024-12-21T11:39:09.263+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:39:15.446+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T11:39:15.446+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:39:15.446+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T11:39:15.525+0100 INFO               [http-nio-8082-exec-2]         be.pxl.services.services.ReviewService - Post with ID 1 rejected by reviewer Gebruiker Gevens (ID 1).
-2024-12-21T11:39:15.592+0100 INFO               [http-nio-8082-exec-2]         be.pxl.services.services.ReviewService - Review for post ID 1 saved to repository.
-2024-12-21T11:39:15.592+0100 INFO               [http-nio-8082-exec-2]         be.pxl.services.controller.ReviewController - Post ID 1 rejected by reviewer Gebruiker Gevens (ID 1).
-2024-12-21T11:39:26.350+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T11:39:26.355+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:39:26.355+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:39:30.110+0100 INFO               [http-nio-8082-exec-7]         be.pxl.services.controller.ReviewController - Fetching reviews for post ID 1.
-2024-12-21T11:39:30.115+0100 INFO               [http-nio-8082-exec-7]         be.pxl.services.services.ReviewService - Retrieved 1 reviews for post ID 1.
-2024-12-21T11:39:31.009+0100 INFO               [http-nio-8082-exec-5]         be.pxl.services.controller.ReviewController - Fetching reviews for post ID 2.
-2024-12-21T11:39:31.013+0100 INFO               [http-nio-8082-exec-5]         be.pxl.services.services.ReviewService - Retrieved 0 reviews for post ID 2.
-2024-12-21T11:39:32.577+0100 INFO               [http-nio-8082-exec-6]         be.pxl.services.controller.ReviewController - Fetching reviews for post ID 2.
-2024-12-21T11:39:32.581+0100 INFO               [http-nio-8082-exec-6]         be.pxl.services.services.ReviewService - Retrieved 0 reviews for post ID 2.
-2024-12-21T11:39:34.864+0100 INFO               [http-nio-8082-exec-4]         be.pxl.services.controller.ReviewController - Fetching reviews for post ID 1.
-2024-12-21T11:39:34.868+0100 INFO               [http-nio-8082-exec-4]         be.pxl.services.services.ReviewService - Retrieved 1 reviews for post ID 1.
-2024-12-21T11:40:53.913+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T11:40:53.922+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:40:53.922+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:40:56.033+0100 INFO               [http-nio-8082-exec-9]         be.pxl.services.controller.ReviewController - Fetching reviews for post ID 1.
-2024-12-21T11:40:56.037+0100 INFO               [http-nio-8082-exec-9]         be.pxl.services.services.ReviewService - Retrieved 1 reviews for post ID 1.
-2024-12-21T11:41:47.201+0100 INFO               [http-nio-8082-exec-10]        be.pxl.services.controller.ReviewController - Fetching reviews for post ID 54.
-2024-12-21T11:41:47.205+0100 INFO               [http-nio-8082-exec-10]        be.pxl.services.services.ReviewService - Retrieved 0 reviews for post ID 54.
-2024-12-21T11:41:49.081+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Calling endpoint [GET] /api/post
-2024-12-21T11:41:49.090+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:41:49.091+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:41:53.687+0100 INFO               [http-nio-8082-exec-1]         be.pxl.services.controller.ReviewController - Fetching reviews for post ID 1.
-2024-12-21T11:41:53.692+0100 INFO               [http-nio-8082-exec-1]         be.pxl.services.services.ReviewService - Retrieved 1 reviews for post ID 1.
-2024-12-21T11:42:12.446+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T11:42:12.452+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:42:12.452+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:53:28.012+0100 INFO               [main]                         be.pxl.services.ReviewServiceApplication - Starting ReviewServiceApplication using Java 22.0.2 with PID 34508 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\review-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
-2024-12-21T11:53:28.013+0100 DEBUG              [main]                         be.pxl.services.ReviewServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
-2024-12-21T11:53:28.013+0100 INFO               [main]                         be.pxl.services.ReviewServiceApplication - No active profile set, falling back to 1 default profile: "default"
-2024-12-21T11:53:30.577+0100 INFO               [main]                         be.pxl.services.ReviewServiceApplication - Started ReviewServiceApplication in 3.115 seconds (process running for 3.456)
-2024-12-21T11:54:03.497+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/SUBMITTED
-2024-12-21T11:54:03.503+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:54:11.776+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T11:54:11.777+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:54:11.777+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T11:54:11.861+0100 INFO               [http-nio-8082-exec-1]         be.pxl.services.services.ReviewService - Post with ID 1 rejected by reviewer Gebruiker Gevens (ID 1).
-2024-12-21T11:54:11.950+0100 INFO               [http-nio-8082-exec-1]         be.pxl.services.services.ReviewService - Review for post ID 1 saved to repository.
-2024-12-21T11:54:11.950+0100 INFO               [http-nio-8082-exec-1]         be.pxl.services.controller.ReviewController - Post ID 1 rejected by reviewer Gebruiker Gevens (ID 1).
-2024-12-21T11:54:14.853+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T11:54:14.857+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:54:14.857+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:54:15.967+0100 INFO               [http-nio-8082-exec-2]         be.pxl.services.controller.ReviewController - Fetching reviews for post ID 1.
-2024-12-21T11:54:16.092+0100 INFO               [http-nio-8082-exec-2]         be.pxl.services.services.ReviewService - Retrieved 1 reviews for post ID 1.
-2024-12-21T11:54:17.676+0100 INFO               [http-nio-8082-exec-4]         be.pxl.services.controller.ReviewController - Fetching reviews for post ID 2.
-2024-12-21T11:54:17.680+0100 INFO               [http-nio-8082-exec-4]         be.pxl.services.services.ReviewService - Retrieved 0 reviews for post ID 2.
-2024-12-21T11:54:18.603+0100 INFO               [http-nio-8082-exec-6]         be.pxl.services.controller.ReviewController - Fetching reviews for post ID 2.
-2024-12-21T11:54:18.607+0100 INFO               [http-nio-8082-exec-6]         be.pxl.services.services.ReviewService - Retrieved 0 reviews for post ID 2.
-2024-12-21T11:54:22.536+0100 INFO               [http-nio-8082-exec-7]         be.pxl.services.controller.ReviewController - Fetching reviews for post ID 1.
-2024-12-21T11:54:22.540+0100 INFO               [http-nio-8082-exec-7]         be.pxl.services.services.ReviewService - Retrieved 1 reviews for post ID 1.
-2024-12-21T11:56:20.896+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T11:56:20.900+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:56:20.900+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:57:12.428+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T11:57:12.433+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:57:12.433+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:59:50.589+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T11:59:50.593+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T11:59:50.594+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T12:00:46.433+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T12:00:46.438+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T12:00:46.438+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T12:00:55.001+0100 INFO               [http-nio-8082-exec-5]         be.pxl.services.controller.ReviewController - Fetching reviews for post ID 1.
-2024-12-21T12:00:55.006+0100 INFO               [http-nio-8082-exec-5]         be.pxl.services.services.ReviewService - Retrieved 1 reviews for post ID 1.
-2024-12-21T12:12:38.157+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T12:12:38.162+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T12:12:38.162+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T12:12:41.319+0100 INFO               [http-nio-8082-exec-9]         be.pxl.services.controller.ReviewController - Fetching reviews for post ID 1.
-2024-12-21T12:12:41.324+0100 INFO               [http-nio-8082-exec-9]         be.pxl.services.services.ReviewService - Retrieved 1 reviews for post ID 1.
-2024-12-21T12:14:25.654+0100 INFO               [main]                         be.pxl.services.ReviewServiceApplication - Starting ReviewServiceApplication using Java 22.0.2 with PID 8296 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\review-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
-2024-12-21T12:14:25.655+0100 DEBUG              [main]                         be.pxl.services.ReviewServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
-2024-12-21T12:14:25.655+0100 INFO               [main]                         be.pxl.services.ReviewServiceApplication - No active profile set, falling back to 1 default profile: "default"
-2024-12-21T12:14:28.181+0100 INFO               [main]                         be.pxl.services.ReviewServiceApplication - Started ReviewServiceApplication in 3.059 seconds (process running for 3.412)
-2024-12-21T12:54:09.805+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T12:54:09.823+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T12:54:09.823+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T12:54:10.988+0100 INFO               [http-nio-8082-exec-1]         be.pxl.services.controller.ReviewController - Fetching reviews for post ID 1.
-2024-12-21T12:54:11.115+0100 INFO               [http-nio-8082-exec-1]         be.pxl.services.services.ReviewService - Retrieved 1 reviews for post ID 1.
-2024-12-21T12:54:42.189+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T12:54:42.193+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T12:54:42.193+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T12:54:43.346+0100 INFO               [http-nio-8082-exec-2]         be.pxl.services.controller.ReviewController - Fetching reviews for post ID 1.
-2024-12-21T12:54:43.349+0100 INFO               [http-nio-8082-exec-2]         be.pxl.services.services.ReviewService - Retrieved 1 reviews for post ID 1.
-2024-12-21T12:55:15.387+0100 INFO               [http-nio-8082-exec-3]         be.pxl.services.controller.ReviewController - Fetching reviews for post ID 1.
-2024-12-21T12:55:15.391+0100 INFO               [http-nio-8082-exec-3]         be.pxl.services.services.ReviewService - Retrieved 1 reviews for post ID 1.
-2024-12-21T12:55:57.852+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T12:55:57.852+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T12:55:57.852+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T12:56:45.357+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T12:56:45.357+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T12:56:45.357+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:03:38.983+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:03:38.984+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:03:38.984+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:19:48.185+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:19:48.185+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:19:48.185+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:20:48.539+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:20:48.539+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:20:48.539+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:21:56.614+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:21:56.614+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:21:56.614+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:22:12.467+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:22:12.467+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:22:12.467+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:22:24.421+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:22:24.421+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:22:24.421+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:22:33.362+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:22:33.362+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:22:33.362+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:22:42.274+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:22:42.274+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:22:42.274+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:23:34.911+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:23:34.911+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:23:34.911+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:23:56.935+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:23:56.935+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:23:56.935+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:24:07.677+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:24:07.677+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:24:07.677+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:24:25.472+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:24:25.472+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:24:25.472+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:49:43.692+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:49:43.692+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:49:43.692+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:51:23.520+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:51:23.520+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:51:23.520+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:51:24.803+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:51:24.803+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:51:24.803+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:51:26.159+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:51:26.159+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:51:26.159+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:51:31.200+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:51:31.200+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:51:31.200+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:51:35.025+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:51:35.025+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:51:35.025+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T13:51:57.269+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T13:51:57.270+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T13:51:57.270+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:05:13.502+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:05:13.502+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:05:13.502+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:05:14.952+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:05:14.952+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:05:14.952+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:05:19.467+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:05:19.467+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:05:19.467+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:05:21.888+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:05:21.888+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:05:21.888+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:05:34.148+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:05:34.148+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:05:34.148+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:05:52.184+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:05:52.184+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:05:52.184+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:05:53.210+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:05:53.210+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:05:53.210+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:06:13.127+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:06:13.127+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:06:13.127+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:06:17.059+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:06:17.060+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:06:17.060+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:06:39.345+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:06:39.345+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:06:39.345+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:11:06.291+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:11:06.291+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:11:06.291+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:11:21.456+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:11:21.456+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:11:21.456+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:11:53.280+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:11:53.280+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:11:53.280+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:11:55.979+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:11:55.979+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:11:55.979+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:12:04.733+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:12:04.733+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:12:04.733+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:12:19.200+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:12:19.200+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:12:19.200+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:12:31.002+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:12:31.002+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:12:31.002+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:12:38.192+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:12:38.192+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:12:38.192+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:12:43.200+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:12:43.200+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:12:43.200+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:12:52.180+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:12:52.180+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:12:52.180+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:12:58.170+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:12:58.170+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:12:58.170+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:13:08.037+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:13:08.037+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:13:08.037+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:13:16.182+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:13:16.182+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:13:16.182+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:13:32.185+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:13:32.186+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:13:32.186+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:13:40.191+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:13:40.191+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:13:40.191+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:18:19.403+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:18:19.403+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:18:19.403+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:18:45.256+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:18:45.256+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:18:45.257+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:19:44.196+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:19:44.196+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:19:44.196+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:19:45.265+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:19:45.265+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:19:45.265+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:19:53.556+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:19:53.556+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:19:53.556+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:19:57.092+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:19:57.092+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:19:57.092+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:20:00.100+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:20:00.100+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:20:00.100+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:20:39.449+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:20:39.449+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:20:39.449+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:20:49.937+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/PUBLISHED
-2024-12-21T14:20:49.947+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:20:50.723+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T14:20:51.443+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/SUBMITTED
-2024-12-21T14:20:58.413+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/PUBLISHED
-2024-12-21T14:20:58.416+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:20:59.184+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T14:21:02.712+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/PUBLISHED
-2024-12-21T14:21:02.716+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:21:04.544+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:21:04.544+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:21:04.544+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:21:07.955+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:21:07.955+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:21:07.955+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:21:11.232+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Post updated
-2024-12-21T14:21:11.232+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:21:11.232+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Updating post with id 1
-2024-12-21T14:21:17.671+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T14:33:53.571+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T14:37:04.388+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T14:37:20.200+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T14:37:39.245+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T14:38:06.460+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T14:38:07.140+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/PUBLISHED
-2024-12-21T14:38:07.145+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:38:38.000+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/PUBLISHED
-2024-12-21T14:38:38.003+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:38:39.538+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:38:39.538+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:38:39.538+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:39:02.169+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/SUBMITTED
-2024-12-21T14:39:02.751+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/PUBLISHED
-2024-12-21T14:39:02.754+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:39:04.263+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:39:04.263+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:39:04.263+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:39:16.361+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Fetching specific post with id 1
-2024-12-21T14:39:16.361+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:39:16.361+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Fetching specific post with id 1
-2024-12-21T14:39:19.844+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/APPROVED
-2024-12-21T14:44:45.452+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/APPROVED
-2024-12-21T14:45:44.520+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Calling endpoint [GET] /api/post
-2024-12-21T14:45:44.566+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post request to post
-2024-12-21T14:45:44.889+0100 INFO               [http-nio-8084-exec-1]         be.pxl.services.service.NotificationService - Receiving notification...
-2024-12-21T14:45:44.889+0100 INFO               [http-nio-8084-exec-1]         be.pxl.services.service.NotificationService - Sending ... Post created
-2024-12-21T14:45:44.889+0100 INFO               [http-nio-8084-exec-1]         be.pxl.services.service.NotificationService - TO gebruiker1
-2024-12-21T14:45:44.896+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Post created
-2024-12-21T14:45:44.896+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T14:45:44.896+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Creating new post
-2024-12-21T14:48:36.156+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/APPROVED
-2024-12-21T14:48:36.771+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T14:48:37.351+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/SUBMITTED
-2024-12-21T14:55:44.003+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/SUBMITTED
-2024-12-21T14:55:44.568+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/REJECTED
-2024-12-21T14:55:45.233+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/APPROVED
-2024-12-21T14:55:45.690+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/state/CONCEPT
-2024-12-21T14:55:45.694+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:05:07.498+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/CONCEPT
-2024-12-21T15:05:07.498+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Fetching all posts with state CONCEPT by author ID: 1
-2024-12-21T15:05:07.506+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:05:07.506+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:05:13.356+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/CONCEPT
-2024-12-21T15:05:13.356+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Fetching all posts with state CONCEPT by author ID: 1
-2024-12-21T15:05:13.359+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:05:13.360+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:05:28.281+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/CONCEPT
-2024-12-21T15:05:28.281+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Fetching all posts with state CONCEPT by author ID: 1
-2024-12-21T15:05:28.285+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:05:28.285+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:05:40.219+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/CONCEPT
-2024-12-21T15:05:40.221+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Fetching all posts with state CONCEPT by author ID: 1
-2024-12-21T15:05:40.225+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:05:40.225+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:06:04.387+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/CONCEPT
-2024-12-21T15:06:04.387+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Fetching all posts with state CONCEPT by author ID: 1
-2024-12-21T15:06:04.391+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:06:06.328+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/PUBLISHED
-2024-12-21T15:06:06.328+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Fetching all posts with state PUBLISHED by author ID: 1
-2024-12-21T15:06:06.331+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:06:06.331+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:13:44.503+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/PUBLISHED
-2024-12-21T15:13:44.503+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Fetching all posts with state PUBLISHED by author ID: 1
-2024-12-21T15:13:44.508+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:13:44.508+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:14:01.241+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/PUBLISHED
-2024-12-21T15:14:01.241+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Fetching all posts with state PUBLISHED by author ID: 1
-2024-12-21T15:14:01.244+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:14:01.244+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:18:06.499+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Calling endpoint [GET] /api/post
-2024-12-21T15:18:06.505+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:18:06.514+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post request to post
-2024-12-21T15:18:06.531+0100 INFO               [http-nio-8084-exec-5]         be.pxl.services.service.NotificationService - Receiving notification...
-2024-12-21T15:18:06.531+0100 INFO               [http-nio-8084-exec-5]         be.pxl.services.service.NotificationService - Sending ... Post created
-2024-12-21T15:18:06.531+0100 INFO               [http-nio-8084-exec-5]         be.pxl.services.service.NotificationService - TO gebruiker1
-2024-12-21T15:18:06.531+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Post created
-2024-12-21T15:18:06.531+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:18:06.531+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Creating new post
-2024-12-21T15:18:06.551+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/CONCEPT
-2024-12-21T15:18:06.551+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Fetching all posts with state CONCEPT by author ID: 1
-2024-12-21T15:18:06.554+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:18:06.554+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:18:09.083+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:18:09.084+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:18:09.084+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:18:13.337+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/CONCEPT
-2024-12-21T15:18:13.337+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Fetching all posts with state CONCEPT by author ID: 1
-2024-12-21T15:18:13.340+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:18:13.341+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:19:34.775+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/CONCEPT
-2024-12-21T15:19:34.775+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Fetching all posts with state CONCEPT by author ID: 1
-2024-12-21T15:19:34.779+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:19:34.779+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:19:40.402+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/CONCEPT
-2024-12-21T15:19:40.402+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Fetching all posts with state CONCEPT by author ID: 1
-2024-12-21T15:19:40.405+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:19:40.405+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:20:01.295+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/CONCEPT
-2024-12-21T15:20:01.295+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Fetching all posts with state CONCEPT by author ID: 1
-2024-12-21T15:20:01.298+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:20:01.298+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:20:05.248+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/CONCEPT
-2024-12-21T15:20:05.248+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Fetching all posts with state CONCEPT by author ID: 1
-2024-12-21T15:20:05.255+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:20:05.255+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:20:15.284+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/CONCEPT
-2024-12-21T15:20:15.284+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Fetching all posts with state CONCEPT by author ID: 1
-2024-12-21T15:20:15.288+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:20:15.288+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:20:29.248+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/CONCEPT
-2024-12-21T15:20:29.248+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Fetching all posts with state CONCEPT by author ID: 1
-2024-12-21T15:20:29.252+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:20:29.252+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:20:38.272+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:20:38.272+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:20:38.272+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:21:23.488+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/CONCEPT
-2024-12-21T15:21:23.488+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Fetching all posts with state CONCEPT by author ID: 1
-2024-12-21T15:21:23.493+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:21:23.493+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:23:18.237+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Handling request [GET] /api/post/filter/CONCEPT
-2024-12-21T15:23:18.238+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Fetching all posts with state CONCEPT by author ID: 1
-2024-12-21T15:23:18.241+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Converting posts to PostResponse objects
-2024-12-21T15:23:18.242+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:25:49.296+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:25:49.296+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:25:49.297+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:26:21.862+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:26:21.862+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:26:21.863+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:31:29.614+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:31:29.614+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:31:29.614+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:36:09.568+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:36:09.568+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:36:09.568+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:38:07.576+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:38:07.576+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:38:07.576+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:38:12.070+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:38:12.070+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:38:12.070+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:38:20.013+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:38:20.013+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:38:20.013+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:41:15.628+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:41:15.628+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:41:15.628+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:41:28.543+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:41:28.543+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:41:28.543+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:49:17.546+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:49:17.546+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:49:17.546+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:49:49.258+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:49:49.258+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:49:49.258+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:50:54.482+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:50:54.482+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:50:54.482+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:50:56.561+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:50:56.561+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:50:56.561+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:51:20.009+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:51:20.009+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:51:20.009+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:51:25.140+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:51:25.140+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:51:25.140+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:51:29.402+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:51:29.402+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:51:29.402+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:52:07.441+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:52:07.441+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:52:07.441+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:52:09.120+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:52:09.120+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:52:09.120+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:52:09.852+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:52:09.852+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:52:09.852+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:52:10.560+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:52:10.561+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:52:10.561+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:52:25.274+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:52:25.274+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:52:25.274+0100 INFO               [http-nio-8081-exec-6]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:52:30.285+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:52:30.285+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:52:30.285+0100 INFO               [http-nio-8081-exec-7]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:52:59.101+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:52:59.101+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:52:59.101+0100 INFO               [http-nio-8081-exec-8]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:53:10.893+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:53:10.893+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:53:10.893+0100 INFO               [http-nio-8081-exec-9]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:53:30.780+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:53:30.780+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:53:30.780+0100 INFO               [http-nio-8081-exec-10]        be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:53:48.317+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:53:48.317+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:53:48.317+0100 INFO               [http-nio-8081-exec-1]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:54:32.996+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:54:32.996+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:54:32.996+0100 INFO               [http-nio-8081-exec-3]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:54:42.643+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:54:42.643+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:54:42.643+0100 INFO               [http-nio-8081-exec-2]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:55:03.275+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:55:03.275+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:55:03.275+0100 INFO               [http-nio-8081-exec-4]         be.pxl.services.controller.PostController - Fetching specific post with id 53
-2024-12-21T15:55:05.129+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Fetching specific post with id 53
-2024-12-21T15:55:05.129+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.services.PostService - Mapping post to post response
-2024-12-21T15:55:05.129+0100 INFO               [http-nio-8081-exec-5]         be.pxl.services.controller.PostController - Fetching specific post with id 53
+2024-12-23T13:43:37.385+0100 INFO               [main]                         be.pxl.services.ConfigServiceApplication - Starting ConfigServiceApplication using Java 22.0.2 with PID 30792 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\config-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-23T13:43:37.390+0100 DEBUG              [main]                         be.pxl.services.ConfigServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T13:43:37.390+0100 INFO               [main]                         be.pxl.services.ConfigServiceApplication - The following 1 profile is active: "native"
+2024-12-23T13:43:38.371+0100 INFO               [main]                         be.pxl.services.ConfigServiceApplication - Started ConfigServiceApplication in 1.325 seconds (process running for 3.168)
+2024-12-23T13:43:56.424+0100 INFO               [main]                         be.pxl.services.DiscoveryServiceApplication - Starting DiscoveryServiceApplication using Java 22.0.2 with PID 12396 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\discovery-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-23T13:43:56.425+0100 DEBUG              [main]                         be.pxl.services.DiscoveryServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T13:43:56.426+0100 INFO               [main]                         be.pxl.services.DiscoveryServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-23T13:43:58.212+0100 INFO               [main]                         be.pxl.services.DiscoveryServiceApplication - Started DiscoveryServiceApplication in 2.407 seconds (process running for 4.884)
+2024-12-23T13:44:04.749+0100 INFO               [main]                         be.pxl.services.GatewayServiceApplication - Starting GatewayServiceApplication using Java 22.0.2 with PID 22848 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\gateway-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-23T13:44:04.750+0100 DEBUG              [main]                         be.pxl.services.GatewayServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T13:44:04.751+0100 INFO               [main]                         be.pxl.services.GatewayServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-23T13:44:06.190+0100 INFO               [main]                         be.pxl.services.GatewayServiceApplication - Started GatewayServiceApplication in 1.959 seconds (process running for 3.178)
+2024-12-23T13:44:11.273+0100 INFO               [main]                         be.pxl.services.NotificationServiceApplication - Starting NotificationServiceApplication using Java 22.0.2 with PID 19420 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\notification-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-23T13:44:11.274+0100 DEBUG              [main]                         be.pxl.services.NotificationServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T13:44:11.277+0100 INFO               [main]                         be.pxl.services.NotificationServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-23T13:44:12.450+0100 INFO               [main]                         be.pxl.services.NotificationServiceApplication - Started NotificationServiceApplication in 1.678 seconds (process running for 2.025)
+2024-12-23T13:44:23.720+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - Starting PostServiceApplication using Java 22.0.2 with PID 26268 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-23T13:44:23.720+0100 DEBUG              [main]                         be.pxl.services.PostServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T13:44:23.721+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-23T13:44:26.746+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - Started PostServiceApplication in 3.54 seconds (process running for 4.646)
+2024-12-23T13:44:32.096+0100 INFO               [main]                         be.pxl.services.ReviewServiceApplication - Starting ReviewServiceApplication using Java 22.0.2 with PID 31952 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\review-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-23T13:44:32.097+0100 DEBUG              [main]                         be.pxl.services.ReviewServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T13:44:32.098+0100 INFO               [main]                         be.pxl.services.ReviewServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-23T13:44:34.807+0100 INFO               [main]                         be.pxl.services.ReviewServiceApplication - Started ReviewServiceApplication in 3.231 seconds (process running for 3.568)
+2024-12-23T13:44:42.399+0100 INFO               [main]                         be.pxl.services.CommentServiceApplication - Starting CommentServiceApplication using Java 22.0.2 with PID 24860 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\comment-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-23T13:44:42.400+0100 DEBUG              [main]                         be.pxl.services.CommentServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T13:44:42.400+0100 INFO               [main]                         be.pxl.services.CommentServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-23T13:46:14.969+0100 INFO               [SpringApplicationShutdownHook] be.pxl.services.services.PostService - Cleaning up RabbitMQ connections before shutdown.
+2024-12-23T13:46:29.635+0100 INFO               [main]                         be.pxl.services.ConfigServiceApplication - Starting ConfigServiceApplication using Java 22.0.2 with PID 26264 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\config-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-23T13:46:29.636+0100 DEBUG              [main]                         be.pxl.services.ConfigServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T13:46:29.636+0100 INFO               [main]                         be.pxl.services.ConfigServiceApplication - The following 1 profile is active: "native"
+2024-12-23T13:46:30.552+0100 INFO               [main]                         be.pxl.services.ConfigServiceApplication - Started ConfigServiceApplication in 1.227 seconds (process running for 1.528)
+2024-12-23T13:46:43.771+0100 INFO               [main]                         be.pxl.services.DiscoveryServiceApplication - Starting DiscoveryServiceApplication using Java 22.0.2 with PID 3116 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\discovery-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-23T13:46:43.771+0100 DEBUG              [main]                         be.pxl.services.DiscoveryServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T13:46:43.773+0100 INFO               [main]                         be.pxl.services.DiscoveryServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-23T13:46:45.582+0100 INFO               [main]                         be.pxl.services.DiscoveryServiceApplication - Started DiscoveryServiceApplication in 2.451 seconds (process running for 2.785)
+2024-12-23T13:46:51.525+0100 INFO               [main]                         be.pxl.services.GatewayServiceApplication - Starting GatewayServiceApplication using Java 22.0.2 with PID 29660 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\gateway-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-23T13:46:51.525+0100 DEBUG              [main]                         be.pxl.services.GatewayServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T13:46:51.526+0100 INFO               [main]                         be.pxl.services.GatewayServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-23T13:46:52.844+0100 INFO               [main]                         be.pxl.services.GatewayServiceApplication - Started GatewayServiceApplication in 1.836 seconds (process running for 2.155)
+2024-12-23T13:46:55.265+0100 INFO               [main]                         be.pxl.services.NotificationServiceApplication - Starting NotificationServiceApplication using Java 22.0.2 with PID 31036 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\notification-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-23T13:46:55.270+0100 DEBUG              [main]                         be.pxl.services.NotificationServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T13:46:55.271+0100 INFO               [main]                         be.pxl.services.NotificationServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-23T13:46:56.506+0100 INFO               [main]                         be.pxl.services.NotificationServiceApplication - Started NotificationServiceApplication in 1.784 seconds (process running for 2.091)
+2024-12-23T13:47:04.290+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - Starting PostServiceApplication using Java 22.0.2 with PID 25256 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-23T13:47:04.291+0100 DEBUG              [main]                         be.pxl.services.PostServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T13:47:04.291+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-23T13:47:06.996+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - Started PostServiceApplication in 3.228 seconds (process running for 3.608)
+2024-12-23T13:47:10.707+0100 INFO               [main]                         be.pxl.services.ReviewServiceApplication - Starting ReviewServiceApplication using Java 22.0.2 with PID 4932 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\review-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-23T13:47:10.708+0100 DEBUG              [main]                         be.pxl.services.ReviewServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T13:47:10.708+0100 INFO               [main]                         be.pxl.services.ReviewServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-23T13:47:13.360+0100 INFO               [main]                         be.pxl.services.ReviewServiceApplication - Started ReviewServiceApplication in 3.175 seconds (process running for 3.525)
+2024-12-23T13:47:16.704+0100 INFO               [main]                         be.pxl.services.CommentServiceApplication - Starting CommentServiceApplication using Java 22.0.2 with PID 34504 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\comment-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-23T13:47:16.704+0100 DEBUG              [main]                         be.pxl.services.CommentServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T13:47:16.705+0100 INFO               [main]                         be.pxl.services.CommentServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-23T13:47:43.192+0100 INFO               [main]                         be.pxl.services.ConfigServiceApplication - Starting ConfigServiceApplication using Java 22.0.2 with PID 32396 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\config-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-23T13:47:43.193+0100 DEBUG              [main]                         be.pxl.services.ConfigServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T13:47:43.194+0100 INFO               [main]                         be.pxl.services.ConfigServiceApplication - The following 1 profile is active: "native"
+2024-12-23T13:47:44.182+0100 INFO               [main]                         be.pxl.services.ConfigServiceApplication - Started ConfigServiceApplication in 1.322 seconds (process running for 1.617)
+2024-12-23T13:47:57.481+0100 INFO               [main]                         be.pxl.services.CommentServiceApplication - Starting CommentServiceApplication using Java 22.0.2 with PID 1524 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\comment-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-23T13:47:57.482+0100 DEBUG              [main]                         be.pxl.services.CommentServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T13:47:57.482+0100 INFO               [main]                         be.pxl.services.CommentServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-23T13:48:00.227+0100 INFO               [main]                         be.pxl.services.CommentServiceApplication - Started CommentServiceApplication in 3.461 seconds (process running for 3.898)
+2024-12-23T13:49:00.466+0100 INFO               [http-nio-8083-exec-1]         be.pxl.services.services.CommentService - Fetching all comments
+2024-12-23T13:50:59.128+0100 INFO               [http-nio-8083-exec-7]         be.pxl.services.services.CommentService - Creating a new comment for postId: 1
+2024-12-23T13:50:59.152+0100 INFO               [http-nio-8083-exec-7]         be.pxl.services.services.CommentService - Comment created successfully for postId: 1
+2024-12-23T13:51:01.168+0100 INFO               [http-nio-8083-exec-9]         be.pxl.services.services.CommentService - Fetching all comments
+2024-12-23T13:52:10.912+0100 INFO               [http-nio-8083-exec-4]         be.pxl.services.services.CommentService - Deleting comment with id: 1
+2024-12-23T13:52:11.057+0100 INFO               [http-nio-8083-exec-4]         be.pxl.services.services.CommentService - Comment with id 1 deleted successfully
+2024-12-23T13:52:12.705+0100 INFO               [http-nio-8083-exec-3]         be.pxl.services.services.CommentService - Fetching all comments

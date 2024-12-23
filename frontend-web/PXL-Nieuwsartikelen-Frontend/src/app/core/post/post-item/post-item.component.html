@@ -1,5 +1,4 @@
-<div [ngClass]="{'border-yellow': post.state === State.CONCEPT, 'border-green': post.state !== State.SUBMITTED}"
-     class="post-card">
+<div class="post-card">
   <div class="post-content">
     <h2 class="post-title">{{ post.title }}</h2>
     <p class="post-details">
@@ -17,8 +16,10 @@
     <button [routerLink]="['/post/', post.id]" routerLinkActive="router-link-active" class="details-button">
       Details
     </button>
-    <button *ngIf="showReviewsButton" (click)="onViewReviews()" class="view-reviews-button">
+    @if (showReviewsButton) {
+    <button (click)="onViewReviews()" class="view-reviews-button">
       View Reviews
     </button>
+    }
   </div>
 </div>
