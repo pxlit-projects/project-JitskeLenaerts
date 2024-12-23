@@ -2,18 +2,32 @@
   <ul class="navbar-links">
     @if (!isLoggedIn()) {
     <li><a [routerLink]="['/']">Login</a></li>
-    } @else {
+    } @else if(isRedacteur()) {
     <li><a [routerLink]="['/home']">Home</a></li>
 
     <li class="dropdown">
       <a class="dropbtn"> <i class="fa fa-list"></i> All Posts </a>
       <div class="dropdown-content">
         <a [routerLink]="['/add']">Add post</a>
-        <a [routerLink]="['/published/posts']">Published posts</a>
         <a [routerLink]="['/concept/posts']">Concept posts</a>
+        <a [routerLink]="['/submitted/posts']">Submitted posts</a>
         <a [routerLink]="['/approved/posts']">Approved posts</a>
         <a [routerLink]="['/rejected/posts']">Rejected posts</a>
         <a [routerLink]="['/review/posts']">Review check</a>
+        <a [routerLink]="['/published/posts']">Published posts</a>
+      </div>
+    </li>
+    } @else {
+    <li><a [routerLink]="['/home']">Home</a></li>
+    <li class="dropdown">
+      <a class="dropbtn"> <i class="fa fa-list"></i> All Posts </a>
+      <div class="dropdown-content">
+        <a [routerLink]="['/add']">Add post</a>
+        <a [routerLink]="['/concept/posts']">Concept posts</a>
+        <a [routerLink]="['/submitted/posts']">Submitted posts</a>
+        <a [routerLink]="['/approved/posts']">Approved posts</a>
+        <a [routerLink]="['/rejected/posts']">Rejected posts</a>
+        <a [routerLink]="['/published/posts']">Published posts</a>
       </div>
     </li>
     }

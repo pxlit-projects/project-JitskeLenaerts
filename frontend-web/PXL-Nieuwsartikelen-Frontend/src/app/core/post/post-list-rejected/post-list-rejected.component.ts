@@ -14,14 +14,13 @@ import { FilterComponent } from "../filter/filter.component";
 @Component({
   selector: 'app-post-list-rejected',
   standalone: true,
-  imports: [NgIf, NgFor, PostItemComponent, FilterComponent],
+  imports: [PostItemComponent, FilterComponent],
   templateUrl: './post-list-rejected.component.html',
   styleUrl: './post-list-rejected.component.css'
 })
 export class PostListRejectedComponent implements OnInit {
   rejectedPosts: Post[] = [];
   reviews: Review[] = [];
-  isLoading: boolean = false;
   authService: AuthService = inject(AuthService);
   user: User | null | undefined;
   userRole: string | null = null;
@@ -34,22 +33,19 @@ export class PostListRejectedComponent implements OnInit {
   }
 
   loadRejectedPosts(): void {
-    this.isLoading = true;
     this.postService.getPostsByState(State.REJECTED).subscribe({
       next: (posts: Post[]) => {
         this.rejectedPosts = posts;
-        this.isLoading = false;
       },
       error: (error) => {
         console.error('Error fetching rejected posts:', error);
-        this.isLoading = false;
       }
     });
   }
 
   handleFilter(filter: Filter) {
-    if (this.userRole === 'redacteur' || this.userRole === 'gebruiker') {
-      this.postService.filterInPostsByState(filter, State.APPROVED).subscribe({
+    if (this.user != null) {
+      this.postService.filterInPostsByState(filter, State.REJECTED).subscribe({
         next: posts => {
           this.rejectedPosts = posts;
         },
@@ -60,21 +56,20 @@ export class PostListRejectedComponent implements OnInit {
     }
   }
 
-
   getReviewsForPost(postId: number): void {
+    this.reviews = []; 
     if (postId !== undefined) {
       this.reviewService.getReviewsForPost(postId).subscribe({
         next: (reviews: Review[]) => {
+          console.log('Reviews for post:', reviews);
           this.reviews = reviews;
         },
         error: (error) => {
           console.error('Error fetching reviews for post:', error);
         }
       });
-
     } else {
       console.warn('Post ID is undefined');
     }
   }
-
 }

@@ -1,6 +1,6 @@
 package be.pxl.services.controller;
 
-import be.pxl.services.domain.dto.ReviewRequest;
+import be.pxl.services.domain.dto.RejectReview;
 import be.pxl.services.services.IReviewService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -31,9 +31,14 @@ public class ReviewController {
     }
 
     @PostMapping("/{id}/reject")
-    public ResponseEntity<?> rejectPost(@PathVariable Long id,@RequestHeader String reviewer,@RequestHeader Long reviewerId,@RequestBody ReviewRequest reviewRequest) {
-        reviewService.rejectPost(id, reviewer, reviewerId, reviewRequest);
+    public ResponseEntity<?> rejectPost(
+            @PathVariable Long id,
+            @RequestHeader String reviewer,
+            @RequestHeader Long reviewerId,
+            @RequestBody RejectReview rejectReview) {
+        reviewService.rejectPost(id, reviewer, reviewerId, rejectReview);
         LOGGER.info("Post ID {} rejected by reviewer {} (ID {}).", id, reviewer, reviewerId);
         return ResponseEntity.ok().build();
     }
+
 }

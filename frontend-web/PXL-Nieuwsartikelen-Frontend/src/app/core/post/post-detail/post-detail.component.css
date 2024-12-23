@@ -50,14 +50,30 @@
 }
 
 .state-concept {
-  background-color: #f0e68c;
-  color: #555;
+  background-color: #fff599; /* Soft pastel yellow */
+  color: #7c6100; /* Dark mustard */
 }
 
 .state-submitted {
-  background-color: #90ee90;
-  color: #fff;
+  background-color: #f8c3fc; /* Light magenta */
+  color: #82268a; /* Deep purple */
 }
+
+.state-rejected {
+  background-color: #ff9999; /* Bright salmon pink */
+  color: #8b0000; /* Dark brick red */
+}
+
+.state-approved {
+  background-color: #98fb98; /* Pale green */
+  color: #2e8b57; /* Forest green */
+}
+
+.state-published {
+  background-color: #99ccff; /* Sky blue */
+  color: #003366; /* Navy blue */
+}
+
 
 .edit-button {
   padding: 12px 24px;

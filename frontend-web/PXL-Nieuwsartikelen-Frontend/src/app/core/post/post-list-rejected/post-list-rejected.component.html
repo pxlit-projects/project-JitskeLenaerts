@@ -1,38 +1,39 @@
-<div *ngIf="isLoading" class="loading-spinner">
-  Loading rejected posts...
-</div>
-
-<div *ngIf="!isLoading">
+<div>
   <div class="posts-container">
     <app-filter (filterChanged)="handleFilter($event)"></app-filter>
     <div class="posts-section">
       <h1>Rejected Posts</h1>
       <div class="posts-grid">
-        <ng-container *ngFor="let post of rejectedPosts trackById">
-          <app-post-item
-            [post]="post"
-            [showReviewsButton]="true"
-            (viewReviews)="getReviewsForPost($event)">
-          </app-post-item>
-        </ng-container>
-        <div *ngIf="rejectedPosts.length === 0" class="empty-message">
-          No rejected posts available.
-        </div>
+        @for (post of rejectedPosts; track post.id) {
+        <app-post-item
+          [post]="post"
+          [showReviewsButton]="true"
+          (viewReviews)="getReviewsForPost($event)"
+        ></app-post-item>
+        }
       </div>
 
-      <div *ngIf="reviews.length > 0" class="reviews-section">
+      @if (rejectedPosts.length === 0) {
+      <div class="empty-message">No rejected posts available.</div>
+      } @if (reviews.length > 0) {
+      <div class="reviews-section">
         <h4>Reviews:</h4>
         <div class="reviews-container">
-          <div *ngFor="let review of reviews" class="review-card">
+          @for (review of reviews; track review.id) {
+          <div class="review-card"> 
             <div class="review-content">
-              <p class="review-text">"{{ review.review }}"</p>
+              <p class="review-text">"{{ review.reason }}"</p>
             </div>
             <div class="review-footer">
-              <small class="review-author">Reviewer: {{ review.reviewer }}</small>
+              <small class="review-author"
+                >Reviewer: {{ review.reviewer }}</small
+              >
             </div>
           </div>
+          }
         </div>
       </div>
+      }
     </div>
   </div>
 </div>

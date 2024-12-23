@@ -22,7 +22,6 @@ public class Post {
     private String title;
     @Column(columnDefinition = "longtext")
     private String content;
-    @Column(unique = true)
     private String author;
     private Long authorId;
     @Column(columnDefinition = "longtext")

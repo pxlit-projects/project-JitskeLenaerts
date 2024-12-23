@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-  # MySQL database voor post service
   mysql-db-post:
     image: mysql:8.0
     container_name: mysql-db-post
@@ -15,7 +14,6 @@ services:
     volumes:
       - mysql-data-1:/var/lib/mysql
 
-  # MySQL database voor review service
   mysql-db-review:
     image: mysql:8.0
     container_name: mysql-db-review
@@ -29,6 +27,20 @@ services:
     volumes:
       - mysql-data-2:/var/lib/mysql
 
+  mysql-db-comment:
+    image: mysql:8.0
+    container_name: mysql-db-comment
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: commentservice_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:  
+      - "3308:3306"
+    volumes:
+      - mysql-data-3:/var/lib/mysql
+
+  
   rabbitmq:
     image: rabbitmq:4.0-management 
     container_name: rabbitmq
@@ -42,3 +54,4 @@ services:
 volumes:
   mysql-data-1:
   mysql-data-2:
+  mysql-data-3:

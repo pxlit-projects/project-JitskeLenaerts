@@ -25,13 +25,14 @@ export class PostListConceptComponent implements OnInit {
   constructor(private postService: PostService) { }
 
   ngOnInit(): void {
+    this.user = this.authService.getCurrentUser();
     this.userRole = this.authService.getCurrentUserRole();
     this.fetchData();
   }
 
   handleFilter(filter: Filter) {
-    if (this.userRole === 'redacteur' || this.userRole === 'gebruiker') {
-      this.postService.filterInPostsByState(filter,State.CONCEPT).subscribe({
+    if (this.user != null) {
+      this.postService.filterInPostsByState(filter, State.CONCEPT).subscribe({
         next: posts => {
           this.conceptPosts = posts;
         },
@@ -43,10 +44,8 @@ export class PostListConceptComponent implements OnInit {
   }
 
   fetchData(): void {
-    const state = State.CONCEPT;
-
     if (this.userRole === 'redacteur') {
-      this.postService.getPostsByAuthorIdAndState(0, state).subscribe({
+      this.postService.getPostsByState(State.CONCEPT).subscribe({
         next: posts => {
           this.conceptPosts = posts;
         },
@@ -55,9 +54,8 @@ export class PostListConceptComponent implements OnInit {
         }
       });
     } else {
-      this.user = this.authService.getCurrentUser();
       if (this.user) {
-        this.postService.getPostsByAuthorIdAndState(this.user.id, state).subscribe({
+        this.postService.getPostsByAuthorIdAndState(this.user.id, State.CONCEPT).subscribe({
           next: posts => {
             this.conceptPosts = posts;
           },

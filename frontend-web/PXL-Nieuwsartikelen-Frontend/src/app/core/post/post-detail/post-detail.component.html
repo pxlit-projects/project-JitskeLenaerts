@@ -2,7 +2,7 @@
   <div class="content">
     <h1 class="title">{{ post.title }}</h1>
     <ul class="details-list">
-      <li><strong class="label">Author:</strong> {{ post.author }}</li>
+      <li><strong class="label">Author:</strong> {{ authorName }}</li>
       <li><strong class="label">Created at:</strong> {{ post.createdAt | date : 'dd/MM/yyyy' }}</li>
       <li><strong class="label">Updated at:</strong> {{ post.updatedAt | date : 'dd/MM/yyyy' }}</li>
       <li><strong class="label">Category:</strong> {{ post.category }}</li>
@@ -12,11 +12,11 @@
       </li>
       <li>
         <strong class="label">State:</strong>
-        <span class="state-status" [ngClass]="post.state === 'CONCEPT' ? 'state-concept' : 'state-submitted'">
-          {{ post.state === 'CONCEPT' ? 'Concept' : 'Submitted' }}
+        <span class="state-status" [ngClass]="getStateClass(post.state)">
+          {{ getStateLabel(post.state) }}
         </span>
       </li>
-      <button [routerLink]="['/edit', post.id]" class="edit-button">Update Post</button>
+      <button [routerLink]="['/edit/', post.id]" class="edit-button">Update Post</button>
     </ul>
   </div>
 </div>

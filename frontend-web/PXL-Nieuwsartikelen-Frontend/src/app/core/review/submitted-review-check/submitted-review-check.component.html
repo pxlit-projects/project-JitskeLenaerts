@@ -1,0 +1,38 @@
+<div class="redactor-container">
+  <h1>Redactor Panel</h1>
+  <div>
+    <div class="post-list">
+      <div *ngFor="let post of posts; trackBy: trackByPostId">
+        <div class="post-item">
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.content }}</p>
+          <p><strong>Author:</strong> {{ post.author }}</p>
+          <p><strong>Category:</strong> {{ post.category }}</p>
+          <div class="actions">
+            <button class="approve-btn" (click)="approvePost(post.id!)">
+              Approve
+            </button>
+            <button class="reject-btn" (click)="showRejectForm(post.id!)">
+              Reject
+            </button>
+          </div>
+          
+          <div *ngIf="rejectingPostId === post.id">
+            <div class="reject-form">
+              <textarea
+                [(ngModel)]="rejectionReason"
+                placeholder="Enter the reason for rejection"
+              ></textarea>
+              <button (click)="rejectPost(post.id!)">Submit</button>
+              <button (click)="cancelRejection()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="posts.length === 0">
+    <div class="no-posts-message">No posts are available for review.</div>
+  </div>
+</div>

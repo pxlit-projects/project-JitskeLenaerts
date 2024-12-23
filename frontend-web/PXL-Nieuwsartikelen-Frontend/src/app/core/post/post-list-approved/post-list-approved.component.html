@@ -1,19 +1,14 @@
-<div *ngIf="isLoading" class="loading-spinner">
-  Loading approved posts...
-</div>
-
-<div *ngIf="!isLoading">
+<div>
   <div class="posts-container">
-  <app-filter (filterChanged)="handleFilter($event)"></app-filter>
+    <app-filter (filterChanged)="handleFilter($event)"></app-filter>
     <div class="posts-section">
       <h1>Approved Posts</h1>
       <div class="posts-grid">
-        <ng-container *ngFor="let post of posts trackById">
-          <app-post-item [post]="post"></app-post-item>
-        </ng-container>
-        <div *ngIf="posts.length === 0" class="empty-message">
-          No approved posts available.
-        </div>
+        @for (post of approvedPosts; track post.id) {
+        <app-post-item [post]="post"></app-post-item>
+        } @if (approvedPosts.length === 0) {
+        <div class="empty-message">No approved posts available.</div>
+        }
       </div>
     </div>
   </div>

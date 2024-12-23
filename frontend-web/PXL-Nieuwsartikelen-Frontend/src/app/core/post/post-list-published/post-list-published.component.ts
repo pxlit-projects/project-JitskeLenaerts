@@ -24,13 +24,14 @@ export class PostListPublishedComponent implements OnInit {
   constructor(private postService: PostService) { }
 
   ngOnInit(): void {
+    this.user = this.authService.getCurrentUser();
     this.userRole = this.authService.getCurrentUserRole();
     this.fetchData();
   }
 
   handleFilter(filter: Filter) {
-    if (this.userRole === 'redacteur' || this.userRole === 'gebruiker') {
-      this.postService.filterInPostsByState(filter,State.PUBLISHED).subscribe({
+    if (this.user != null) {
+      this.postService.filterInPostsByState(filter, State.PUBLISHED).subscribe({
         next: posts => {
           this.publishedPosts = posts;
         },
@@ -42,10 +43,8 @@ export class PostListPublishedComponent implements OnInit {
   }
 
   fetchData(): void {
-    const state = State.PUBLISHED;
-
     if (this.userRole === 'redacteur') {
-      this.postService.getPostsByAuthorIdAndState(0, state).subscribe({
+      this.postService.getPostsByState(State.PUBLISHED).subscribe({
         next: posts => {
           this.publishedPosts = posts;
         },
@@ -54,9 +53,8 @@ export class PostListPublishedComponent implements OnInit {
         }
       });
     } else {
-      this.user = this.authService.getCurrentUser();
       if (this.user) {
-        this.postService.getPostsByAuthorIdAndState(this.user.id, state).subscribe({
+        this.postService.getPostsByAuthorIdAndState(this.user.id, State.PUBLISHED).subscribe({
           next: posts => {
             this.publishedPosts = posts;
           },
