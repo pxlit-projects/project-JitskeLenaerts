@@ -1,0 +1,4 @@
+2024-12-25T16:12:53.345+0100 INFO  [main] b.p.s.CommentServiceApplication - Starting CommentServiceApplication using Java 22.0.2 with PID 21236 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\comment-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-25T16:12:53.346+0100 DEBUG [main] b.p.s.CommentServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-25T16:12:53.346+0100 INFO  [main] b.p.s.CommentServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-25T16:12:56.038+0100 INFO  [main] b.p.s.CommentServiceApplication - Started CommentServiceApplication in 3.258 seconds (process running for 3.663)

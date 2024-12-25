@@ -1,0 +1,4 @@
+2024-12-25T16:09:40.403+0100 INFO  [main] b.p.s.DiscoveryServiceApplication - Starting DiscoveryServiceApplication using Java 22.0.2 with PID 17196 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\discovery-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-25T16:09:40.404+0100 DEBUG [main] b.p.s.DiscoveryServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-25T16:09:40.404+0100 INFO  [main] b.p.s.DiscoveryServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-25T16:09:42.220+0100 INFO  [main] b.p.s.DiscoveryServiceApplication - Started DiscoveryServiceApplication in 2.486 seconds (process running for 2.849)

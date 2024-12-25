@@ -1,0 +1,13 @@
+2024-12-25T16:10:36.620+0100 INFO  [main] b.p.s.ReviewServiceApplication - Starting ReviewServiceApplication using Java 22.0.2 with PID 33056 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\review-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-25T16:10:36.621+0100 DEBUG [main] b.p.s.ReviewServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-25T16:10:36.621+0100 INFO  [main] b.p.s.ReviewServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-25T16:12:50.295+0100 INFO  [main] b.p.s.ReviewServiceApplication - Starting ReviewServiceApplication using Java 22.0.2 with PID 13232 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\review-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2024-12-25T16:12:50.296+0100 DEBUG [main] b.p.s.ReviewServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-25T16:12:50.296+0100 INFO  [main] b.p.s.ReviewServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-12-25T16:12:53.241+0100 INFO  [main] b.p.s.ReviewServiceApplication - Started ReviewServiceApplication in 3.457 seconds (process running for 3.803)
+2024-12-25T16:14:13.141+0100 INFO  [http-nio-8082-exec-1] b.p.s.services.ReviewService   - Notification sent for post ID 1 to queue postApprovedPostQueue.
+2024-12-25T16:14:13.141+0100 INFO  [http-nio-8082-exec-1] b.p.s.services.ReviewService   - Post with ID 1 has been approved.
+2024-12-25T16:14:13.141+0100 INFO  [http-nio-8082-exec-1] b.p.s.c.ReviewController       - Post ID 1 approved.
+2024-12-25T16:14:15.385+0100 INFO  [http-nio-8082-exec-2] b.p.s.services.ReviewService   - Notification sent for post ID 2 to queue postApprovedPostQueue.
+2024-12-25T16:14:15.385+0100 INFO  [http-nio-8082-exec-2] b.p.s.services.ReviewService   - Post with ID 2 has been approved.
+2024-12-25T16:14:15.385+0100 INFO  [http-nio-8082-exec-2] b.p.s.c.ReviewController       - Post ID 2 approved.
