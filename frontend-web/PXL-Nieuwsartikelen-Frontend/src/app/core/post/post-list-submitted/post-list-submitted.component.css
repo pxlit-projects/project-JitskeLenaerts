@@ -19,8 +19,16 @@ body {
 }
 
 .posts-container::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
+    width: 8px;
+}
+
+.posts-container::-webkit-scrollbar-thumb {
+    background: #d1d1d1;
+    border-radius: 4px;
+}
+
+.posts-container::-webkit-scrollbar-thumb:hover {
+    background: #a9a9a9;
 }
 
 .posts-section {

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,23 +26,23 @@ public class PostService implements IPostService {
     private final PostRepository postRepository;
     private final NotificationClient notificationClient;
 
-    private Post mapToPost(PostRequest postRequest) {
-        log.info("Mapping post request to post");
+    private Post mapToPost(PostRequest request) {
+        log.debug("Mapping PostRequest to Post: {}", request);
         return Post.builder()
-                .id(postRequest.getId())
-                .title(postRequest.getTitle())
-                .content(postRequest.getContent())
-                .author(postRequest.getAuthor())
-                .authorId(postRequest.getAuthorId())
-                .category(postRequest.getCategory())
-                .state(postRequest.getState())
-                .createdAt(postRequest.getCreatedAt())
-                .updatedAt(postRequest.getUpdatedAt())
+                .id(request.getId())
+                .title(request.getTitle())
+                .content(request.getContent())
+                .author(request.getAuthor())
+                .authorId(request.getAuthorId())
+                .category(request.getCategory())
+                .state(request.getState())
+                .createdAt(request.getCreatedAt())
+                .updatedAt(request.getUpdatedAt())
                 .build();
     }
 
     private PostResponse mapToPostResponse(Post post) {
-        log.info("Mapping post to post response");
+        log.debug("Mapping Post to PostResponse: {}", post);
         return PostResponse.builder()
                 .id(post.getId())
                 .title(post.getTitle())
@@ -55,125 +56,157 @@ public class PostService implements IPostService {
                 .build();
     }
 
+    private void sendNotification(String message, String sender) {
+        NotificationRequest notification = NotificationRequest.builder()
+                .message(message)
+                .sender(sender)
+                .build();
+        notificationClient.sendNotification(notification);
+        log.info("Notification sent: {}", notification);
+    }
+
     @Override
-    public List<PostResponse> getPostsByAuthorIdAndState(Long authorId, State state) {
-        log.info("Fetching all posts with state {} by author ID: {}", state.name(), authorId);
-        List<Post> posts = postRepository.findPostsByAuthorIdAndState(authorId, state);
-        log.info("Converting posts to PostResponse objects");
-        return posts.stream()
+    public List<PostResponse> getPostsByAuthorIdAndState(Long userId, State state, String username) {
+        log.info("Fetching posts for user '{}' with state '{}' and author ID: {}", username, state, userId);
+        return postRepository.findPostsByAuthorIdAndState(userId, state).stream()
                 .map(this::mapToPostResponse)
                 .toList();
     }
 
     @Override
     public List<PostResponse> getAllPosts() {
-        List<Post> posts = postRepository.findAll();
-        return posts.stream()
+        log.info("Fetching all posts");
+        return postRepository.findAll().stream()
                 .map(this::mapToPostResponse)
                 .toList();
     }
 
     @Override
-    public List<PostResponse> getPostsByState(State state) {
-        List<Post> posts = postRepository.findPostsByState(state);
-        return posts.stream()
+    public List<PostResponse> getPublishedPosts() {
+        log.info("Fetching all published posts");
+        return postRepository.findPostsByState(State.PUBLISHED).stream()
                 .map(this::mapToPostResponse)
                 .toList();
     }
 
     @Override
-    public PostResponse createPost(PostRequest postRequest, String username, Long authorId) {
-        if (postRepository.findByTitle(postRequest.getTitle()).isPresent()) {
-            throw new TitleAlreadyExistsException("A post with title '" + postRequest.getTitle() + "' already exists.");
-        }
+    public List<PostResponse> getPostsByState(State state, String username, Long userId) {
+        log.info("Fetching posts with state '{}' for user '{}'", state, username);
+        return postRepository.findPostsByState(state).stream()
+                .map(this::mapToPostResponse)
+                .toList();
+    }
 
-        Post post = mapToPost(postRequest);
-        post.setTitle(postRequest.getTitle());
-        post.setContent(postRequest.getContent());
+    @Override
+    public PostResponse createPost(PostRequest request, String username, Long userId) {
+        log.info("Creating post for user '{}': {}", username, request);
+
+        postRepository.findByTitle(request.getTitle()).ifPresent(post -> {
+            log.error("Post creation failed. Title '{}' already exists", request.getTitle());
+            throw new TitleAlreadyExistsException("A post with title '" + request.getTitle() + "' already exists.");
+        });
+
+        Post post = mapToPost(request);
+        post.setTitle(request.getTitle());
+        post.setContent(request.getContent());
         post.setAuthor(username);
-        post.setAuthorId(authorId);
-        post.setCategory(postRequest.getCategory());
-        post.setState(postRequest.getState());
+        post.setAuthorId(userId);
+        post.setCategory(request.getCategory());
+        post.setState(request.getState());
         post.setCreatedAt(LocalDateTime.now());
         post.setUpdatedAt(LocalDateTime.now());
         postRepository.save(post);
 
-        NotificationRequest notificationRequest = NotificationRequest.builder().message("Post created").sender(post.getAuthor()).build();
-        notificationClient.sendNotification(notificationRequest);
-
-        log.info("Post created");
+        sendNotification("Post created", username);
         return mapToPostResponse(post);
     }
 
     @Override
-    public PostResponse getPostById(Long id) {
-        Post post = postRepository.findById(id)
-                .orElseThrow(() -> new PostNotFoundException("Post not found with ID: " + id));
-        log.info("Fetching specific post with id {}", id);
-        return mapToPostResponse(post);
+    public PostResponse getPostById(Long id, String username, Long userId) {
+        log.info("Fetching post with ID '{}' for user '{}'", id, username);
+        return postRepository.findById(id)
+                .map(this::mapToPostResponse)
+                .orElseThrow(() -> {
+                    log.error("Post with ID '{}' not found", id);
+                    return new PostNotFoundException("Post not found with ID: " + id);
+                });
     }
 
     @Override
-    public void deletePost(Long id) {
-        Post post = postRepository.findById(id)
-                .orElseThrow(() -> new PostNotFoundException("Post not found with ID: " + id));
+    public void deletePost(Long id, String username, Long userId) {
+        log.info("Deleting post with ID '{}' by user '{}'", id, username);
+        Post post = postRepository.findById(id).orElseThrow(() -> {
+            log.error("Delete failed. Post with ID '{}' not found", id);
+            return new PostNotFoundException("Post not found with ID: " + id);
+        });
 
         postRepository.delete(post);
-        log.info("Deleted post with ID: {}", id);
+        log.info("Post with ID '{}' deleted successfully", id);
     }
 
     @Override
-    public PostResponse savePostAsConcept(Long id) {
-        Post post = postRepository.findById(id)
-                .orElseThrow(() -> new PostNotFoundException("Post not found with ID: " + id));
+    public PostResponse savePostAsConcept(Long id, String username, Long userId) {
+        log.info("Saving post with ID '{}' as concept for user '{}'", id, username);
+        Post post = postRepository.findById(id).orElseThrow(() -> {
+            log.error("Post with ID '{}' not found", id);
+            return new PostNotFoundException("Post not found with ID: " + id);
+        });
 
         post.setState(State.CONCEPT);
         post.setUpdatedAt(LocalDateTime.now());
-        Post savedPost = postRepository.save(post);
-
-        NotificationRequest notificationRequest = NotificationRequest.builder().message("Post saved as concept").sender(post.getAuthor()).build();
-        notificationClient.sendNotification(notificationRequest);
-        log.info("Post saved as concept");
-        return mapToPostResponse(savedPost);
-    }
-
-    @Override
-    public PostResponse updatePost(PostRequest postRequest) {
-        if (postRequest.getId() == null) {
-            throw new IllegalArgumentException("Cannot update a post without an ID.");
-        }
-
-        Post post = postRepository.findById(postRequest.getId())
-                .orElseThrow(() -> new PostNotFoundException("Post not found with ID: " + postRequest.getId()));
-
-        post.setTitle(postRequest.getTitle());
-        post.setContent(postRequest.getContent());
-        post.setAuthor(postRequest.getAuthor());
-        post.setAuthorId(postRequest.getAuthorId());
-        post.setCategory(postRequest.getCategory());
-        post.setState(postRequest.getState());
-        post.setUpdatedAt(LocalDateTime.now());
-
         postRepository.save(post);
-        log.info("Post updated");
+
+        sendNotification("Post saved as concept", username);
         return mapToPostResponse(post);
     }
 
     @Override
-    public PostResponse publishPost(Long id) {
+    public PostResponse updatePost(PostRequest request, String username, Long userId) {
+        log.info("Updating post with ID '{}' for user '{}'", request.getId(), username);
+
+        if (request.getId() == null) {
+            log.error("Update failed. Post ID is missing.");
+            throw new IllegalArgumentException("Cannot update a post without an ID.");
+        }
+
+        Post post = postRepository.findById(request.getId()).orElseThrow(() -> {
+            log.error("Update failed. Post with ID '{}' not found", request.getId());
+            return new PostNotFoundException("Post not found with ID: " + request.getId());
+        });
+
+        post.setTitle(request.getTitle());
+        post.setContent(request.getContent());
+        post.setAuthor(request.getAuthor());
+        post.setAuthorId(userId);
+        post.setCategory(request.getCategory());
+        post.setState(request.getState());
+        post.setUpdatedAt(LocalDateTime.now());
+        postRepository.save(post);
+
+        log.info("Post with ID '{}' updated successfully", request.getId());
+        return mapToPostResponse(post);
+    }
+
+    @Override
+    public PostResponse publishPost(Long id, String username, Long userId) {
+        log.info("Publishing post with ID '{}' for user '{}'", id, username);
+
         Post post = postRepository.findById(id)
-                .stream()
-                .filter(p -> p.getState() == State.SUBMITTED && p.getId().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Post not found or not in SUBMITTED state"));
+                .filter(p -> p.getState() == State.APPROVED)
+                .orElseThrow(() -> {
+                    log.error("Publish failed. Post with ID '{}' not in APPROVED state", id);
+                    return new IllegalArgumentException("Post not found or not in APPROVED state");
+                });
 
         post.setState(State.PUBLISHED);
         postRepository.save(post);
+
+        log.info("Post with ID '{}' published successfully", id);
         return mapToPostResponse(post);
     }
 
     @PreDestroy
     public void cleanUp() {
-        log.info("Cleaning up RabbitMQ connections before shutdown.");
+        log.info("Cleaning up resources before shutdown");
     }
 }

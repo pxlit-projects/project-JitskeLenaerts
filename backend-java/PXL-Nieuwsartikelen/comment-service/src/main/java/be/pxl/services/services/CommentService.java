@@ -44,7 +44,7 @@ public class CommentService implements ICommentService {
 
     @Override
     @Transactional
-    public CommentResponse createComment(CommentRequest commentRequest) {
+    public CommentResponse createComment(CommentRequest commentRequest, String username, Long authorId) {
         log.info("Creating a new comment for postId: {}", commentRequest.getPostId());
         Comment comment = mapToEntity(commentRequest);
         Comment savedComment = commentRepository.save(comment);
@@ -63,7 +63,7 @@ public class CommentService implements ICommentService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<CommentResponse> getCommentsByPostId(Long postId) {
+    public List<CommentResponse> getCommentsByPostId(Long postId, String username, Long authorId) {
         log.info("Fetching comments for postId: {}", postId);
         return commentRepository.findAllByPostId(postId).stream()
                 .map(this::mapToResponse)
@@ -72,7 +72,7 @@ public class CommentService implements ICommentService {
 
     @Override
     @Transactional
-    public CommentResponse updateComment(Long id, CommentRequest commentRequest) {
+    public CommentResponse updateComment(Long id, CommentRequest commentRequest, String username, Long authorId) {
         log.info("Updating comment with id: {}", id);
         Comment comment = commentRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Comment with id " + id + " not found"));
@@ -89,7 +89,7 @@ public class CommentService implements ICommentService {
 
     @Override
     @Transactional
-    public void deleteComment(Long id) {
+    public void deleteComment(Long id, String username, Long authorId) {
         log.info("Deleting comment with id: {}", id);
         Comment comment = commentRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Comment with id " + id + " not found"));

@@ -12,17 +12,6 @@
     </div>
 
     <div class="form-group">
-      <label for="content">Content</label>
-      <textarea
-        id="content"
-        formControlName="content"
-        rows="6"
-        placeholder="Enter post content"
-        (input)="onTextAreaInput($event)"
-      ></textarea>
-    </div>
-
-    <div class="form-group">
       <label for="category">Category</label>
       <input
         id="category"
@@ -33,19 +22,22 @@
     </div>
 
     <div class="form-group">
-      <label for="state">State</label>
-      @if (hasEditableState) {
-          <select id="state" formControlName="state" class="form-control">
-            <option [value]="State.CONCEPT">Concept</option>
-            <option [value]="State.SUBMITTED">Submit</option>
-          </select>
-      }
-      @else {
-        <input id="state" type="text" [value]="updateForm.get('state')?.value" class="form-control" readonly/>
-      }
+      <label for="content">Content</label>
+      <textarea
+        id="content"
+        formControlName="content"
+        rows="6"
+        placeholder="Enter post content"
+      ></textarea>
     </div>
-    
-    
+
+    <div class="form-group">
+      <label for="state">State</label>
+      <select id="state" formControlName="state" class="form-control">
+        <option [value]="State.CONCEPT">Concept</option>
+        <option [value]="State.SUBMITTED">Submit</option>
+      </select>
+    </div>
 
     <div class="form-actions">
       <button

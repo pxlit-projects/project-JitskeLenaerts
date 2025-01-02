@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule, NgClass, NgIf } from "@angular/common";
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { Post } from '../../../shared/models/post.model';
 import { State } from '../../../shared/models/state.enum';
 import { AuthService } from '../../../shared/services/auth.service';
 import { PostService } from '../../../shared/services/post.service';
+import { User } from '../../../shared/models/user.model';
 
 @Component({
   selector: 'app-post-item',
@@ -18,14 +19,15 @@ export class PostItemComponent implements OnInit {
   @Input() showReviewsButton: boolean = false;
   @Input() showPublishButton: boolean = false;
   @Output() viewReviews = new EventEmitter<number>();
-
+  user: User | null | undefined;
   authorName: string = '';
 
   readonly State = State;
 
-  constructor(private authService: AuthService, private postService: PostService) { }
+  constructor(private authService: AuthService, private postService: PostService, private router: Router) { }
 
   ngOnInit(): void {
+    this.user = this.authService.getCurrentUser();
     const author = this.authService.getUserById(this.post.authorId);
     if (author) {
       this.authorName = author.authorName;
@@ -37,15 +39,17 @@ export class PostItemComponent implements OnInit {
   }
 
   onPublishButton(): void {
-  
-    this.postService.updatePost(this.post.id, this.post).subscribe({
-      next: (updatedPost) => {
-    this.post.state = State.PUBLISHED;
-        this.post = updatedPost; 
-      },
-      error: (err) => {
-        console.error('Failed to update post state:', err);
-      }
-    });
+    if (this.user) {
+      this.postService.publishPost(this.post.id, this.post, this.user.username, this.user.id).subscribe({
+        next: (publishPost) => {
+          this.post.state = State.PUBLISHED;
+          this.post = publishPost;
+          this.router.navigate(['/published/posts']);
+        },
+        error: (err) => {
+          console.error('Failed to update post state:', err);
+        }
+      });
+    }
   }
 }

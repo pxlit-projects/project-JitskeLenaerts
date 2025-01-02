@@ -15,7 +15,7 @@ public class QueueService {
     private final MailSenderService mailSenderService;
 
     @RabbitListener(queues = "postApprovedPostQueue")
-    public void approvedPost(Long id){
+    public void approvedPost(Long id) {
         Post post = postRepository.findById(id).orElseThrow(() -> new PostNotFoundException("Post with id " + id + " not found"));
         post.setState(State.APPROVED);
         postRepository.save(post);
@@ -23,7 +23,7 @@ public class QueueService {
     }
 
     @RabbitListener(queues = "postRejectedPostQueue")
-    public void rejectedPost(Long id){
+    public void rejectedPost(Long id) {
         Post post = postRepository.findById(id).orElseThrow(() -> new PostNotFoundException("Post with id " + id + " not found"));
         post.setState(State.REJECTED);
         postRepository.save(post);

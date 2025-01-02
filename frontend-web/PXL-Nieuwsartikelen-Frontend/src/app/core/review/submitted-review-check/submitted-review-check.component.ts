@@ -6,11 +6,13 @@ import { AuthService } from '../../../shared/services/auth.service';
 import { PostService } from '../../../shared/services/post.service';
 import { ReviewService } from '../../../shared/services/review.service';
 import { FormsModule } from '@angular/forms';
+import { FilterComponent } from "../../post/filter/filter.component";
+import { Filter } from '../../../shared/models/filter.model';
 
 @Component({
   selector: 'app-submitted-review-check',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, FilterComponent],
   templateUrl: './submitted-review-check.component.html',
   styleUrl: './submitted-review-check.component.css'
 })
@@ -19,21 +21,42 @@ export class SubmittedReviewCheckComponent {
   user: User | null | undefined;
   rejectingPostId: number | null = null;
   rejectionReason: string = '';
+  authorName: string = '';
 
   constructor(
     private authService: AuthService,
     private reviewService: ReviewService,
-    private postService: PostService,) {}
+    private postService: PostService
+  ) {}
 
   ngOnInit(): void {
     this.user = this.authService.getCurrentUser();
     this.fetchSubmittedPosts();
   }
 
+  handleFilter(filter: Filter) {
+      if (this.user != null) {
+        this.postService.filterInPostsByState(filter, State.SUBMITTED,this.user.username,this.user.id).subscribe({
+          next: posts => {
+            this.posts = posts;
+          },
+          error: err => {
+            console.error('Error filtering posts:', err);
+          }
+        });
+      }
+    }
+
   fetchSubmittedPosts(): void {
-    this.postService.getPostsByState(State.SUBMITTED).subscribe({
+    this.postService.getPostsByState(State.SUBMITTED, this.user?.username!, this.user?.id!).subscribe({
       next: (response) => {
         this.posts = response;
+        this.posts.forEach(post => {
+          const author = this.authService.getUserById(post.authorId);
+          if (author) {
+            post.author = author.authorName;
+          }
+        });
       },
       error: (err) => {
         console.error('Failed to fetch submitted posts:', err);

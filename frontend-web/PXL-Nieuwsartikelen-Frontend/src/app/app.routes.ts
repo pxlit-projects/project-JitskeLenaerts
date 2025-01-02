@@ -20,12 +20,12 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'add', component: AddPostComponent,canActivate: [AuthGuard],canDeactivate: [ConfirmLeaveGuard] },
   { path: 'review/posts', component: SubmittedReviewCheckComponent,canActivate: [AuthGuard] , data: { role: 'redacteur' }},
-  { path: 'published/posts', component: PostListPublishedComponent,canActivate: [AuthGuard] },
+  { path: 'published/posts', component: PostListPublishedComponent},
   { path: 'submitted/posts', component: PostListSubmittedComponent,canActivate: [AuthGuard] },
   { path: 'concept/posts', component: PostListConceptComponent,canActivate: [AuthGuard] },
   { path: 'rejected/posts', component: PostListRejectedComponent,canActivate: [AuthGuard] },
   { path: 'approved/posts', component: PostListApprovedComponent,canActivate: [AuthGuard] },
-  { path: 'post/:id', component: PostDetailComponent,canActivate: [AuthGuard] },
+  { path: 'post/:id', component: PostDetailComponent },
   { path: 'edit/:id', component: EditPostComponent,canActivate: [AuthGuard],canDeactivate: [ConfirmLeaveGuard] },
   { path: '**', component: LoginComponent }
 ];

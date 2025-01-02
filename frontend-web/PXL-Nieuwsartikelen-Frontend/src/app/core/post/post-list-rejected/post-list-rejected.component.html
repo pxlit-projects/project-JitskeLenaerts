@@ -15,19 +15,18 @@
 
       @if (rejectedPosts.length === 0) {
       <div class="empty-message">No rejected posts available.</div>
-      } @if (reviews.length > 0) {
+      }
+      @if (reviews.length > 0) {
       <div class="reviews-section">
         <h4>Reviews:</h4>
         <div class="reviews-container">
           @for (review of reviews; track review.id) {
           <div class="review-card"> 
             <div class="review-content">
-              <p class="review-text">"{{ review.reason }}"</p>
+              <p class="review-text">{{ review.reason }}</p>
             </div>
             <div class="review-footer">
-              <small class="review-author"
-                >Reviewer: {{ review.reviewer }}</small
-              >
+              <small class="review-author">Reviewer: {{ review.reviewer }} - {{ review.createdAt | date: 'dd/MM/yyyy HH:mm' }}</small>
             </div>
           </div>
           }

@@ -1,10 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { Review } from '../models/review.model';
 import { Observable } from 'rxjs';
-import { Post } from '../models/post.model';
-import { State } from '../models/state.enum';
 import { RejectReview } from '../models/rejectReview.model';
 
 @Injectable({

@@ -15,22 +15,27 @@ export class PostService {
   private http: HttpClient = inject(HttpClient);
   private authService:AuthService = inject(AuthService);
 
-  createPost(post: Post, username: string, id: number): Observable<Post> {
-    const headers = { username: username, id: id.toString(),'Content-Type': 'application/json'  };
-    return this.http.post<Post>(this.api, post, { headers });
+  createPost(post: Post, username: string, userId: number): Observable<Post> {
+    const headers = { username: username, userId: userId.toString()};
+    return this.http.post<Post>(this.api, post, { headers: headers });
   }
 
-  getPostsByAuthorIdAndState(authorId: number, state: string): Observable<Post[]> {
-    const headers = { authorId: authorId.toString(),'Content-Type': 'application/json'  };
-    return this.http.get<Post[]>(`${this.api}/filter/${state}`, { headers: headers });
+  getPostsByAuthorIdAndState(state: string, username: string, userId: number): Observable<Post[]> {
+    const headers = { username: username, userId: userId.toString(), 'Content-Type': 'application/json' };
+    return this.http.get<Post[]>(`${this.api}/filter/${state}`,{ headers: headers });
   }
 
   getAllPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(this.api);
   }
 
-  getPostsByState(state: State): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.api}/state/${state}`);
+  getAllPublishedPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.api}/published`);
+  }
+
+  getPostsByState(state: State,username: string, userId: number): Observable<Post[]> {
+    const headers = { username: username, userId: userId.toString(), 'Content-Type': 'application/json' };
+    return this.http.get<Post[]>(`${this.api}/state/${state}`, { headers: headers });
   }
 
   checkIfTitleExists(title: string): Observable<boolean> {
@@ -42,17 +47,31 @@ export class PostService {
     );
   }
 
-  getPostById(id: number): Observable<Post> {
-    return this.http.get<Post>(`${this.api}/${id}`);
+  getPostById(id: number, username: string = "", userId: number = 0): Observable<Post> {
+    const headers = { username: username, userId: userId.toString() , 'Content-Type': 'application/json'};
+    return this.http.get<Post>(`${this.api}/${id}`, { headers: headers });
   }
 
-  updatePost(id: number, post: Post): Observable<Post> {
-    return this.http.put<Post>(`${this.api}/${id}`, post);
+  updatePost(id: number, post: Post,username: string, userId: number): Observable<Post> {
+    const headers = { username: username, userId: userId.toString() , 'Content-Type': 'application/json'};
+    return this.http.put<Post>(`${this.api}/${id}`, post, { headers: headers });
   }
 
-  filterInPostsByState(filter: Filter, state: State): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.api}/state/${state}`).pipe(
+  publishPost(id: number, post: Post,username: string, userId: number): Observable<Post> {
+    const headers = { username: username, userId: userId.toString() , 'Content-Type': 'application/json'};
+    return this.http.post<Post>(`${this.api}/${id}/publish`, post, { headers: headers });
+  }
+
+  filterInPostsByState(filter: Filter, state: State,username: string, userId: number): Observable<Post[]> {
+    const headers = { username: username, userId: userId.toString(), 'Content-Type': 'application/json' };
+    return this.http.get<Post[]>(`${this.api}/state/${state}`,{ headers: headers }).pipe(
       map((posts: Post[]) => posts.filter(posts => this.isPostMatchingFilter(posts, filter)))
+    );
+  }
+
+  filterPublishedPosts(filter: Filter): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.api}/published`).pipe(
+        map((posts: Post[]) => posts.filter(posts => this.isPostMatchingFilter(posts, filter)))
     );
   }
 

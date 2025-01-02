@@ -32,7 +32,7 @@ export class PostListConceptComponent implements OnInit {
 
   handleFilter(filter: Filter) {
     if (this.user != null) {
-      this.postService.filterInPostsByState(filter, State.CONCEPT).subscribe({
+      this.postService.filterInPostsByState(filter, State.CONCEPT, this.user.username, this.user.id).subscribe({
         next: posts => {
           this.conceptPosts = posts;
         },
@@ -44,25 +44,27 @@ export class PostListConceptComponent implements OnInit {
   }
 
   fetchData(): void {
-    if (this.userRole === 'redacteur') {
-      this.postService.getPostsByState(State.CONCEPT).subscribe({
-        next: posts => {
-          this.conceptPosts = posts;
-        },
-        error: err => {
-          console.error('Error fetching concept posts for editor:', err);
-        }
-      });
-    } else {
-      if (this.user) {
-        this.postService.getPostsByAuthorIdAndState(this.user.id, State.CONCEPT).subscribe({
+    if (this.user) {
+      if (this.userRole === 'redacteur') {
+        this.postService.getPostsByState(State.CONCEPT, this.user.username, this.user.id).subscribe({
           next: posts => {
             this.conceptPosts = posts;
           },
           error: err => {
-            console.error('Error fetching personal concept posts:', err);
+            console.error('Error fetching concept posts for editor:', err);
           }
         });
+      } else {
+        if (this.user) {
+          this.postService.getPostsByAuthorIdAndState(State.CONCEPT, this.user.username, this.user.id).subscribe({
+            next: posts => {
+              this.conceptPosts = posts;
+            },
+            error: err => {
+              console.error('Error fetching personal concept posts:', err);
+            }
+          });
+        }
       }
     }
   }

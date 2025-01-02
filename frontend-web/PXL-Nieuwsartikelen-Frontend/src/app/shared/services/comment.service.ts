@@ -12,23 +12,27 @@ export class CommentService {
 
   constructor(private http: HttpClient) { }
 
-  createComment(commentRequest: Comment): Observable<Comment> {
-    return this.http.post<Comment>(this.api, commentRequest);
+  createComment(commentRequest: Comment, username: string = "", userId: number = 0): Observable<Comment> {
+    const headers = { username: username, userId: userId.toString(), };
+    return this.http.post<Comment>(this.api, commentRequest, { headers: headers });
   }
 
   getAllComments(): Observable<Comment[]> {
     return this.http.get<Comment[]>(this.api);
   }
 
-  getCommentsByPostId(postId: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>(`${this.api}/${postId}`);
+  getCommentsByPostId(postId: number, username: string = "", userId: number = 0): Observable<Comment[]> {
+    const headers = { username: username, userId: userId.toString(), };
+    return this.http.get<Comment[]>(`${this.api}/${postId}`, { headers: headers });
   }
 
-  updateComment(id: number, commentRequest: Comment): Observable<Comment> {
-    return this.http.patch<Comment>(`${this.api}/${id}`, commentRequest);
+  updateComment(id: number, commentRequest: Comment, username: string, userId: number): Observable<Comment> {
+    const headers = { username: username, userId: userId.toString(), };
+    return this.http.patch<Comment>(`${this.api}/${id}`, commentRequest, { headers: headers });
   }
 
-  deleteComment(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.api}/${id}`);
+  deleteComment(id: number, username: string, userId: number): Observable<void> {
+    const headers = { username: username, userId: userId.toString(), };
+    return this.http.delete<void>(`${this.api}/${id}`, { headers: headers });
   }
 }

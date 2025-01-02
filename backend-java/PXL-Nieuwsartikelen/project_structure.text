@@ -4,22 +4,30 @@
   - .gitignore
   - compiler.xml
   - dataSources
-    - 067f8825-fb33-4a0a-882c-fa0dd0c4bdf1
-      - storage_v2
-        - _src_
-          - schema
-            - information_schema.FNRwLQ.meta
-            - performance_schema.kIw0nw.meta
-            - reviewservice_db.oNsVrw.meta
-    - 067f8825-fb33-4a0a-882c-fa0dd0c4bdf1.xml
-    - a320812b-080a-44fd-b991-79e14bd43acb
+    - 05381d07-9b5d-4592-9cef-b05f320d958e
       - storage_v2
         - _src_
           - schema
             - information_schema.FNRwLQ.meta
             - performance_schema.kIw0nw.meta
             - postservice_db.6IJ4wQ.meta
-    - a320812b-080a-44fd-b991-79e14bd43acb.xml
+    - 05381d07-9b5d-4592-9cef-b05f320d958e.xml
+    - 7700989e-ae17-45ca-8396-0bac6ea758a5
+      - storage_v2
+        - _src_
+          - schema
+            - information_schema.FNRwLQ.meta
+            - performance_schema.kIw0nw.meta
+            - reviewservice_db.oNsVrw.meta
+    - 7700989e-ae17-45ca-8396-0bac6ea758a5.xml
+    - a4c82927-c868-4057-b178-c6256feeefda
+      - storage_v2
+        - _src_
+          - schema
+            - commentservice_db.5_Wk5g.meta
+            - information_schema.FNRwLQ.meta
+            - performance_schema.kIw0nw.meta
+    - a4c82927-c868-4057-b178-c6256feeefda.xml
   - dataSources.local.xml
   - dataSources.xml
   - dbnavigator.xml
@@ -30,12 +38,73 @@
   - jarRepositories.xml
   - material_theme_project_new.xml
   - misc.xml
+  - shelf
+    - Uncommitted_changes_before_Checkout_at_23_12_2024_15_00_[Changes]
+      - shelved.patch
+    - Uncommitted_changes_before_Checkout_at_23_12_2024_15_00_[Changes]1
+      - shelved.patch
+    - Uncommitted_changes_before_Checkout_at_23_12_2024_15_00__Changes_.xml
   - uiDesigner.xml
   - vcs.xml
   - workspace.xml
 - .mvn
   - wrapper
     - maven-wrapper.properties
+- comment-service
+  - pom.xml
+  - src
+    - main
+      - java
+        - be
+          - pxl
+            - services
+              - CommentServiceApplication.java
+              - controller
+                - CommentController.java
+              - domain
+                - Comment.java
+                - dto
+                  - CommentRequest.java
+                  - CommentResponse.java
+              - repository
+                - CommentRepository.java
+              - services
+                - CommentService.java
+                - ICommentService.java
+      - resources
+        - application.properties
+        - logback-spring.xml
+    - test
+      - java
+        - be
+          - pxl
+            - services
+              - CommentServiceApplicationTest.java
+  - target
+    - classes
+      - application.properties
+      - be
+        - pxl
+          - services
+            - CommentServiceApplication.class
+            - controller
+              - CommentController.class
+            - domain
+              - Comment$CommentBuilder.class
+              - Comment.class
+              - dto
+                - CommentRequest$CommentRequestBuilder.class
+                - CommentRequest.class
+                - CommentResponse$CommentResponseBuilder.class
+                - CommentResponse.class
+            - repository
+              - CommentRepository.class
+            - services
+              - CommentService.class
+              - ICommentService.class
+      - logback-spring.xml
+    - generated-sources
+      - annotations
 - config-service
   - pom.xml
   - src
@@ -48,6 +117,7 @@
       - resources
         - application.properties
         - config
+          - comment-service.properties
           - discovery-service.properties
           - gateway-service.yml
           - messaging-service.properties
@@ -69,6 +139,7 @@
           - services
             - ConfigServiceApplication.class
       - config
+        - comment-service.properties
         - discovery-service.properties
         - gateway-service.yml
         - messaging-service.properties
@@ -78,13 +149,6 @@
       - logback-spring.xml
     - generated-sources
       - annotations
-    - generated-test-sources
-      - test-annotations
-    - test-classes
-      - be
-        - pxl
-          - services
-            - ConfigServiceApplicationTest.class
 - discovery-service
   - pom.xml
   - src
@@ -113,13 +177,6 @@
       - logback-spring.xml
     - generated-sources
       - annotations
-    - generated-test-sources
-      - test-annotations
-    - test-classes
-      - be
-        - pxl
-          - services
-            - DiscoveryServiceApplicationTest.class
 - gateway-service
   - pom.xml
   - src
@@ -148,61 +205,56 @@
       - logback-spring.xml
     - generated-sources
       - annotations
-    - generated-test-sources
-      - test-annotations
-    - test-classes
-      - be
-        - pxl
-          - services
-            - AppTest.class
 - logs
-  - app.2024-12-04.log
-  - app.2024-12-11.log
-  - app.2024-12-12.log
-  - app.2024-12-15.log
-  - app.2024-12-16.log
+  - app.2024-12-25.log
+  - app.2024-12-30.log
   - app.log
-- messaging-service
-  - pom.xml
-  - src
-    - main
-      - java
-        - be
-          - pxl
-            - services
-              - MessagingServiceApplication.java
-              - QueueConfiguration.java
-              - services
-                - QueueService.java
-      - resources
-        - application.properties
-        - logback-spring.xml
-    - test
-      - java
-        - be
-          - pxl
-            - services
-              - MessagingServiceApplicationTest.java
-  - target
-    - classes
-      - application.properties
-      - be
-        - pxl
-          - services
-            - MessagingServiceApplication.class
-            - QueueConfiguration.class
-            - services
-              - QueueService.class
-      - logback-spring.xml
-    - generated-sources
-      - annotations
-    - generated-test-sources
-      - test-annotations
-    - test-classes
-      - be
-        - pxl
-          - services
-            - MessagingServiceApplicationTest.class
+  - comment-service
+    - spring.log
+    - spring.log.2024-12-25.0.gz
+    - spring.log.2024-12-30.0.gz
+  - config-service
+    - app.2024-12-25.log
+    - app.2024-12-30.log
+    - app.log
+    - spring.log
+    - spring.log.2024-12-25.0.gz
+    - spring.log.2024-12-30.0.gz
+  - discovery-service
+    - app.2024-12-25.log
+    - app.2024-12-30.log
+    - app.log
+    - spring.log
+    - spring.log.2024-12-25.0.gz
+    - spring.log.2024-12-30.0.gz
+  - gateway-service
+    - app.2024-12-25.log
+    - app.2024-12-30.log
+    - app.log
+    - spring.log
+    - spring.log.2024-12-25.0.gz
+    - spring.log.2024-12-30.0.gz
+  - notification-service
+    - app.2024-12-25.log
+    - app.2024-12-30.log
+    - app.log
+    - spring.log
+    - spring.log.2024-12-25.0.gz
+    - spring.log.2024-12-30.0.gz
+  - post-service
+    - app.2024-12-25.log
+    - app.2024-12-30.log
+    - app.log
+    - spring.log
+    - spring.log.2024-12-25.0.gz
+    - spring.log.2024-12-30.0.gz
+  - review-service
+    - app.2024-12-25.log
+    - app.2024-12-30.log
+    - app.log
+    - spring.log
+    - spring.log.2024-12-25.0.gz
+    - spring.log.2024-12-30.0.gz
 - mvnw
 - mvnw.cmd
 - notification-service
@@ -240,14 +292,8 @@
       - logback-spring.xml
     - generated-sources
       - annotations
-    - generated-test-sources
-      - test-annotations
-    - test-classes
 - pom.xml
 - post-service
-  - Dockerfile
-  - logs
-    - app.log
   - pom.xml
   - src
     - main
@@ -258,6 +304,7 @@
               - client
                 - NotificationClient.java
               - config
+                - MailConfig.java
                 - QueueConfig.java
               - controller
                 - PostController.java
@@ -275,7 +322,9 @@
               - repository
                 - PostRepository.java
               - services
+                - IMailSenderService.java
                 - IPostService.java
+                - MailSenderService.java
                 - PostService.java
                 - QueueService.java
       - resources
@@ -297,6 +346,7 @@
             - client
               - NotificationClient.class
             - config
+              - MailConfig.class
               - QueueConfig.class
             - controller
               - PostController.class
@@ -318,20 +368,14 @@
             - repository
               - PostRepository.class
             - services
+              - IMailSenderService.class
               - IPostService.class
+              - MailSenderService.class
               - PostService.class
               - QueueService.class
       - logback-spring.xml
     - generated-sources
       - annotations
-    - generated-test-sources
-      - test-annotations
-    - test-classes
-      - be
-        - pxl
-          - services
-            - PostServiceApplicationTest.class
-            - PostTest.class
 - review-service
   - pom.xml
   - src
@@ -342,14 +386,18 @@
             - services
               - client
                 - NotificationClient.java
+                - PostClient.java
               - controller
                 - ReviewController.java
               - domain
                 - dto
-                  - ReviewRequest.java
+                  - PostRequest.java
+                  - PostResponse.java
+                  - RejectReview.java
                   - ReviewResponse.java
                 - NotificationRequest.java
                 - Review.java
+                - State.java
               - exception
               - repository
                 - ReviewRepository.java
@@ -374,19 +422,24 @@
           - services
             - client
               - NotificationClient.class
+              - PostClient.class
             - controller
               - ReviewController.class
             - domain
               - dto
-                - ReviewRequest$ReviewRequestBuilder.class
-                - ReviewRequest.class
+                - PostRequest$PostRequestBuilder.class
+                - PostRequest.class
+                - PostResponse$PostResponseBuilder.class
+                - PostResponse.class
+                - RejectReview$RejectReviewBuilder.class
+                - RejectReview.class
                 - ReviewResponse$ReviewResponseBuilder.class
                 - ReviewResponse.class
               - NotificationRequest$NotificationRequestBuilder.class
               - NotificationRequest.class
               - Review$ReviewBuilder.class
               - Review.class
-            - exception
+              - State.class
             - repository
               - ReviewRepository.class
             - ReviewServiceApplication.class
@@ -396,13 +449,6 @@
       - logback-spring.xml
     - generated-sources
       - annotations
-    - generated-test-sources
-      - test-annotations
-    - test-classes
-      - be
-        - pxl
-          - services
-            - ReviewServiceApplicationTest.class
 - src
   - main
     - java

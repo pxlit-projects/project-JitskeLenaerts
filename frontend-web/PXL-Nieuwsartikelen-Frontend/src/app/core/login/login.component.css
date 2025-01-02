@@ -81,6 +81,7 @@ button {
 
 button:hover {
   background: linear-gradient(135deg, #2575fc, #6a11cb);
+  color: #ffffff;
   transform: scale(1.05);
 }
 

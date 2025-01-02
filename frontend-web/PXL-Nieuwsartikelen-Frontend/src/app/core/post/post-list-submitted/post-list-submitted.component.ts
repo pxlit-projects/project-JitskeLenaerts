@@ -31,7 +31,7 @@ export class PostListSubmittedComponent {
 
   handleFilter(filter: Filter) {
     if (this.user != null) {
-      this.postService.filterInPostsByState(filter, State.SUBMITTED).subscribe({
+      this.postService.filterInPostsByState(filter, State.SUBMITTED,this.user.username,this.user.id).subscribe({
         next: posts => {
           this.submittedPosts = posts;
         },
@@ -43,26 +43,22 @@ export class PostListSubmittedComponent {
   }
 
   fetchData(): void {
-    if (this.userRole === 'redacteur') {
-      this.postService.getPostsByState(State.SUBMITTED).subscribe({
-        next: posts => {
-          this.submittedPosts = posts;
-        },
-        error: err => {
-          console.error('Error fetching published posts for editor:', err);
-        }
-      });
-    } else {
-      if (this.user) {
-        this.postService.getPostsByAuthorIdAndState(this.user.id, State.SUBMITTED).subscribe({
+    if (this.user) { 
+      if (this.user.username && this.user.id) { 
+        this.postService.getPostsByState(State.SUBMITTED, this.user.username, this.user.id).subscribe({
           next: posts => {
             this.submittedPosts = posts;
           },
           error: err => {
-            console.error('Error fetching personal published posts:', err);
+            console.error('Error fetching published posts for editor:', err);
           }
         });
+      } else {
+        console.error('User object is missing username or id.');
       }
+    } else {
+      console.error('No user found.');
     }
   }
+  
 }

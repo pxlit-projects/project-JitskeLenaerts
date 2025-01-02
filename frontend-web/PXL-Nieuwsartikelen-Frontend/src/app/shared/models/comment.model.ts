@@ -1,4 +1,3 @@
-// src/app/shared/models/comment.model.ts
 export class Comment {
     id: number;          
     postId: number;

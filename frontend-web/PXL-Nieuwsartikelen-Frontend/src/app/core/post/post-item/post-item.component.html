@@ -2,10 +2,10 @@
   <div class="post-content">
     <h2 class="post-title">{{ post.title }}</h2>
     <p class="post-details">
-      <strong>Created at:</strong> {{ post.createdAt | date: 'dd/MM/yyyy' }}
+      <strong>Created at:</strong> {{ post.createdAt | date: 'dd/MM/yyyy - HH:mm' }}
     </p>
     <p class="post-details">
-      <strong>Updated at:</strong> {{ post.updatedAt | date: 'dd/MM/yyyy' }}
+      <strong>Updated at:</strong> {{ post.updatedAt | date: 'dd/MM/yyyy - HH:mm' }}
     </p>
     <p class="post-details">
       <strong>Author:</strong> {{ authorName }}
@@ -21,7 +21,7 @@
       View Reviews
     </button>
     }
-    @if (post.state == State.APPROVED) {
+    @if (post.state == State.APPROVED && user?.id == post.authorId) {
     <button (click)="onPublishButton()" class="publish-button">
       Publish
     </button>

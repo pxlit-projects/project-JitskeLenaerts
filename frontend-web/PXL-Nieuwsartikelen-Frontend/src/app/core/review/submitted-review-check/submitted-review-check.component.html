@@ -1,4 +1,6 @@
 <div class="redactor-container">
+  <app-filter (filterChanged)="handleFilter($event)"></app-filter>
+
   <h1>Redactor Panel</h1>
   <div>
     <div class="post-list">
@@ -6,9 +8,9 @@
       <div>
         <div class="post-item">
           <h2>{{ post.title }}</h2>
+          <p><strong>Category:</strong> {{ post.category }}</p>
           <p><strong>Content:</strong><br />{{ post.content }}</p>
           <p><strong>Author:</strong> {{ post.author }}</p>
-          <p><strong>Category:</strong> {{ post.category }}</p>
           <div class="actions">
             <button class="approve-btn" (click)="approvePost(post.id!)">
               Approve

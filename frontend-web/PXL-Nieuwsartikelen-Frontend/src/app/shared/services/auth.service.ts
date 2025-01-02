@@ -27,6 +27,7 @@ export class AuthService {
     if (user) {
       this.currentUser = user;
       localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+      sessionStorage.setItem('currentUser', JSON.stringify(this.currentUser));
       return true;
     }
     this.currentUser = null;
@@ -36,6 +37,7 @@ export class AuthService {
   logout(): void {
     this.currentUser = null;
     localStorage.removeItem('currentUser');
+    sessionStorage.removeItem('currentUser');
     this.router.navigate(['/home']);
   }
 
@@ -52,10 +54,15 @@ export class AuthService {
   }
 
   getCurrentUser(): User | null {
+    if (!this.currentUser) {
+      const storedUser = localStorage.getItem('currentUser');
+      this.currentUser = storedUser ? JSON.parse(storedUser) : null;
+    }
     return this.currentUser;
   }
 
   getUserById(userId: number): User | undefined {
     return this.users.find(user => user.id === userId);
   }
+  
 }

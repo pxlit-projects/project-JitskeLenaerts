@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ReviewService implements IReviewService {
-
     private static final Logger log = LoggerFactory.getLogger(ReviewService.class);
 
     private final ReviewRepository reviewRepository;
@@ -46,7 +45,7 @@ public class ReviewService implements IReviewService {
 
     @Override
     public void rejectPost(Long postId, String reviewer, Long reviewerId, RejectReview rejectReview) {
-        Optional<PostResponse> post = Optional.ofNullable(postClient.getPostById(postId));
+        Optional<PostResponse> post = Optional.ofNullable(postClient.getPostById(postId,reviewer,reviewerId));
 
         if (post.isEmpty()) {
             log.error("Post with ID {} not found.", postId);

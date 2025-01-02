@@ -1,5 +1,14 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
 .posts-container {
-  max-width: 1800px;
+  width: 1400px;
   margin: 20px auto;
   padding: 20px;
   background: #ffffff;
@@ -10,11 +19,23 @@
 }
 
 .posts-container::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
+  width: 8px;
 }
 
-.posts-section h1 {
+.posts-container::-webkit-scrollbar-thumb {
+  background: #d1d1d1;
+  border-radius: 4px;
+}
+
+.posts-container::-webkit-scrollbar-thumb:hover {
+  background: #a9a9a9;
+}
+
+.posts-section {
+  margin-bottom: 40px;
+}
+
+.posts-section h1, h4 {
   font-size: 1.8em;
   color: #333;
   margin-bottom: 20px;
@@ -24,7 +45,7 @@
 
 .posts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 300px));
   gap: 20px;
 }
 
@@ -51,14 +72,6 @@ app-post-item:hover {
   background-color: #f1f1f1;
 }
 
-.loading-spinner {
-  font-size: 1.2em;
-  color: #007bff;
-  text-align: center;
-  padding: 20px;
-  font-weight: bold;
-}
-
 button {
   background-color: #007bff;
   color: white;
@@ -79,7 +92,6 @@ button:hover {
 
 .reviews-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
 }
 
@@ -104,7 +116,6 @@ button:hover {
 }
 
 .review-text {
-  font-style: italic;
   color: #555;
 }
 

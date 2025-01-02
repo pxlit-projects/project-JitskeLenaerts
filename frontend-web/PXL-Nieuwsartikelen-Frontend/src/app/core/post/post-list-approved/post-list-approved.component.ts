@@ -25,12 +25,14 @@ export class PostListApprovedComponent implements OnInit {
   constructor(private postService: PostService) { }
 
   ngOnInit(): void {
+    this.user = this.authService.getCurrentUser();
     this.userRole = this.authService.getCurrentUserRole();
     this.loadApprovedPosts();
   }
+  
   handleFilter(filter: Filter) {
-    if (this.user != null) {
-      this.postService.filterInPostsByState(filter, State.APPROVED).subscribe({
+    if (this.user) {
+      this.postService.filterInPostsByState(filter, State.APPROVED, this.user.username, this.user.id).subscribe({
         next: posts => {
           this.approvedPosts = posts;
         },
@@ -42,13 +44,17 @@ export class PostListApprovedComponent implements OnInit {
   }
 
   loadApprovedPosts(): void {
-    this.postService.getPostsByState(State.APPROVED).subscribe({
-      next: (posts: Post[]) => {
-        this.approvedPosts = posts;
-      },
-      error: (error) => {
-        console.error('Error fetching approved posts:', error);
-      }
-    });
+    if (this.user) {
+      this.postService.getPostsByState(State.APPROVED, this.user.username, this.user.id).subscribe({
+        next: (posts: Post[]) => {
+          this.approvedPosts = posts;
+        },
+        error: (error) => {
+          console.error('Error fetching approved posts:', error);
+        }
+      });
+    } else {
+      console.error('No user found.');
+    }
   }
 }

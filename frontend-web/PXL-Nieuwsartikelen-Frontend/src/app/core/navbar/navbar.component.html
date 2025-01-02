@@ -2,6 +2,7 @@
   <ul class="navbar-links">
     @if (!isLoggedIn()) {
     <li><a [routerLink]="['/']">Login</a></li>
+    <a [routerLink]="['/published/posts']">Published posts</a>
     } @else if(isRedacteur()) {
     <li><a [routerLink]="['/home']">Home</a></li>
     <li class="dropdown">

@@ -8,6 +8,7 @@ import { AuthService } from '../../../shared/services/auth.service';
 import { CommentService } from '../../../shared/services/comment.service';
 import { Comment } from '../../../shared/models/comment.model';
 import { FormsModule } from '@angular/forms';
+import { User } from '../../../shared/models/user.model';
 
 @Component({
   selector: 'app-post-detail',
@@ -25,7 +26,9 @@ export class PostDetailComponent implements OnInit {
   isUserLoggedIn: boolean = false;
   editingCommentId: number | null = null;
   editingCommentText: string = '';
-  errorMessage: string = '';  
+  errorMessage: string = '';
+  currentUser: User | null = null;
+  public postId!: number;
 
   router: Router = inject(Router);
   postService: PostService = inject(PostService);
@@ -36,121 +39,148 @@ export class PostDetailComponent implements OnInit {
   readonly State = State;
 
   ngOnInit(): void {
-    const postId = Number(this.route.snapshot.paramMap.get('id')!);
-    this.fetchPost(postId);
-    this.isUserLoggedIn = this.authService.isLoggedIn();
-    this.fetchComments(postId);
+    this.currentUser = this.authService.getCurrentUser();
+    this.isUserLoggedIn = !!this.currentUser;
 
-    const currentUser = this.authService.getCurrentUser();
-    if (currentUser) {
-      this.authorName = currentUser.authorName;
-      this.authorId = currentUser.id;
+    const postId = Number(this.route.snapshot.paramMap.get('id'));
+    if (!postId) {
+      this.errorMessage = 'Invalid post ID.';
+      return;
     }
+    this.postId = Number(postId);
+    this.fetchPost(postId);
+    this.fetchComments(postId);
   }
 
-  fetchPost(id: number): void {
-    this.postService.getPostById(id).subscribe({
+  fetchPost(postId: number): void {
+    this.postService.getPostById(postId).subscribe({
       next: (post) => {
         this.post = post;
-        const author = this.authService.getUserById(post.authorId);
-        if (author) {
-          this.authorName = author.authorName;
-        }
       },
       error: (err) => {
         console.error('Error fetching post:', err);
-      }
+        this.errorMessage = 'Could not fetch the post. Please try again later.';
+      },
     });
   }
 
   fetchComments(postId: number): void {
     this.commentService.getCommentsByPostId(postId).subscribe({
       next: (comments) => {
-        this.comments = comments;
+        this.comments = comments.sort((a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
       },
       error: (err) => {
         console.error('Error fetching comments:', err);
-      }
+        this.errorMessage = 'Could not fetch comments. Please try again later.';
+      },
     });
   }
 
   submitComment(): void {
-    if (this.newCommentText.trim() && this.authorId) {
-      const newComment: Comment = {
-        id: 0,
-        postId: this.post.id,
-        comment: this.newCommentText,
-        author: this.authorName,
-        authorId: this.authorId,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      };
-
-      this.commentService.createComment(newComment).subscribe({
-        next: (comment) => {
-          this.comments.push(comment);
-          this.newCommentText = '';
-        },
-        error: (err) => {
-          console.error('Error posting comment:', err);
-        }
-      });
+    if (!this.currentUser) {
+      this.errorMessage = 'You must be logged in to comment.';
+      return;
     }
-  }
 
+    if (!this.newCommentText.trim()) {
+      this.errorMessage = 'Comment text cannot be empty.';
+      return;
+    }
+
+    const newComment: Comment = {
+      id: 0,
+      postId: this.post.id,
+      comment: this.newCommentText.trim(),
+      author: this.currentUser.authorName,
+      authorId: this.currentUser.id,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    this.commentService.createComment(newComment).subscribe({
+      next: (comment) => {
+        this.comments = [comment, ...this.comments];
+        this.newCommentText = '';
+        this.errorMessage = '';
+      },
+      error: (err) => {
+        console.error('Error posting comment:', err);
+        this.errorMessage = 'Failed to post the comment. Please try again.';
+      },
+    });
+  }
+  
   deleteComment(commentId: number): void {
-    const comment = this.comments.find(c => c.id === commentId);
-    if (comment && comment.authorId === this.authorId) {
-      this.commentService.deleteComment(commentId).subscribe({
+    const comment = this.comments.find((c) => c.id === commentId);
+
+    if (!comment) {
+      this.errorMessage = 'Comment not found.';
+      return;
+    }
+
+    if (!this.currentUser || comment.authorId !== this.currentUser.id) {
+      this.errorMessage = 'You can only delete your own comments.';
+      return;
+    }
+
+    if (window.confirm('Are you sure you want to delete this comment?')) {
+      this.commentService.deleteComment(commentId,this.currentUser.username,this.currentUser.id).subscribe({
         next: () => {
-          this.comments = this.comments.filter(c => c.id !== commentId);
+          this.comments = this.comments.filter((c) => c.id !== commentId);
         },
         error: (err) => {
           console.error('Error deleting comment:', err);
-        }
+          this.errorMessage = 'Failed to delete the comment. Please try again later.';
+        },
       });
-    } else {
-      this.errorMessage = 'You can only delete your own comments.'; 
     }
   }
 
   editComment(comment: Comment): void {
-    if (comment.authorId === this.authorId) {
-      this.editingCommentId = comment.id;
-      this.editingCommentText = comment.comment;
-    } else {
+    if (!this.currentUser || comment.authorId !== this.currentUser.id) {
       this.errorMessage = 'You can only edit your own comments.';
+      return;
     }
+
+    this.editingCommentId = comment.id;
+    this.editingCommentText = comment.comment;
   }
 
   saveEditedComment(): void {
-    if (this.editingCommentId !== null && this.editingCommentText.trim()) {
-      const updatedComment: Comment = {
-        ...this.comments.find(c => c.id === this.editingCommentId)!,
-        comment: this.editingCommentText,
-        updatedAt: new Date().toISOString()
-      };
-
-      this.commentService.updateComment(this.editingCommentId, updatedComment).subscribe({
-        next: (comment) => {
-          const index = this.comments.findIndex(c => c.id === comment.id);
-          if (index !== -1) {
-            this.comments[index] = comment;
-          }
-          this.editingCommentId = null;
-          this.editingCommentText = '';
-        },
-        error: (err) => {
-          console.error('Error updating comment:', err);
-        }
-      });
+    if (!this.currentUser || this.editingCommentId === null || !this.editingCommentText.trim()) {
+      this.errorMessage = 'Invalid data. Unable to save the comment.';
+      return;
     }
+
+    const updatedComment: Comment = {
+      ...this.comments.find((c) => c.id === this.editingCommentId)!,
+      comment: this.editingCommentText.trim(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    this.commentService.updateComment(this.editingCommentId,updatedComment,this.currentUser.username,this.currentUser.id).subscribe({
+      next: (comment) => {
+        const index = this.comments.findIndex((c) => c.id === comment.id);
+        if (index !== -1) {
+          this.comments[index] = comment;
+        }
+        this.editingCommentId = null;
+        this.editingCommentText = '';
+        this.errorMessage = '';
+      },
+      error: (err) => {
+        console.error('Error updating comment:', err);
+        this.errorMessage = 'Failed to update the comment. Please try again.';
+      },
+    });
   }
 
   getStateClass(state: string): string {
     switch (state) {
       case State.CONCEPT:
-        return 'state-concept'; 
+        return 'state-concept';
       case State.SUBMITTED:
         return 'state-submitted';
       case State.REJECTED:

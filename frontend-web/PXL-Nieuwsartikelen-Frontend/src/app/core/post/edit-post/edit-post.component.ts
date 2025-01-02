@@ -16,7 +16,7 @@ import { User } from '../../../shared/models/user.model';
   standalone: true,
   imports: [ReactiveFormsModule, MatButtonModule, MatTooltipModule],
   templateUrl: './edit-post.component.html',
-  styleUrl: './edit-post.component.css'
+  styleUrl: './edit-post.component.css',
 })
 export class EditPostComponent implements OnInit {
   postService: PostService = inject(PostService);
@@ -25,9 +25,9 @@ export class EditPostComponent implements OnInit {
   authService: AuthService = inject(AuthService);
   route: ActivatedRoute = inject(ActivatedRoute);
   State = State;
-  user: User | null | undefined;
-  postId: number = this.route.snapshot.params['id'];
-  postWithId: Observable<Post> = this.postService.getPostById(this.postId);
+  user: User | null | undefined = null;
+  postId: number = 0;
+  postWithId!: Observable<Post>;
   hasEditableState: boolean = true;
 
   updateForm: FormGroup = this.fb.group({
@@ -41,55 +41,49 @@ export class EditPostComponent implements OnInit {
     this.user = this.authService.getCurrentUser();
     if (!this.user) {
       console.error('User is not authenticated or could not be fetched!');
+      return;
     }
-  
+
+    this.postId = Number(this.route.snapshot.params['id']);
+    if (isNaN(this.postId)) {
+      console.error('Invalid post ID!');
+      return;
+    }
+
+    this.postWithId = this.postService.getPostById(this.postId, this.user.username, this.user.id);
     this.postWithId.subscribe((post) => {
       this.updateForm.patchValue({
         title: post.title,
         content: post.content,
         category: post.category,
-        state: post.state,
+        state: State.CONCEPT,
       });
-      this.hasEditableState = post.state === State.CONCEPT || post.state === State.SUBMITTED;
-      this.adjustTextAreaHeight();
     });
   }
 
-  adjustTextAreaHeight(): void {
-    const textarea = document.getElementById('content') as HTMLTextAreaElement;
-    if (textarea) {
-      textarea.style.height = 'auto';
-      textarea.style.height = `${textarea.scrollHeight}px`;
-    }
-  }
-
-  onTextAreaInput(event: Event): void {
-    const textarea = event.target as HTMLTextAreaElement;
-    textarea.style.height = 'auto';
-    textarea.style.height = `${textarea.scrollHeight}px`;
-  }
 
   onUpdate(): void {
     if (this.updateForm.valid) {
-      const updatedPost: Post = {
-        ...this.updateForm.value,
-        state: this.hasEditableState ? this.updateForm.get('state')?.value : this.updateForm.get('state')?.value,
-        author: this.user?.authorName,
-        authorId: this.user?.id,
-      };
-      this.postService.updatePost(this.postId, updatedPost).subscribe(() => {
-        this.updateForm.reset();
-        if (updatedPost.state === State.SUBMITTED) {
-          this.router.navigate(['/submitted/posts']);
-        } else {
-          this.router.navigate(['/concept/posts']);
-        }
-      });
-    } else {
-      alert('Please fill in all fields');
+      if (this.user) {
+        const updatedPost: Post = {
+          ...this.updateForm.value,
+          state: this.updateForm.get('state')?.value,
+          author: this.user.authorName,
+          authorId: this.user.id,
+        };
+        this.postService.updatePost(this.postId, updatedPost, this.user.username, this.user.id).subscribe(() => {
+          this.updateForm.reset();
+          if (updatedPost.state === State.SUBMITTED) {
+            this.router.navigate(['/submitted/posts']);
+          } else {
+            this.router.navigate(['/concept/posts']);
+          }
+        });
+      } else {
+        alert('Please fill in all fields');
+      }
     }
   }
-  
 
   onCancel(): void {
     const state = this.updateForm.get('state')?.value;

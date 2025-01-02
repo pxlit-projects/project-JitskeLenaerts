@@ -9,13 +9,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface IPostService {
-    PostResponse createPost(PostRequest postRequest,String username, Long authorId);
-    PostResponse savePostAsConcept(Long id);
-    PostResponse updatePost(PostRequest postRequest);
-    List<PostResponse> getPostsByAuthorIdAndState(Long authorId, State state);
+    PostResponse createPost(PostRequest postRequest,String username, Long userId);
+    PostResponse savePostAsConcept(Long id,String username, Long userId);
+    PostResponse updatePost(PostRequest postRequest,String username, Long userId);
+    List<PostResponse> getPostsByAuthorIdAndState(Long userId, State state, String username);
     List<PostResponse> getAllPosts();
-    List<PostResponse> getPostsByState(State state);
-    PostResponse publishPost(Long id);
-    PostResponse getPostById(Long id);
-    void deletePost(Long id);
+    List<PostResponse> getPublishedPosts();
+    List<PostResponse> getPostsByState(State state,String username, Long userId);
+    PostResponse publishPost(Long id,String username, Long userId);
+    PostResponse getPostById(Long id,String username, Long userId);
+    void deletePost(Long id,String username, Long userId);
 }
