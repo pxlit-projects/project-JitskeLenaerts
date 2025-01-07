@@ -9,7 +9,6 @@ import be.pxl.services.domain.dto.PostResponse;
 import be.pxl.services.exception.PostNotFoundException;
 import be.pxl.services.exception.TitleAlreadyExistsException;
 import be.pxl.services.repository.PostRepository;
-import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -203,10 +201,5 @@ public class PostService implements IPostService {
 
         log.info("Post with ID '{}' published successfully", id);
         return mapToPostResponse(post);
-    }
-
-    @PreDestroy
-    public void cleanUp() {
-        log.info("Cleaning up resources before shutdown");
     }
 }

@@ -73,7 +73,6 @@ public class PostController {
     public ResponseEntity<PostResponse> createPost(@RequestBody PostRequest postRequest, @RequestHeader String username,@RequestHeader Long userId) {
         PostResponse createdPost = postService.createPost(postRequest, username, userId);
         log.info("Creating new post");
-        rabbitTemplate.convertAndSend("postQueue", "Added post from author: " + username);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPost);
     }
 

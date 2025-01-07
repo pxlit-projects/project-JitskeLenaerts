@@ -18,13 +18,13 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(unique = true,columnDefinition = "longtext")
+    @Column(unique = true,columnDefinition = "LONGTEXT")
     private String title;
-    @Column(columnDefinition = "longtext")
+    @Column(columnDefinition = "LONGTEXT")
     private String content;
     private String author;
     private Long authorId;
-    @Column(columnDefinition = "longtext")
+    @Column(columnDefinition = "LONGTEXT")
     private String category;
     @Enumerated(EnumType.STRING)
     private State state;

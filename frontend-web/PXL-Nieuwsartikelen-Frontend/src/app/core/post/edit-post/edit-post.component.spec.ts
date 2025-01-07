@@ -1,139 +1,150 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { of, throwError } from 'rxjs';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EditPostComponent } from './edit-post.component';
-import { Post } from '../../../shared/models/post.model';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../../shared/services/post.service';
+import { AuthService } from '../../../shared/services/auth.service';
+import { of, throwError } from 'rxjs';
+import { State } from '../../../shared/models/state.enum';
+import { User } from '../../../shared/models/user.model';
+import { Post } from '../../../shared/models/post.model';
+
+class MockPostService {
+    getPostById(postId: number, username: string, userId: number) {
+        return of({ title: 'Test Title', content: 'Test Content', category: 'Test Category', state: State.CONCEPT });
+    }
+
+    updatePost(postId: number, post: Post, username: string, userId: number) {
+        return of({});
+    }
+}
+
+class MockAuthService {
+    getCurrentUser() {
+        return { username: 'john_doe', id: 1, authorName: 'John Doe' } as User;
+    }
+}
+
+class MockRouter {
+    navigate() {
+        return of(true);
+    }
+}
 
 describe('EditPostComponent', () => {
-  let component: EditPostComponent;
-  let fixture: ComponentFixture<EditPostComponent>;
-  let postService: jasmine.SpyObj<PostService>;
-  let router: jasmine.SpyObj<Router>;
-  let route: ActivatedRoute;
-  let fb: FormBuilder;
-  let mockPostId = 1;
+    let component: EditPostComponent;
+    let fixture: ComponentFixture<EditPostComponent>;
+    let postServiceMock: PostService;
+    let authServiceMock: AuthService;
+    let routerMock: Router;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [EditPostComponent, ReactiveFormsModule],
-      providers: [
-        {
-          provide: PostService,
-          useValue: jasmine.createSpyObj('PostService', ['getPostById', 'updatePost'])
-        },
-        { provide: Router, useValue: jasmine.createSpyObj('Router', ['navigate']) },
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            snapshot: {
-              params: {
-                id: mockPostId
-              }
-            }
-          }
-        },
-        FormBuilder
-      ]
-    })
-    .compileComponents();
-  });
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [ReactiveFormsModule, MatButtonModule, MatTooltipModule, EditPostComponent], 
+            providers: [
+                { provide: PostService, useClass: MockPostService },
+                { provide: AuthService, useClass: MockAuthService },
+                { provide: Router, useClass: MockRouter },
+                { provide: ActivatedRoute, useValue: { snapshot: { params: { id: '1' } } } }
+            ]
+        }).compileComponents();
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(EditPostComponent);
-    component = fixture.componentInstance;
-    postService = TestBed.inject(PostService) as jasmine.SpyObj<PostService>;
-    router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
-    route = TestBed.inject(ActivatedRoute);
-    fb = TestBed.inject(FormBuilder);
+        fixture = TestBed.createComponent(EditPostComponent);
+        component = fixture.componentInstance;
 
-    fixture.detectChanges();
-  });
+        postServiceMock = TestBed.inject(PostService);
+        authServiceMock = TestBed.inject(AuthService);
+        routerMock = TestBed.inject(Router);
 
-  it('should create the component', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should initialize the update form on ngOnInit', fakeAsync(() => {
-    const mockPost: Post = {
-      id: mockPostId,
-      title: 'Test Post',
-      author: 'John Doe',
-      content: 'This is a test post content.',
-      category: 'News',
-      concept: false,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    };
-
-    postService.getPostById.and.returnValue(of(mockPost));
-
-    component.ngOnInit();
-
-    tick();
-
-    fixture.detectChanges();
-
-    expect(component.updateForm.value).toEqual({
-      title: mockPost.title,
-      author: mockPost.author,
-      content: mockPost.content,
-      category: mockPost.category,
-      concept: mockPost.concept
+        fixture.detectChanges();  
     });
-  }));
 
-  it('should update the post on update and navigate to posts list', fakeAsync(() => {
-    const updatedPost: Post = {
-      id: mockPostId,
-      title: 'Updated Title',
-      author: 'Jane Doe',
-      content: 'Updated content.',
-      category: 'Tech',
-      concept: true,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    };
+    it('should load post and populate the form on init', () => {
+        component.ngOnInit();
+        expect(component.updateForm.get('title')?.value).toBe('Test Title');
+        expect(component.updateForm.get('content')?.value).toBe('Test Content');
+        expect(component.updateForm.get('category')?.value).toBe('Test Category');
+        expect(component.updateForm.get('state')?.value).toBe(State.CONCEPT);
+    });
 
-    postService.updatePost.and.returnValue(of(updatedPost));
+    it('should call updatePost on form submission and navigate based on state', () => {
+        const postData = {
+            title: 'Updated Title',
+            content: 'Updated Content',
+            category: 'Updated Category',
+            state: State.SUBMITTED
+        };
 
-    component.updateForm.setValue(updatedPost);
-    component.onUpdate();
+        component.updateForm.setValue(postData);
 
-    tick();
+        spyOn(postServiceMock, 'updatePost').and.callThrough();
+        spyOn(routerMock, 'navigate');
 
-    expect(postService.updatePost).toHaveBeenCalledWith(mockPostId, updatedPost);
-    expect(router.navigate).toHaveBeenCalledWith(['/posts']);
-  }));
+        component.onUpdate();
 
-  it('should show alert message if form is invalid on update', () => {
-    spyOn(window, 'alert');
+        expect(postServiceMock.updatePost).toHaveBeenCalled();
+        expect(routerMock.navigate).toHaveBeenCalledWith(['/submitted/posts']);
+    });
 
-    component.updateForm.setValue({ title: '' });
-    component.onUpdate();
+    it('should handle form submission when user is not authenticated', () => {
+        spyOn(authServiceMock, 'getCurrentUser').and.returnValue(null);
 
-    expect(window.alert).toHaveBeenCalledWith('Please fill in all fields');
-    expect(postService.updatePost).not.toHaveBeenCalled();
-  });
+        component.onUpdate();
 
-  it('should handle errors during post update', fakeAsync(() => {
-    spyOn(window, 'alert');
-    const errorMessage = 'Error updating post';
-    postService.updatePost.and.returnValue(throwError(() => new Error(errorMessage)));
+        expect(component.updateForm.invalid).toBeTrue();
+    });
 
-    component.updateForm.setValue({ title: 'Test Title', author: 'Test Author', content: 'Test Content', category: 'Test Category', concept: false });
-    component.onUpdate();
+    it('should alert when user is not authenticated', () => {
+        spyOn(authServiceMock, 'getCurrentUser').and.returnValue(null);
+        const alertSpy = spyOn(window, 'alert');
+    
+        component.onUpdate();
+    
+        expect(alertSpy).toHaveBeenCalledWith('Please log in to update the post.');
+    });
+    
+    
 
-    tick();
+    it('should navigate to /submitted/posts if state is State.SUBMITTED', () => {
+        const navigateSpy = spyOn(routerMock, 'navigate');
 
-    expect(window.alert).toHaveBeenCalledWith(errorMessage);
-  }));
+        component.updateForm.setValue({
+            title: 'Test Title',
+            content: 'Test Content',
+            category: 'Test Category',
+            state: State.SUBMITTED
+        });
 
-  it('should navigate to posts list on cancel', () => {
-    component.onCancel();
+        component.onCancel();
 
-    expect(router.navigate).toHaveBeenCalledWith(['/posts']);
-  });
+        expect(navigateSpy).toHaveBeenCalledWith(['/submitted/posts']);
+    });
+    it('should navigate to concept posts when cancel is clicked', () => {
+        spyOn(routerMock, 'navigate');
+
+        component.onCancel();
+
+        expect(routerMock.navigate).toHaveBeenCalledWith(['/concept/posts']);
+    });
+
+    it('should handle invalid post ID on init', () => {
+        spyOn(console, 'error');
+        const mockRoute = TestBed.inject(ActivatedRoute);
+        mockRoute.snapshot.params['id'] = 'invalid';  
+
+        component.ngOnInit();
+
+        expect(console.error).toHaveBeenCalledWith('Invalid post ID!');
+    });
+
+    it('should display an error when user is not authenticated on init', () => {
+        spyOn(console, 'error');
+        spyOn(authServiceMock, 'getCurrentUser').and.returnValue(null); 
+
+        component.ngOnInit();
+
+        expect(console.error).toHaveBeenCalledWith('User is not authenticated or could not be fetched!');
+    });
 });

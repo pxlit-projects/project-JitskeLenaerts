@@ -19,7 +19,7 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long postId;
-    @Column(columnDefinition = "longtext")
+    @Column(columnDefinition = "LONGTEXT")
     private String reason;
     private String reviewer;
     private Long reviewerId;

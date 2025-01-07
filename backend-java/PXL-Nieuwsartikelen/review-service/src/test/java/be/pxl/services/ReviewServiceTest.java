@@ -18,10 +18,10 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ReviewServiceTest {
 
@@ -48,19 +48,6 @@ class ReviewServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-    }
-
-
-    @Test
-    void testApprovePost() {
-        Long postId = 1L;
-
-        // Act
-        reviewService.approvePost(postId);
-
-        // Assert: Verify that the method sends the notification and logs the post approval
-        verify(rabbitTemplate, times(1)).convertAndSend(eq("postApprovedPostQueue"), postIdCaptor.capture());
-        verify(reviewRepository, times(0)).save(any());
     }
 
     @Test
@@ -91,12 +78,54 @@ class ReviewServiceTest {
         verify(rabbitTemplate, times(1)).convertAndSend(eq("postRejectedPostQueue"), postIdCaptor.capture());
         verify(reviewRepository, times(1)).save(reviewCaptor.capture());
 
+        // Assert that the captured postId is the same as the one we expected
+        assertEquals(postId, postIdCaptor.getValue());
+
         // Assert Review is saved correctly
         Review savedReview = reviewCaptor.getValue();
         assertEquals(postId, savedReview.getPostId());
         assertEquals(rejectReview.getReason(), savedReview.getReason());
         assertEquals(reviewer, savedReview.getReviewer());
         assertEquals(reviewerId, savedReview.getReviewerId());
+    }
+
+    @Test
+    void testRejectPost_PostNotFound() {
+        Long postId = 1L;
+        String reviewer = "JohnDoe";
+        Long reviewerId = 123L;
+        RejectReview rejectReview = RejectReview.builder()
+                .id(1L)
+                .postId(postId)
+                .reason("Not good")
+                .createdAt(LocalDateTime.now())
+                .build();
+
+        // Mocking the PostClient to return null (post not found)
+        when(postClient.getPostById(postId, reviewer, reviewerId)).thenReturn(null);
+
+        // Act
+        reviewService.rejectPost(postId, reviewer, reviewerId, rejectReview);
+
+        // Assert: Verify that the rejection logic is not triggered, and no review is saved
+        // Explicitly mock the convertAndSend method for the String and Object variant
+        verify(rabbitTemplate, times(0)).convertAndSend(eq("postRejectedPostQueue"), any(Object.class));
+        verify(reviewRepository, times(0)).save(any());
+    }
+
+
+
+
+    @Test
+    void testApprovePost() {
+        Long postId = 1L;
+
+        // Act
+        reviewService.approvePost(postId);
+
+        // Assert: Verify that the method sends the notification and logs the post approval
+        verify(rabbitTemplate, times(1)).convertAndSend(eq("postApprovedPostQueue"), postIdCaptor.capture());
+        verify(reviewRepository, times(0)).save(any());
     }
 
     @Test

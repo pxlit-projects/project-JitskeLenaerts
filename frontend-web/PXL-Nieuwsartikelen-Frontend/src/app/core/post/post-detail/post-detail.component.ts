@@ -41,7 +41,7 @@ export class PostDetailComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
     this.isUserLoggedIn = !!this.currentUser;
-
+    this.authorName = this.currentUser ? this.currentUser.authorName : 'Author is anonymous';
     const postId = Number(this.route.snapshot.paramMap.get('id'));
     if (!postId) {
       this.errorMessage = 'Invalid post ID.';

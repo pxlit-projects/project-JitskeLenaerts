@@ -64,5 +64,5 @@ export class AuthService {
   getUserById(userId: number): User | undefined {
     return this.users.find(user => user.id === userId);
   }
-  
+
 }

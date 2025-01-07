@@ -1,23 +1,28 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavbarComponent } from './navbar.component';
-import { RouterModule, provideRouter } from '@angular/router'; 
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
+import { AuthService } from '../../shared/services/auth.service';
+import { provideRouter } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
+  let authServiceMock: jasmine.SpyObj<AuthService>;
+  let routerMock: jasmine.SpyObj<Router>;
 
   beforeEach(() => {
+    authServiceMock = jasmine.createSpyObj('AuthService', ['getCurrentUser', 'isRedacteur', 'logout']);
+    routerMock = jasmine.createSpyObj('Router', ['navigate']);
+
     TestBed.configureTestingModule({
-      imports: [
-        provideRouter([
-          { path: '', component: NavbarComponent }, 
-          { path: 'add', component: NavbarComponent }, 
-          { path: 'posts', component: NavbarComponent } 
-        ]),
-        NavbarComponent
+      imports: [NavbarComponent], 
+      providers: [
+        { provide: AuthService, useValue: authServiceMock },
+        { provide: Router, useValue: routerMock },
+        provideRouter([]),
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
@@ -27,30 +32,38 @@ describe('NavbarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should contain a link to home', () => {
-    fixture.detectChanges();
+  describe('isLoggedIn', () => {
+    it('should return true if the user is logged in', () => {
+      const mockUser = { username: 'johndoe', id: 1, password: 'password123', role: 'admin', authorName: 'John Doe' };
+      authServiceMock.getCurrentUser.and.returnValue(mockUser); 
+      expect(component.isLoggedIn()).toBeTrue();
+    });
 
-    const compiled = fixture.nativeElement as HTMLElement;
-    const homeLink = compiled.querySelector('a[routerLink="/"]');
-
-    expect(homeLink).toBeTruthy(); 
+    it('should return false if the user is not logged in', () => {
+      authServiceMock.getCurrentUser.and.returnValue(null); 
+      expect(component.isLoggedIn()).toBeFalse();
+    });
   });
 
-  it('should contain a link to add post', () => {
-    fixture.detectChanges();  
+  describe('isRedacteur', () => {
+    it('should return true if the user is a Redacteur', () => {
+      authServiceMock.isRedacteur.and.returnValue(true);
+      expect(component.isRedacteur()).toBeTrue();
+    });
 
-    const compiled = fixture.nativeElement as HTMLElement;
-    const addPostLink = compiled.querySelector('a[routerLink="/add"]');
-
-    expect(addPostLink).toBeTruthy(); 
+    it('should return false if the user is not a Redacteur', () => {
+      authServiceMock.isRedacteur.and.returnValue(false); 
+      expect(component.isRedacteur()).toBeFalse();
+    });
   });
 
-  it('should contain a link to all posts', () => {
-    fixture.detectChanges();  
+  describe('logout', () => {
+    it('should call authService.logout and navigate to home on logout', () => {
+      component.logout();
 
-    const compiled = fixture.nativeElement as HTMLElement;
-    const allPostsLink = compiled.querySelector('a[routerLink="/posts"]');
+      expect(authServiceMock.logout).toHaveBeenCalled();
 
-    expect(allPostsLink).toBeTruthy(); 
+      expect(routerMock.navigate).toHaveBeenCalledWith(['/']);
+    });
   });
 });

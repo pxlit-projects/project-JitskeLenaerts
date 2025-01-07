@@ -1,5 +1,6 @@
 package be.pxl.services;
 
+import be.pxl.services.client.NotificationClient;
 import be.pxl.services.domain.NotificationRequest;
 import be.pxl.services.domain.Post;
 import be.pxl.services.domain.State;
@@ -8,11 +9,12 @@ import be.pxl.services.domain.dto.PostResponse;
 import be.pxl.services.exception.PostNotFoundException;
 import be.pxl.services.exception.TitleAlreadyExistsException;
 import be.pxl.services.repository.PostRepository;
-import be.pxl.services.client.NotificationClient;
 import be.pxl.services.services.PostService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -36,7 +38,6 @@ class PostServiceTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-// --- Tests for existing methods ---
 
     @Test
     void testGetPostsByAuthorIdAndState() {
@@ -86,8 +87,6 @@ class PostServiceTest {
         assertEquals("Title", posts.get(0).getTitle());
     }
 
-    // --- Tests for new methods ---
-
     @Test
     void testDeletePost() {
         Post post = Post.builder().id(1L).title("Title").content("Content").author("Author").state(State.PUBLISHED).build();
@@ -111,17 +110,13 @@ class PostServiceTest {
         when(postRepository.findById(1L)).thenReturn(Optional.of(post));
         when(postRepository.save(any(Post.class))).thenReturn(post);
 
-        // Create a NotificationRequest with the correct data
-        NotificationRequest notificationRequest = new NotificationRequest("Post saved as concept", "Author"); // Assuming the constructor is like this
+        NotificationRequest notificationRequest = new NotificationRequest("Post saved as concept", "Author");
 
-        // Call the method
         PostResponse postResponse = postService.savePostAsConcept(1L, "Author", 1L);
 
-        // Assert the response
         assertNotNull(postResponse);
         assertEquals(State.CONCEPT, postResponse.getState());
 
-        // Verify that the notificationClient.sendNotification() method is called with the NotificationRequest
         verify(notificationClient, times(1)).sendNotification(eq(notificationRequest));
     }
 
@@ -136,7 +131,14 @@ class PostServiceTest {
     @Test
     void testUpdatePost() {
         PostRequest postRequest = new PostRequest(1L, "Updated Title", "Updated Content", "Author", 1L, "Category", State.PUBLISHED, LocalDateTime.now(), LocalDateTime.now());
-        Post post = Post.builder().id(1L).title("Title").content("Content").author("Author").state(State.PUBLISHED).build();
+        Post post = Post.builder()
+                .id(1L)
+                .title("Title")
+                .content("Content")
+                .author("Author")
+                .state(State.PUBLISHED)
+                .build();
+
         when(postRepository.findById(1L)).thenReturn(Optional.of(post));
         when(postRepository.save(any(Post.class))).thenReturn(post);
 
@@ -145,6 +147,9 @@ class PostServiceTest {
         assertNotNull(postResponse);
         assertEquals("Updated Title", postResponse.getTitle());
         assertEquals("Updated Content", postResponse.getContent());
+        assertEquals("Author", postResponse.getAuthor());
+        assertEquals(State.PUBLISHED, postResponse.getState());
+        verify(postRepository, times(1)).save(any(Post.class));
     }
 
     @Test
@@ -154,6 +159,13 @@ class PostServiceTest {
         when(postRepository.findById(1L)).thenReturn(Optional.empty());
 
         assertThrows(PostNotFoundException.class, () -> postService.updatePost(postRequest, "Author", 1L));
+    }
+
+    @Test
+    void testUpdatePostWithMissingId() {
+        PostRequest postRequest = new PostRequest(null, "Updated Title", "Updated Content", "Author", 1L, "Category", State.PUBLISHED, LocalDateTime.now(), LocalDateTime.now());
+
+        assertThrows(IllegalArgumentException.class, () -> postService.updatePost(postRequest, "Author", 1L));
     }
 
     @Test

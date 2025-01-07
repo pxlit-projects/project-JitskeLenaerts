@@ -6,7 +6,6 @@ import { AuthService } from '../../../shared/services/auth.service';
 import { User } from '../../../shared/models/user.model';
 import { State } from '../../../shared/models/state.enum';
 import { CanComponentDeactivate } from '../../../shared/guards/confirm-leave.guard';
-// import { ConfirmLeaveModalComponent } from '../../confirm-leave-modal/confirm-leave-modal.component';
 
 @Component({
   selector: 'app-add-post',
@@ -20,7 +19,6 @@ export class AddPostComponent implements CanComponentDeactivate {
   user: User | null | undefined;
   fb: FormBuilder = inject(FormBuilder);
   errorMessage: string | null = null;
-  // isModalOpen: boolean = false;
 
   postForm: FormGroup = this.fb.group({
     title: ['', Validators.required],
@@ -66,8 +64,6 @@ export class AddPostComponent implements CanComponentDeactivate {
                 }
               },
               error: (error) => {
-                console.log(error);
-                
                 this.errorMessage = 'An error occurred while creating the post. Please try again.';
               }
             });
@@ -88,21 +84,4 @@ export class AddPostComponent implements CanComponentDeactivate {
     }
     return true;
   }
-
-  // canDeactivate(): boolean {
-  //   if (this.postForm.dirty) {
-  //     this.isModalOpen = true;
-  //     return false;
-  //   }
-  //   return true;
-  // }
-
-  // onConfirmLeave(confirmed: boolean): void {
-  //   if (confirmed) {
-  //     this.isModalOpen = false;
-  //     this.router.navigate(['/home']);
-  //   } else {
-  //     this.isModalOpen = false;
-  //   }
-  // }
 }

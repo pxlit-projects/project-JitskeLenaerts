@@ -1,52 +1,77 @@
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { AuthGuard } from './auth-guard.guard';
 import { AuthService } from '../services/auth.service';
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { of } from 'rxjs';
+import { AuthGuard } from './auth-guard.guard';
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;
-  let authService: AuthService;
-  let router: Router;
+  let mockAuthService: jasmine.SpyObj<AuthService>;
+  let mockRouter: jasmine.SpyObj<Router>;
 
   beforeEach(() => {
-    const authServiceMock = {
-      isLoggedIn: jasmine.createSpy('isLoggedIn').and.returnValue(true)
-    };
-
-    const routerMock = {
-      navigate: jasmine.createSpy('navigate')
-    };
+    mockAuthService = jasmine.createSpyObj('AuthService', ['isLoggedIn', 'getCurrentUserRole']);
+    mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
     TestBed.configureTestingModule({
       providers: [
         AuthGuard,
-        { provide: AuthService, useValue: authServiceMock },
-        { provide: Router, useValue: routerMock }
+        { provide: AuthService, useValue: mockAuthService },
+        { provide: Router, useValue: mockRouter },
       ]
     });
-
     guard = TestBed.inject(AuthGuard);
-    authService = TestBed.inject(AuthService);
-    router = TestBed.inject(Router);
   });
 
   it('should be created', () => {
     expect(guard).toBeTruthy();
   });
 
-  it('should allow activation if user is logged in', () => {
-    const route = {} as ActivatedRouteSnapshot;
-    const state = {} as RouterStateSnapshot;
-    (authService.isLoggedIn as jasmine.Spy).and.returnValue(true);
-    expect(guard.canActivate(route, state)).toBe(true);
-  });
+  describe('canActivate', () => {
 
-  it('should not allow activation and redirect to login if user is not logged in', () => {
-    const route = {} as ActivatedRouteSnapshot;
-    const state = {} as RouterStateSnapshot;
-    (authService.isLoggedIn as jasmine.Spy).and.returnValue(false);
-    expect(guard.canActivate(route, state)).toBe(false);
-    expect(router.navigate).toHaveBeenCalledWith(['/login']);
+    it('should return true if the user is logged in and has the required role', () => {
+      mockAuthService.isLoggedIn.and.returnValue(true);
+      mockAuthService.getCurrentUserRole.and.returnValue('admin');
+
+      const next = { data: { role: 'admin' } } as any;
+      const state = {} as any;
+      const result = guard.canActivate(next, state);
+
+      expect(result).toBe(true);
+    });
+
+    it('should return false and navigate to /home if the user does not have the required role', () => {
+      mockAuthService.isLoggedIn.and.returnValue(true);
+      mockAuthService.getCurrentUserRole.and.returnValue('user');
+
+      const next = { data: { role: 'admin' } } as any;
+      const state = {} as any;
+      const result = guard.canActivate(next, state);
+
+      expect(result).toBe(false);
+      expect(mockRouter.navigate).toHaveBeenCalledWith(['/home']);
+    });
+
+    it('should return false and navigate to /login if the user is not logged in', () => {
+      mockAuthService.isLoggedIn.and.returnValue(false);
+
+      const next = { data: { role: 'admin' } } as any;
+      const state = {} as any;
+      const result = guard.canActivate(next, state);
+
+      expect(result).toBe(false);
+      expect(mockRouter.navigate).toHaveBeenCalledWith(['/login']);
+    });
+
+    it('should return true if the user is logged in and the required role is not provided', () => {
+      mockAuthService.isLoggedIn.and.returnValue(true);
+      mockAuthService.getCurrentUserRole.and.returnValue('user');
+
+      const next = { data: {} } as any; 
+      const state = {} as any;
+      const result = guard.canActivate(next, state);
+
+      expect(result).toBe(true);
+    });
   });
 });

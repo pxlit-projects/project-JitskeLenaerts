@@ -238,10 +238,24 @@ textarea {
 }
 
 .error-message {
-  color: red;
+  color: #ff0000; 
+  background-color: #f8d7da; 
+  border: 1px solid #f5c6cb; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  font-size: 16px; 
   font-weight: bold;
-  margin-bottom: 10px;
-  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  max-width: 400px;
+  margin: 10px 0; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.error-message::before {
+  content: '⚠️'; 
+  margin-right: 10px; 
+  font-size: 30px;
 }
 
 .edit-button:focus,

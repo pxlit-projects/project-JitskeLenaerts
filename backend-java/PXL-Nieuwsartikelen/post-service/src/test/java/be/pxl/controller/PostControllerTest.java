@@ -18,7 +18,8 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class PostControllerTest {
 
@@ -69,6 +70,55 @@ class PostControllerTest {
 
         verify(postService, times(1)).deletePost(1L, "user", 1L);
     }
+
+    @Test
+    void testGetAllPublishedPosts() throws Exception {
+        PostResponse postResponse = PostResponse.builder()
+                .id(1L)
+                .title("Published Post Title")
+                .content("Published Post Content")
+                .build();
+
+        when(postService.getPublishedPosts()).thenReturn(List.of(postResponse));
+
+        mockMvc.perform(get("/api/post/published"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].title").value("Published Post Title"))
+                .andExpect(jsonPath("$[0].content").value("Published Post Content"));
+
+        verify(postService, times(1)).getPublishedPosts();
+    }
+
+    @Test
+    void testCreatePost() throws Exception {
+        // Prepare request and response objects
+        PostRequest postRequest = new PostRequest();
+        postRequest.setTitle("New Post Title");
+        postRequest.setContent("New Post Content");
+
+        PostResponse postResponse = PostResponse.builder()
+                .id(1L)
+                .title("New Post Title")
+                .content("New Post Content")
+                .build();
+
+        // Mock the service method to return the expected response
+        when(postService.createPost(postRequest, "user", 1L)).thenReturn(postResponse);
+
+        // Perform the POST request to create the post
+        mockMvc.perform(post("/api/post")
+                        .contentType("application/json")
+                        .content("{\"title\":\"New Post Title\",\"content\":\"New Post Content\"}")
+                        .header("username", "user")
+                        .header("userId", 1L))
+                .andExpect(status().isCreated()) // Expect HTTP 201
+                .andExpect(jsonPath("$.title").value("New Post Title"))
+                .andExpect(jsonPath("$.content").value("New Post Content"));
+
+        // Verify that the service method was called once with the correct arguments
+        verify(postService, times(1)).createPost(postRequest, "user", 1L);
+    }
+
 
     @Test
     void testGetPostsByAuthorAndState() throws Exception {

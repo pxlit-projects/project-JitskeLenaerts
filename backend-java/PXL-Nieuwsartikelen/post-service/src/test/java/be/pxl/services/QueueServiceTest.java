@@ -2,13 +2,15 @@ package be.pxl.services;
 
 import be.pxl.services.domain.Post;
 import be.pxl.services.domain.State;
-import be.pxl.services.repository.PostRepository;
 import be.pxl.services.exception.PostNotFoundException;
+import be.pxl.services.repository.PostRepository;
 import be.pxl.services.services.MailSenderService;
 import be.pxl.services.services.QueueService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.Optional;
 
