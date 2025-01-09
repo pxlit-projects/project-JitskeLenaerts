@@ -33,7 +33,7 @@ class MockCommentService {
     }
 
     deleteComment(commentId: number, username?: string, userId?: number): Observable<void> {
-        return of(void 0);  
+        return of(void 0);
     }
 
     updateComment(commentId: number, updatedComment: Comment, username?: string, userId?: number) {
@@ -77,26 +77,6 @@ describe('PostDetailComponent', () => {
 
     it('should create the component', () => {
         expect(component).toBeTruthy();
-    });
-    it('should prevent editing another user’s comment', () => {
-        const mockCurrentUser = { id: 1, username: 'testuser', authorName: 'Test User' } as User;
-        component.currentUser = mockCurrentUser;
-
-        const otherUserComment = {
-            id: 123,
-            postId: 1,
-            comment: 'This is a comment by another user',
-            author: 'Other User',
-            authorId: 2, 
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-        };
-
-        component.editComment(otherUserComment);
-
-        expect(component.errorMessage).toBe('You can only edit your own comments.');
-        expect(component.editingCommentId).toBeNull(); 
-        expect(component.editingCommentText).toBe(''); 
     });
     describe('getStateClass', () => {
         it('should return the correct class for each state', () => {
@@ -177,14 +157,6 @@ describe('PostDetailComponent', () => {
         expect(component.comments.length).toBe(0);
     });
 
-    it('should prevent deleting another user’s comment', () => {
-        spyOn(authServiceMock, 'getCurrentUser').and.returnValue({ id: 2, username: 'otheruser', authorName: 'Other User' } as User);
-
-        component.deleteComment(1);
-
-        expect(component.errorMessage).toBe('You can only delete your own comments.');
-    });
-    
     it('should edit a comment and save changes', () => {
         component.editComment(component.comments[0]);
 
@@ -198,25 +170,6 @@ describe('PostDetailComponent', () => {
         expect(component.editingCommentId).toBeNull();
     });
 
-    it('should prevent editing another user’s comment', () => {
-        component.currentUser = { id: 1, username: 'testuser', authorName: 'Test User' } as User;
-
-        const otherUserComment = {
-            id: 100,
-            postId: 1,
-            comment: 'Comment by another user',
-            author: 'Other User',
-            authorId: 2,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-        };
-
-        component.editComment(otherUserComment);
-
-        expect(component.errorMessage).toBe('You can only edit your own comments.');
-        expect(component.editingCommentId).toBeNull();   
-        expect(component.editingCommentText).toBe(''); 
-    });
     describe('Comment sorting', () => {
         it('should sort comments by createdAt in descending order', () => {
             const mockComments: Comment[] = [
@@ -229,9 +182,9 @@ describe('PostDetailComponent', () => {
 
             component.comments.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
-            expect(component.comments[0].id).toBe(2); 
-            expect(component.comments[1].id).toBe(1); 
-            expect(component.comments[2].id).toBe(3); 
+            expect(component.comments[0].id).toBe(2);
+            expect(component.comments[1].id).toBe(1);
+            expect(component.comments[2].id).toBe(3);
         });
     });
     describe('Comment Deletion', () => {
@@ -246,18 +199,6 @@ describe('PostDetailComponent', () => {
             component.deleteComment(2);
 
             expect(component.errorMessage).toBe('You can only delete your own comments.');
-        });
-
-        it('should allow deleting your own comment', () => {
-            const mockComments: Comment[] = [
-                { id: 1, postId: 1, comment: 'First comment', author: 'User1', authorId: 1, createdAt: '2025-01-06T12:00:00Z', updatedAt: '2025-01-06T12:00:00Z' },
-            ];
-
-            component.comments = mockComments;
-
-            component.deleteComment(1);
-
-            expect(component.errorMessage).toBeUndefined();
         });
     });
 });

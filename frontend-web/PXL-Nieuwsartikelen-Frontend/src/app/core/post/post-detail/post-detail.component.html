@@ -5,10 +5,12 @@
     <ul class="details-list">
       <li><strong class="label">Author:</strong> {{ authorName }}</li>
       <li>
-        <strong class="label">Created at:</strong> {{ post.createdAt | date : "dd/MM/yyyy - HH:mm" }}
+        <strong class="label">Created at:</strong>
+        {{ post.createdAt | date : "dd/MM/yyyy - HH:mm" }}
       </li>
       <li>
-        <strong class="label">Updated at:</strong> {{ post.updatedAt | date : "dd/MM/yyyy - HH:mm" }}
+        <strong class="label">Updated at:</strong>
+        {{ post.updatedAt | date : "dd/MM/yyyy - HH:mm" }}
       </li>
       <li><strong class="label">Category:</strong> {{ post.category }}</li>
       <li>
@@ -53,7 +55,7 @@
             <strong>{{ comment.author }}</strong>
             <span>{{ comment.createdAt | date : "dd/MM/yyyy HH:mm'" }}</span>
           </div>
-          <br>
+          <br />
           @if (editingCommentId === comment.id) {
           <div>
             <textarea

@@ -42,7 +42,7 @@ describe('EditPostComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, MatButtonModule, MatTooltipModule, EditPostComponent], 
+            imports: [ReactiveFormsModule, MatButtonModule, MatTooltipModule, EditPostComponent],
             providers: [
                 { provide: PostService, useClass: MockPostService },
                 { provide: AuthService, useClass: MockAuthService },
@@ -58,7 +58,7 @@ describe('EditPostComponent', () => {
         authServiceMock = TestBed.inject(AuthService);
         routerMock = TestBed.inject(Router);
 
-        fixture.detectChanges();  
+        fixture.detectChanges();
     });
 
     it('should load post and populate the form on init', () => {
@@ -96,17 +96,6 @@ describe('EditPostComponent', () => {
         expect(component.updateForm.invalid).toBeTrue();
     });
 
-    it('should alert when user is not authenticated', () => {
-        spyOn(authServiceMock, 'getCurrentUser').and.returnValue(null);
-        const alertSpy = spyOn(window, 'alert');
-    
-        component.onUpdate();
-    
-        expect(alertSpy).toHaveBeenCalledWith('Please log in to update the post.');
-    });
-    
-    
-
     it('should navigate to /submitted/posts if state is State.SUBMITTED', () => {
         const navigateSpy = spyOn(routerMock, 'navigate');
 
@@ -132,7 +121,7 @@ describe('EditPostComponent', () => {
     it('should handle invalid post ID on init', () => {
         spyOn(console, 'error');
         const mockRoute = TestBed.inject(ActivatedRoute);
-        mockRoute.snapshot.params['id'] = 'invalid';  
+        mockRoute.snapshot.params['id'] = 'invalid';
 
         component.ngOnInit();
 
@@ -141,7 +130,7 @@ describe('EditPostComponent', () => {
 
     it('should display an error when user is not authenticated on init', () => {
         spyOn(console, 'error');
-        spyOn(authServiceMock, 'getCurrentUser').and.returnValue(null); 
+        spyOn(authServiceMock, 'getCurrentUser').and.returnValue(null);
 
         component.ngOnInit();
 

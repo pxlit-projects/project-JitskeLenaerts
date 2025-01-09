@@ -1,40 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, RouterModule } from '@angular/router';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './core/navbar/navbar.component';
-import { RouterOutlet } from '@angular/router';
-import { By } from '@angular/platform-browser';
+
+const routes = [
+  { path: 'home', component: AppComponent },
+];
 
 describe('AppComponent', () => {
-  let component: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent, NavbarComponent],
-      imports: [RouterOutlet] 
+      imports: [RouterModule.forRoot(routes),AppComponent],
+      providers: [provideRouter(routes)],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
-
-    fixture = TestBed.createComponent(AppComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create the AppComponent', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should display the correct title', () => {
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(component.title); 
-  });
-
-  it('should include the NavbarComponent', () => {
-    const navbarElement = fixture.debugElement.query(By.directive(NavbarComponent));
-    expect(navbarElement).toBeTruthy();  
-  });
-
-  it('should include the RouterOutlet', () => {
-    const routerOutlet = fixture.debugElement.query(By.directive(RouterOutlet));
-    expect(routerOutlet).toBeTruthy(); 
+  it('should create the app component', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
   });
 });

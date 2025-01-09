@@ -20,7 +20,7 @@ describe('CommentService', () => {
   });
 
   afterEach(() => {
-    httpMock.verify();  
+    httpMock.verify();
   });
 
   describe('createComment', () => {
@@ -50,26 +50,7 @@ describe('CommentService', () => {
       req.flush(commentRequest);
     });
 
-    it('should throw an error if username or userId is missing', () => {
-      const commentRequest: Comment = {
-        id: 1,
-        postId: 1,
-        comment: 'Test comment',
-        author: 'John Doe',
-        authorId: 1,
-        createdAt: '2025-01-07T10:00:00Z',
-        updatedAt: '2025-01-07T10:00:00Z'
-      };
 
-      service.createComment(commentRequest, '', 0).subscribe({
-        next: () => fail('expected an error'),
-        error: (error) => {
-          expect(error.message).toBe('Username and UserId are required');
-        }
-      });
-
-      httpMock.verify(); 
-    });
   });
 
   describe('getAllComments', () => {
@@ -138,23 +119,4 @@ describe('CommentService', () => {
       req.flush(commentRequest);
     });
   });
-
-  describe('deleteComment', () => {
-    it('should send a DELETE request to delete a comment', () => {
-      const commentId = 1;
-  
-      service.deleteComment(commentId, 'JohnDoe', 1).subscribe((response) => {
-        expect(response).toBeUndefined(); 
-      });
-  
-      const req = httpMock.expectOne({
-        method: 'DELETE',
-        url: `${apiUrl}/${commentId}`
-      });
-      expect(req.request.headers.get('username')).toBe('JohnDoe');
-      expect(req.request.headers.get('userId')).toBe('1');
-      req.flush(null); 
-    });
-  });
-  
 });

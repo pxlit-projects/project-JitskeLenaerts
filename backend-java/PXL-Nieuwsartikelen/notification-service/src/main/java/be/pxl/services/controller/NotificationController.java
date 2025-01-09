@@ -1,7 +1,7 @@
 package be.pxl.services.controller;
 
 import be.pxl.services.domain.Notification;
-import be.pxl.services.service.NotificationService;
+import be.pxl.services.services.NotificationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

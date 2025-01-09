@@ -4,138 +4,107 @@ import { PostService } from '../../../shared/services/post.service';
 import { AuthService } from '../../../shared/services/auth.service';
 import { of, throwError } from 'rxjs';
 import { Post } from '../../../shared/models/post.model';
-import { User } from '../../../shared/models/user.model';
 import { State } from '../../../shared/models/state.enum';
 import { Filter } from '../../../shared/models/filter.model';
+import { User } from '../../../shared/models/user.model';
+import { provideRouter } from '@angular/router';
 
 describe('PostListApprovedComponent', () => {
   let component: PostListApprovedComponent;
   let fixture: ComponentFixture<PostListApprovedComponent>;
-  let mockPostService: jasmine.SpyObj<PostService>;
-  let mockAuthService: jasmine.SpyObj<AuthService>;
+  let postService: jasmine.SpyObj<PostService>;
+  let authService: jasmine.SpyObj<AuthService>;
 
-  const mockUser: User = { 
-    id: 1, 
-    username: 'testuser', 
-    password: 'password', 
-    role: 'user', 
-    authorName: 'Test User' 
-  };
   const mockPosts: Post[] = [
-    { 
-      id: 1, 
-      title: 'Post 1', 
-      content: 'Content 1', 
-      authorId: 1, 
-      author: 'Test User', 
-      category: 'Category 1', 
-      state: State.APPROVED, 
-      createdAt: new Date(), 
-      updatedAt: new Date() 
-    },
-    { 
-      id: 2, 
-      title: 'Post 2', 
-      content: 'Content 2', 
-      authorId: 1, 
-      author: 'Test User', 
-      category: 'Category 2', 
-      state: State.APPROVED, 
-      createdAt: new Date(), 
-      updatedAt: new Date() 
-    }
+    { id: 1, title: 'Test Post 1', content: 'Content of post 1', state: State.APPROVED, authorId: 1, author: 'testuser', category: 'test', createdAt: new Date('2021-01-01'), updatedAt: new Date('2021-01-01') },
+    { id: 2, title: 'Test Post 2', content: 'Content of post 2', state: State.APPROVED, authorId: 1, author: 'testuser', category: 'test', createdAt: new Date('2021-01-01'), updatedAt: new Date('2021-01-01') },
   ];
 
-  beforeEach(() => {
-    mockPostService = jasmine.createSpyObj('PostService', ['getPostsByState', 'filterInPostsByState']);
-    mockAuthService = jasmine.createSpyObj('AuthService', ['getCurrentUser', 'getCurrentUserRole']);
+  const mockUser: User = { username: 'testuser', id: 1, role: 'admin', authorName: 'Test User',password:'test' };
 
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    const postServiceSpy = jasmine.createSpyObj('PostService', ['getPostsByState', 'filterInPostsByState']);
+    const authServiceSpy = jasmine.createSpyObj('AuthService', ['getCurrentUser', 'getCurrentUserRole', 'getUserById']);
+
+    authServiceSpy.getUserById.and.callFake((userId: number) => {
+      return mockUser.id === userId ? mockUser : null;
+    });
+
+    await TestBed.configureTestingModule({
       imports: [PostListApprovedComponent],
       providers: [
-        { provide: PostService, useValue: mockPostService },
-        { provide: AuthService, useValue: mockAuthService }
-      ]
+        { provide: PostService, useValue: postServiceSpy },
+        { provide: AuthService, useValue: authServiceSpy },
+        provideRouter([]),
+      ],
     }).compileComponents();
+
+    postService = TestBed.inject(PostService) as jasmine.SpyObj<PostService>;
+    authService = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
+
+    authService.getCurrentUser.and.returnValue(mockUser);
+    authService.getCurrentUserRole.and.returnValue('admin');
+    postService.getPostsByState.and.returnValue(of(mockPosts));
 
     fixture = TestBed.createComponent(PostListApprovedComponent);
     component = fixture.componentInstance;
-    
-    mockAuthService.getCurrentUser.and.returnValue(mockUser);  
-    mockAuthService.getCurrentUserRole.and.returnValue(mockUser.role);
-
     fixture.detectChanges();
   });
 
-  describe('ngOnInit', () => {
-    it('should initialize user and load approved posts', () => {
-      spyOn(component, 'loadApprovedPosts'); 
 
-      component.ngOnInit();
-
-      expect(component.user).toBe(mockUser); 
-      expect(component.userRole).toBe(mockUser.role); 
-      expect(component.loadApprovedPosts).toHaveBeenCalled(); 
-    });
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
   });
 
-  describe('loadApprovedPosts', () => {
-    it('should load posts for approved state', () => {
-      mockPostService.getPostsByState.and.returnValue(of(mockPosts));
-
-      component.loadApprovedPosts(); 
-
-      expect(mockPostService.getPostsByState).toHaveBeenCalledWith(State.APPROVED, mockUser.username, mockUser.id);
-      expect(component.approvedPosts.length).toBe(2); 
-      expect(component.approvedPosts).toEqual(mockPosts); 
-    });
-
-    it('should log an error if no user is found', () => {
-      mockAuthService.getCurrentUser.and.returnValue(null); 
-
-      const consoleErrorSpy = spyOn(console, 'error'); 
-
-      component.loadApprovedPosts(); 
-
-      expect(consoleErrorSpy).toHaveBeenCalledWith('No user found.'); 
-    });
+  it('should load approved posts on init', () => {
+    expect(postService.getPostsByState).toHaveBeenCalledTimes(1);
+    expect(postService.getPostsByState).toHaveBeenCalledWith(State.APPROVED, mockUser.username, mockUser.id);
+    expect(component.approvedPosts).toEqual(mockPosts);
   });
 
-  describe('handleFilter', () => {
-    it('should filter posts based on the filter and state', () => {
-      const filter: Filter = {
-        category: 'Category 1',    
-        title: 'Test Title',       
-        author: 'Test User',       
-        content: 'Test content',   
-        createdAt: new Date()      
-      };
-  
-      mockPostService.filterInPostsByState.and.returnValue(of([mockPosts[0]])); 
-  
-      component.handleFilter(filter); 
-  
-      expect(mockPostService.filterInPostsByState).toHaveBeenCalledWith(filter, State.APPROVED, mockUser.username, mockUser.id);
-      expect(component.approvedPosts.length).toBe(1); 
-      expect(component.approvedPosts[0]).toEqual(mockPosts[0]); 
-    });
-  
-    it('should log an error if filtering fails', () => {
-      const filter: Filter = {
-        category: 'Category 1',
-        title: 'Test Title',
-        author: 'Test User',
-        content: 'Test content',
-        createdAt: new Date()
-      };
-  
-      mockPostService.filterInPostsByState.and.returnValue(throwError(() => new Error('Filter failed'))); 
-  
-      const consoleErrorSpy = spyOn(console, 'error');
-  
-      component.handleFilter(filter); 
-  
-      expect(consoleErrorSpy).toHaveBeenCalledWith('Error filtering posts:', jasmine.any(Error)); 
-    });
+
+  it('should handle filter correctly', () => {
+    const filter: Filter = { title: 'Test', author: 'Test', content: 'Test', category: 'All', createdAt: null };
+
+    postService.filterInPostsByState.and.returnValue(of(mockPosts));
+
+    component.handleFilter(filter);
+    expect(postService.filterInPostsByState).toHaveBeenCalledOnceWith(filter, State.APPROVED, mockUser.username, mockUser.id);
+    expect(component.approvedPosts).toEqual(mockPosts);
+  });
+
+  it('should handle error when filtering posts', () => {
+    const filter: Filter = { title: 'Test', author: 'Test', content: 'Test', category: 'All', createdAt: null };
+
+    postService.filterInPostsByState.and.returnValue(throwError(() => new Error('Error occurred')));
+
+    spyOn(console, 'error');
+    component.handleFilter(filter);
+
+    expect(console.error).toHaveBeenCalledWith('Error filtering posts:', jasmine.any(Error));
+
+    const errorArgs = (console.error as jasmine.Spy).calls.mostRecent().args;
+    expect(errorArgs[1].message).toBe('Error occurred');
+  });
+
+
+  it('should handle error when loading posts', () => {
+    postService.getPostsByState.and.returnValue(throwError(() => new Error('Error occurred')));
+    spyOn(console, 'error');
+
+    component.ngOnInit();
+
+    expect(console.error).toHaveBeenCalledWith('Error fetching approved posts:', jasmine.any(Error));
+
+    const errorArgs = (console.error as jasmine.Spy).calls.mostRecent().args;
+    expect(errorArgs[1].message).toBe('Error occurred');
+  });
+
+
+  it('should log an error when no user is found', () => {
+    authService.getCurrentUser.and.returnValue(null);
+    spyOn(console, 'error');
+    component.ngOnInit();
+    expect(console.error).toHaveBeenCalledWith('No user found.');
   });
 });

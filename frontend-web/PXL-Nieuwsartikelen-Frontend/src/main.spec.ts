@@ -1,31 +1,28 @@
+/// <reference types="@angular/localize" />
+
 import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
 import { appConfig } from './app/app.config';
+import { AppComponent } from './app/app.component';
 
-describe('Application Bootstrapping', () => {
-  let consoleErrorSpy: jasmine.Spy;
-
+describe('Bootstrap Application', () => {
   beforeEach(() => {
-    consoleErrorSpy = spyOn(console, 'error');
+    const appRoot = document.createElement('app-root');
+    document.body.appendChild(appRoot);
   });
 
-  it('should call bootstrapApplication with the AppComponent and appConfig', async () => {
-    const bootstrapApplicationSpy = spyOn(globalThis, 'bootstrapApplication').and.callThrough();
-    
-    await bootstrapApplication(AppComponent, appConfig);
-
-    expect(bootstrapApplicationSpy).toHaveBeenCalledWith(AppComponent, appConfig);
+  afterEach(() => {
+    document.body.querySelector('app-root')?.remove();
   });
 
-  it('should handle errors during bootstrapping', async () => {
-    const mockError = new Error('Bootstrap failed');
-
-    spyOn(globalThis, 'bootstrapApplication').and.returnValue(Promise.reject(mockError));
+  it('should bootstrap the application without errors', async () => {
+    const consoleErrorSpy = spyOn(console, 'error');
 
     try {
       await bootstrapApplication(AppComponent, appConfig);
+      expect(consoleErrorSpy).not.toHaveBeenCalled();
     } catch (err) {
-      expect(consoleErrorSpy).toHaveBeenCalledWith(mockError);
+      fail(`Application bootstrap failed with error: ${err}`);
     }
   });
 });
+

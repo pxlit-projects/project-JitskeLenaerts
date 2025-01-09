@@ -2,7 +2,7 @@ package be.pxl.controller;
 
 import be.pxl.services.controller.NotificationController;
 import be.pxl.services.domain.Notification;
-import be.pxl.services.service.NotificationService;
+import be.pxl.services.services.NotificationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

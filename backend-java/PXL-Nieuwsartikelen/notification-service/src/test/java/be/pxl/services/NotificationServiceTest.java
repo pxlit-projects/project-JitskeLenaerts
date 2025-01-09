@@ -1,7 +1,7 @@
 package be.pxl.services;
 
 import be.pxl.services.domain.Notification;
-import be.pxl.services.service.NotificationService;
+import be.pxl.services.services.NotificationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

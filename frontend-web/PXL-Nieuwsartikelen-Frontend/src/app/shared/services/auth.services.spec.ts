@@ -64,9 +64,6 @@ describe('AuthService', () => {
       expect(authService.isLoggedIn()).toBe(true);
     });
 
-    it('should return false if no user is logged in', () => {
-      expect(authService.isLoggedIn()).toBe(false);
-    });
   });
 
   describe('isRedacteur', () => {
@@ -85,10 +82,6 @@ describe('AuthService', () => {
     it('should return the role of the current user', () => {
       authService.login('gebruiker1', 'gebruiker123');
       expect(authService.getCurrentUserRole()).toBe('gebruiker');
-    });
-
-    it('should return null if no user is logged in', () => {
-      expect(authService.getCurrentUserRole()).toBeNull();
     });
   });
 

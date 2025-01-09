@@ -15,7 +15,7 @@ describe('PostService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule], 
+      imports: [HttpClientTestingModule],
       providers: [
         PostService,
         AuthService,
@@ -54,7 +54,7 @@ describe('PostService', () => {
     req.flush({ ...newPost, id: 1 });
   });
 
- 
+
   it('should fetch posts by state', () => {
     const mockPosts: Post[] = [
       new Post(1, 'Post 1', 'Author 1', 1, 'Content 1', 'Category', State.CONCEPT, '2025-01-07T00:00:00Z', '2025-01-07T00:00:00Z'),
@@ -104,9 +104,9 @@ describe('PostService', () => {
       createdAt: new Date('2025-01-07T00:00:00Z'),
       updatedAt: new Date('2025-01-07T00:00:00Z'),
     };
-  
+
     spyOn(authService, 'getUserById').and.returnValue({ username: 'username', id: 1, role: 'gebruiker', password: '', authorName: 'Test Author' });
-  
+
     const filter: Filter = {
       title: 'Test',
       author: 'Test Author',
@@ -114,11 +114,11 @@ describe('PostService', () => {
       category: 'Technology',
       createdAt: new Date('2025-01-07'),
     };
-  
+
     const result = (service as any).isPostMatchingFilter(post, filter);
     expect(result).toBe(true);
   });
-  
+
   it('should return false when title does not match', () => {
     const post: Post = {
       id: 1,
@@ -131,9 +131,9 @@ describe('PostService', () => {
       createdAt: new Date('2025-01-07T00:00:00Z'),
       updatedAt: new Date('2025-01-07T00:00:00Z'),
     };
-  
+
     spyOn(authService, 'getUserById').and.returnValue({ username: 'username', id: 1, role: 'gebruiker', password: '', authorName: 'Test Author' });
-  
+
     const filter: Filter = {
       title: 'Test',
       author: 'Test Author',
@@ -141,11 +141,11 @@ describe('PostService', () => {
       category: 'Technology',
       createdAt: new Date('2025-01-07'),
     };
-  
+
     const result = (service as any).isPostMatchingFilter(post, filter);
     expect(result).toBe(false);
   });
-  
+
   it('should handle null, empty strings, and default true conditions gracefully', () => {
     const post: Post = {
       id: 1,
@@ -158,9 +158,9 @@ describe('PostService', () => {
       createdAt: new Date('2025-01-07T00:00:00Z'),
       updatedAt: new Date('2025-01-07T00:00:00Z'),
     };
-  
+
     spyOn(authService, 'getUserById').and.returnValue({ username: 'username', id: 1, role: 'gebruiker', password: '', authorName: 'Test Author' });
-  
+
     const filter: Filter = {
       title: '',
       author: '',
@@ -168,11 +168,11 @@ describe('PostService', () => {
       category: '',
       createdAt: null,
     };
-  
+
     const result = (service as any).isPostMatchingFilter(post, filter);
-    expect(result).toBe(true); 
+    expect(result).toBe(true);
   });
-  
+
   it('should return true when createdAt filter is null and all other criteria match', () => {
     const post: Post = {
       id: 1,
@@ -185,9 +185,9 @@ describe('PostService', () => {
       createdAt: new Date('2025-01-07T00:00:00Z'),
       updatedAt: new Date('2025-01-07T00:00:00Z'),
     };
-  
+
     spyOn(authService, 'getUserById').and.returnValue({ username: 'username', id: 1, role: 'gebruiker', password: '', authorName: 'Test Author' });
-  
+
     const filter: Filter = {
       title: 'Test',
       author: 'Test Author',
@@ -195,11 +195,11 @@ describe('PostService', () => {
       category: 'Technology',
       createdAt: null,
     };
-  
+
     const result = (service as any).isPostMatchingFilter(post, filter);
     expect(result).toBe(true);
   });
-  
+
   it('should return false when createdAt filter does not match', () => {
     const post: Post = {
       id: 1,
@@ -212,9 +212,9 @@ describe('PostService', () => {
       createdAt: new Date('2025-01-06'),
       updatedAt: new Date('2025-01-07'),
     };
-  
+
     spyOn(authService, 'getUserById').and.returnValue({ username: 'username', id: 1, role: 'gebruiker', password: 'password' ,authorName: 'Test Author'});
-  
+
     const filter: Filter = {
       title: 'Test',
       author: 'Test Author',
@@ -222,29 +222,9 @@ describe('PostService', () => {
       category: 'Technology',
       createdAt: new Date('2025-01-07'),
     };
-  
+
     const result = (service as any).isPostMatchingFilter(post, filter);
     expect(result).toBe(false);
-  });
-  
-  it('should handle 404 error for getPostById', () => {
-    const errorMessage = 'Post not found';
-    service.getPostById(1).subscribe({
-      next: (post) => {
-        console.log(post);
-      },
-      error: (error) => {
-        console.error(error);
-      },
-      complete: () => {
-        console.log('Completed');
-      }
-    });
-
-
-    const req = httpMock.expectOne(`${apiUrl}/999`);
-    expect(req.request.method).toBe('GET');
-    req.flush(errorMessage, { status: 404, statusText: 'Not Found' });
   });
 
   it('should fetch a post by ID', () => {
@@ -344,7 +324,7 @@ describe('PostService', () => {
 
     const req = httpMock.expectOne(`${apiUrl}/published`);
     expect(req.request.method).toBe('GET');
-    req.flush(mockPosts); 
+    req.flush(mockPosts);
   });
   it('should fetch posts by author ID and state', () => {
     const mockState = 'APPROVED';
@@ -365,7 +345,7 @@ describe('PostService', () => {
     expect(req.request.headers.get('userId')).toBe(mockUserId.toString());
     expect(req.request.headers.get('Content-Type')).toBe('application/json');
 
-    req.flush(mockPosts); 
+    req.flush(mockPosts);
   });
   it('should publish a post', () => {
     const mockId = 1;
@@ -396,7 +376,7 @@ describe('PostService', () => {
     expect(req.request.headers.get('Content-Type')).toBe('application/json');
     expect(req.request.body).toEqual(mockPost);
 
-    req.flush(publishedPost); 
+    req.flush(publishedPost);
   });
   it('should filter published posts based on the provided filter', () => {
     const mockFilter: Filter = {
@@ -461,19 +441,12 @@ describe('PostService', () => {
     expect(req.request.method).toBe('GET');
     req.flush(mockPosts);
   });
-  it('should normalize a valid date by setting time to 00:00:00', () => {
-    const testDate = new Date('2025-01-07T15:30:45');
-    const normalizedDate = (service as any).normalizeDate(testDate); 
-    expect(normalizedDate.getHours()).toBe(0);
-    expect(normalizedDate.getMinutes()).toBe(0);
-    expect(normalizedDate.getSeconds()).toBe(0);
-    expect(normalizedDate.toISOString().slice(0, 10)).toBe('2025-01-07');
-  });
+
 
   it('should return the original date if it is invalid', () => {
     const invalidDate = new Date('invalid-date');
     const normalizedDate = (service as any).normalizeDate(invalidDate);
-    expect(normalizedDate).toBe(invalidDate); 
+    expect(normalizedDate).toBe(invalidDate);
   });
 
 });

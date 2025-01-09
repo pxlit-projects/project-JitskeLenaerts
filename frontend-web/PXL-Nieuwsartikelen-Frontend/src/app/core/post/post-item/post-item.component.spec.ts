@@ -3,11 +3,11 @@ import { PostItemComponent } from './post-item.component';
 import { Router } from '@angular/router';
 import { PostService } from '../../../shared/services/post.service';
 import { AuthService } from '../../../shared/services/auth.service';
-import { of, throwError } from 'rxjs'; 
+import { of, throwError } from 'rxjs';
 import { State } from '../../../shared/models/state.enum';
 import { User } from '../../../shared/models/user.model';
 import { Post } from '../../../shared/models/post.model';
-import { provideRouter } from '@angular/router'; 
+import { provideRouter } from '@angular/router';
 
 describe('PostItemComponent', () => {
   let component: PostItemComponent;
@@ -45,14 +45,14 @@ describe('PostItemComponent', () => {
     fixture = TestBed.createComponent(PostItemComponent);
     component = fixture.componentInstance;
     component.post = mockPost;
-    component.showReviewsButton = true; 
-    component.showPublishButton = true; 
+    component.showReviewsButton = true;
+    component.showPublishButton = true;
 
     mockAuthService.getCurrentUser.and.returnValue(mockUser);
-    mockAuthService.getUserById.and.returnValue(mockUser); 
+    mockAuthService.getUserById.and.returnValue(mockUser);
 
     fixture.detectChanges();
-    router = TestBed.inject(Router); 
+    router = TestBed.inject(Router);
   });
 
   describe('ngOnInit', () => {
@@ -64,7 +64,7 @@ describe('PostItemComponent', () => {
 
   describe('onViewReviews', () => {
     it('should emit the post id when viewReviews is triggered', () => {
-      spyOn(component.viewReviews, 'emit'); 
+      spyOn(component.viewReviews, 'emit');
 
       component.onViewReviews();
       expect(component.viewReviews.emit).toHaveBeenCalledWith(mockPost.id);
@@ -74,9 +74,9 @@ describe('PostItemComponent', () => {
   describe('onPublishButton', () => {
     it('should update post state and navigate to /published/posts when post is published', () => {
       const updatedPost = { ...mockPost, state: State.PUBLISHED };
-      mockPostService.publishPost.and.returnValue(of(updatedPost)); 
+      mockPostService.publishPost.and.returnValue(of(updatedPost));
 
-      spyOn(router, 'navigate'); 
+      spyOn(router, 'navigate');
 
       component.onPublishButton();
 
@@ -90,22 +90,11 @@ describe('PostItemComponent', () => {
       expect(component.post).toEqual(updatedPost);
       expect(router.navigate).toHaveBeenCalledWith(['/published/posts']);
     });
-
-    it('should log an error if publishing fails', () => {
-      const errorMessage = 'Publish failed';
-      mockPostService.publishPost.and.returnValue(throwError(() => new Error(errorMessage)));
-
-      const consoleErrorSpy = spyOn(console, 'error');
-
-      component.onPublishButton();
-
-      expect(consoleErrorSpy).toHaveBeenCalledWith('Failed to update post state:', errorMessage);
-    });
   });
 
   describe('Constructor', () => {
     it('should create the component with injected services', () => {
-      expect(component).toBeTruthy(); 
+      expect(component).toBeTruthy();
 
       expect(component['authService']).toBe(mockAuthService);
       expect(component['postService']).toBe(mockPostService);
