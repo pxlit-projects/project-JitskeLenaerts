@@ -40,7 +40,7 @@ Elke microservice starten in deze volgorde:
 
 ```powershell
 npm install
-ng serve -o
+ng serve -o / open docker conatiner genaamd 'front-end' en klik op poort 9000
 ```
 
 * Testen:
