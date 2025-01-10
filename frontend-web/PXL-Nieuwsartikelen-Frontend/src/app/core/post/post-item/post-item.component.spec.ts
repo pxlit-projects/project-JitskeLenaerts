@@ -3,7 +3,7 @@ import { PostItemComponent } from './post-item.component';
 import { Router } from '@angular/router';
 import { PostService } from '../../../shared/services/post.service';
 import { AuthService } from '../../../shared/services/auth.service';
-import { of, throwError } from 'rxjs';
+import { of } from 'rxjs';
 import { State } from '../../../shared/models/state.enum';
 import { User } from '../../../shared/models/user.model';
 import { Post } from '../../../shared/models/post.model';

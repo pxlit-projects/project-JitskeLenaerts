@@ -53,7 +53,7 @@ describe('ReviewService', () => {
     const mockPostId = 2;
 
     service.approvePost(mockPostId).subscribe(() => {
-      expect().nothing(); // Expect no error
+      expect().nothing(); 
     });
 
     const req = httpMock.expectOne(`${mockApiUrl}/${mockPostId}/approve`);
@@ -72,7 +72,7 @@ describe('ReviewService', () => {
     };
 
     service.rejectPost(mockPostId, mockReviewer, mockReviewerId, mockRejectRequest).subscribe(() => {
-      expect().nothing(); // Expect no error
+      expect().nothing();
     });
 
     const req = httpMock.expectOne(`${mockApiUrl}/${mockPostId}/reject`);

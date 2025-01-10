@@ -6,7 +6,6 @@ import { AuthService } from '../../../shared/services/auth.service';
 import { of, throwError } from 'rxjs';
 import { Post } from '../../../shared/models/post.model';
 import { Review } from '../../../shared/models/review.model';
-import { Filter } from '../../../shared/models/filter.model';
 import { User } from '../../../shared/models/user.model';
 import { PostItemComponent } from '../post-item/post-item.component';
 import { FilterComponent } from '../filter/filter.component';

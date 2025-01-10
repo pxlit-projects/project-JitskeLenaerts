@@ -6,7 +6,6 @@ import { PostItemComponent } from "../post-item/post-item.component";
 import { FilterComponent } from "../filter/filter.component";
 import { User } from '../../../shared/models/user.model';
 import { AuthService } from '../../../shared/services/auth.service';
-import { State } from '../../../shared/models/state.enum';
 
 @Component({
   selector: 'app-post-list-published',

@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { PostService } from './post.service';
 import { Post } from '../models/post.model';
 import { State } from '../models/state.enum';
 import { AuthService } from './auth.service';
 import { environment } from '../../../environments/environment.development';
 import { Filter } from '../models/filter.model';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('PostService', () => {
   let service: PostService;
@@ -15,18 +16,17 @@ describe('PostService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
         PostService,
         AuthService,
       ],
     });
-
     service = TestBed.inject(PostService);
     httpMock = TestBed.inject(HttpTestingController);
     authService = TestBed.inject(AuthService);
   });
-
   afterEach(() => {
     httpMock.verify();
   });
