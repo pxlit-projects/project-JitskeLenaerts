@@ -283,3 +283,92 @@
 2025-01-09T17:33:57.041+01:00  INFO 20980 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 14ms
 2025-01-09T17:34:57.042+01:00  INFO 20980 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
 2025-01-09T17:35:57.049+01:00  INFO 20980 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 6ms
+2025-01-10T16:38:51.605+01:00  INFO 27376 --- [discovery-service] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8088/
+2025-01-10T16:38:51.605+01:00  INFO 27376 --- [discovery-service] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=discovery-service, profiles=[default], label=null, version=null, state=null
+2025-01-10T16:38:52.150+01:00  INFO 27376 --- [discovery-service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=bcfef949-d40b-3f26-a66f-1f49735c1ee1
+2025-01-10T16:38:52.173+01:00  WARN 27376 --- [discovery-service] [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2025-01-10T16:38:52.174+01:00  WARN 27376 --- [discovery-service] [main] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2025-01-10T16:38:52.282+01:00  INFO 27376 --- [discovery-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8061 (http)
+2025-01-10T16:38:52.289+01:00  INFO 27376 --- [discovery-service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-10T16:38:52.289+01:00  INFO 27376 --- [discovery-service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2025-01-10T16:38:52.321+01:00  INFO 27376 --- [discovery-service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-10T16:38:52.321+01:00  INFO 27376 --- [discovery-service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 715 ms
+2025-01-10T16:38:52.796+01:00  INFO 27376 --- [discovery-service] [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2025-01-10T16:38:52.796+01:00  INFO 27376 --- [discovery-service] [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2025-01-10T16:38:52.897+01:00  INFO 27376 --- [discovery-service] [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2025-01-10T16:38:52.897+01:00  INFO 27376 --- [discovery-service] [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2025-01-10T16:38:53.367+01:00  WARN 27376 --- [discovery-service] [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-01-10T16:38:53.378+01:00  INFO 27376 --- [discovery-service] [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2025-01-10T16:38:53.390+01:00  INFO 27376 --- [discovery-service] [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2025-01-10T16:38:53.390+01:00  INFO 27376 --- [discovery-service] [main] com.netflix.discovery.DiscoveryClient    : Client configured to neither register nor query for data.
+2025-01-10T16:38:53.391+01:00  INFO 27376 --- [discovery-service] [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1736523533390 with initial instances count: 0
+2025-01-10T16:38:53.413+01:00  INFO 27376 --- [discovery-service] [main] c.n.eureka.DefaultEurekaServerContext    : Initializing ...
+2025-01-10T16:38:53.414+01:00  WARN 27376 --- [discovery-service] [main] c.n.eureka.cluster.PeerEurekaNodes       : The replica size seems to be empty. Check the route 53 DNS Registry
+2025-01-10T16:38:53.421+01:00  INFO 27376 --- [discovery-service] [main] c.n.e.registry.AbstractInstanceRegistry  : Finished initializing remote region registries. All known remote regions: []
+2025-01-10T16:38:53.421+01:00  INFO 27376 --- [discovery-service] [main] c.n.eureka.DefaultEurekaServerContext    : Initialized
+2025-01-10T16:38:53.426+01:00  INFO 27376 --- [discovery-service] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-01-10T16:38:53.461+01:00  INFO 27376 --- [discovery-service] [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application DISCOVERY-SERVICE with eureka with status UP
+2025-01-10T16:38:53.467+01:00  INFO 27376 --- [discovery-service] [Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : isAws returned false
+2025-01-10T16:38:53.467+01:00  INFO 27376 --- [discovery-service] [Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : Initialized server context
+2025-01-10T16:38:53.467+01:00  INFO 27376 --- [discovery-service] [Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Got 1 instances from neighboring DS node
+2025-01-10T16:38:53.467+01:00  INFO 27376 --- [discovery-service] [Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Renew threshold is: 1
+2025-01-10T16:38:53.467+01:00  INFO 27376 --- [discovery-service] [Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Changing status to UP
+2025-01-10T16:38:53.469+01:00  INFO 27376 --- [discovery-service] [Thread-9] e.s.EurekaServerInitializerConfiguration : Started Eureka Server
+2025-01-10T16:38:53.470+01:00  INFO 27376 --- [discovery-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8061 (http) with context path '/'
+2025-01-10T16:38:53.470+01:00  INFO 27376 --- [discovery-service] [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8061
+2025-01-10T16:38:53.987+01:00  INFO 27376 --- [discovery-service] [RMI TCP Connection(1)-172.25.16.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-10T16:38:53.987+01:00  INFO 27376 --- [discovery-service] [RMI TCP Connection(1)-172.25.16.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-10T16:38:53.988+01:00  INFO 27376 --- [discovery-service] [RMI TCP Connection(1)-172.25.16.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-01-10T16:38:59.954+01:00  INFO 27376 --- [discovery-service] [http-nio-8061-exec-2] c.n.e.registry.AbstractInstanceRegistry  : Registered instance GATEWAY-SERVICE/host.docker.internal:gateway-service:8085 with status UP (replication=false)
+2025-01-10T16:39:05.811+01:00  INFO 27376 --- [discovery-service] [http-nio-8061-exec-4] c.n.e.registry.AbstractInstanceRegistry  : Registered instance NOTIFICATION-SERVICE/host.docker.internal:notification-service:8084 with status UP (replication=false)
+2025-01-10T16:39:16.695+01:00  INFO 27376 --- [discovery-service] [http-nio-8061-exec-6] c.n.e.registry.AbstractInstanceRegistry  : Registered instance POST-SERVICE/host.docker.internal:post-service:8081 with status UP (replication=false)
+2025-01-10T16:39:24.234+01:00  INFO 27376 --- [discovery-service] [http-nio-8061-exec-8] c.n.e.registry.AbstractInstanceRegistry  : Registered instance REVIEW-SERVICE/host.docker.internal:review-service:8082 with status UP (replication=false)
+2025-01-10T16:39:29.551+01:00  INFO 27376 --- [discovery-service] [http-nio-8061-exec-10] c.n.e.registry.AbstractInstanceRegistry  : Registered instance COMMENT-SERVICE/host.docker.internal:comment-service:8083 with status UP (replication=false)
+2025-01-10T16:39:53.479+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2025-01-10T16:40:53.483+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2025-01-10T16:41:53.490+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 6ms
+2025-01-10T16:42:53.492+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2025-01-10T16:43:53.505+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 13ms
+2025-01-10T16:44:53.512+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 6ms
+2025-01-10T16:45:53.523+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 12ms
+2025-01-10T16:46:53.533+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 9ms
+2025-01-10T16:47:53.538+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 4ms
+2025-01-10T16:48:53.416+01:00  WARN 27376 --- [discovery-service] [Eureka-PeerNodesUpdater] c.n.eureka.cluster.PeerEurekaNodes       : The replica size seems to be empty. Check the route 53 DNS Registry
+2025-01-10T16:48:53.541+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2025-01-10T16:49:53.543+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2025-01-10T16:50:53.543+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2025-01-10T16:51:53.545+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2025-01-10T16:52:53.555+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 10ms
+2025-01-10T16:53:53.431+01:00  INFO 27376 --- [discovery-service] [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 10
+2025-01-10T16:53:53.557+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2025-01-10T16:54:53.566+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 8ms
+2025-01-10T16:55:53.580+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 14ms
+2025-01-10T16:56:53.584+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2025-01-10T16:57:53.584+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2025-01-10T16:58:53.425+01:00  WARN 27376 --- [discovery-service] [Eureka-PeerNodesUpdater] c.n.eureka.cluster.PeerEurekaNodes       : The replica size seems to be empty. Check the route 53 DNS Registry
+2025-01-10T16:58:53.599+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 14ms
+2025-01-10T16:59:53.599+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2025-01-10T17:00:53.611+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 11ms
+2025-01-10T17:01:53.614+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2025-01-10T17:02:53.617+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2025-01-10T17:03:53.629+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 11ms
+2025-01-10T17:04:53.633+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 4ms
+2025-01-10T17:05:53.634+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2025-01-10T17:06:53.645+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 10ms
+2025-01-10T17:07:53.647+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2025-01-10T17:08:53.441+01:00  INFO 27376 --- [discovery-service] [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 10
+2025-01-10T17:08:53.441+01:00  WARN 27376 --- [discovery-service] [Eureka-PeerNodesUpdater] c.n.eureka.cluster.PeerEurekaNodes       : The replica size seems to be empty. Check the route 53 DNS Registry
+2025-01-10T17:08:53.658+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 11ms
+2025-01-10T17:09:53.660+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2025-01-10T17:10:53.678+01:00  INFO 27376 --- [discovery-service] [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 18ms
+2025-01-10T17:10:59.015+01:00  INFO 27376 --- [discovery-service] [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application DISCOVERY-SERVICE with eureka with status DOWN
+2025-01-10T17:10:59.017+01:00  INFO 27376 --- [discovery-service] [http-nio-8061-exec-1] c.n.e.registry.AbstractInstanceRegistry  : Registered instance POST-SERVICE/host.docker.internal:post-service:8081 with status DOWN (replication=false)
+2025-01-10T17:10:59.017+01:00  INFO 27376 --- [discovery-service] [http-nio-8061-exec-5] c.n.e.registry.AbstractInstanceRegistry  : Registered instance GATEWAY-SERVICE/host.docker.internal:gateway-service:8085 with status DOWN (replication=false)
+2025-01-10T17:10:59.023+01:00  INFO 27376 --- [discovery-service] [SpringApplicationShutdownHook] o.s.c.n.e.server.EurekaServerBootstrap   : Shutting down Eureka Server..
+2025-01-10T17:10:59.023+01:00  INFO 27376 --- [discovery-service] [SpringApplicationShutdownHook] c.n.eureka.DefaultEurekaServerContext    : Shutting down ...
+2025-01-10T17:10:59.023+01:00  INFO 27376 --- [discovery-service] [SpringApplicationShutdownHook] c.n.eureka.DefaultEurekaServerContext    : Shut down
+2025-01-10T17:10:59.024+01:00  INFO 27376 --- [discovery-service] [SpringApplicationShutdownHook] o.s.c.n.e.server.EurekaServerBootstrap   : Eureka Service is now shutdown...
+2025-01-10T17:10:59.024+01:00  INFO 27376 --- [discovery-service] [SpringApplicationShutdownHook] c.n.eureka.DefaultEurekaServerContext    : Shutting down ...
+2025-01-10T17:10:59.024+01:00  INFO 27376 --- [discovery-service] [SpringApplicationShutdownHook] c.n.eureka.DefaultEurekaServerContext    : Shut down
+2025-01-10T17:10:59.028+01:00  INFO 27376 --- [discovery-service] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2025-01-10T17:10:59.028+01:00  INFO 27376 --- [discovery-service] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient

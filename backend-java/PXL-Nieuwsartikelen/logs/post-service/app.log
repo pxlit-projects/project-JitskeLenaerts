@@ -2,3 +2,7 @@
 2025-01-09T14:08:29.917+0100 DEBUG              [main]                         be.pxl.services.PostServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
 2025-01-09T14:08:29.918+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
 2025-01-09T14:08:48.145+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - Started PostServiceApplication in 20.489 seconds (process running for 24.155)
+2025-01-10T16:39:13.915+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - Starting PostServiceApplication using Java 22.0.2 with PID 19628 (C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen\post-service\target\classes started by jitsk in C:\Users\jitsk\Documents\Semester 2\Fullstack Java\Project\project-JitskeLenaerts\backend-java\PXL-Nieuwsartikelen)
+2025-01-10T16:39:13.916+0100 DEBUG              [main]                         be.pxl.services.PostServiceApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-10T16:39:13.917+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-10T16:39:16.769+0100 INFO               [main]                         be.pxl.services.PostServiceApplication - Started PostServiceApplication in 3.338 seconds (process running for 4.509)
