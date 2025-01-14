@@ -41,7 +41,6 @@ export class PostDetailComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
     this.isUserLoggedIn = !!this.currentUser;
-    this.authorName = this.currentUser ? this.currentUser.authorName : 'Author is anonymous';
     const postId = Number(this.route.snapshot.paramMap.get('id'));
     if (!postId) {
       this.errorMessage = 'Invalid post ID.';
@@ -56,6 +55,8 @@ export class PostDetailComponent implements OnInit {
     this.postService.getPostById(postId).subscribe({
       next: (post) => {
         this.post = post;
+        const author = this.authService.getUserById(this.post.authorId);
+        this.authorName = author?.authorName ? author.authorName : 'Author is anonymous';
       },
       error: (err) => {
         console.error('Error fetching post:', err);
