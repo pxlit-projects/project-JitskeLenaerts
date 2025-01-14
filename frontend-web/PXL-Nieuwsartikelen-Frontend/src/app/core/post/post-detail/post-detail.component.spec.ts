@@ -17,8 +17,19 @@ class MockPostService {
 }
 
 class MockAuthService {
-    getCurrentUser(): User | null {
-        return { id: 1, username: 'testuser', authorName: 'Test User' } as User;
+    private users = [
+        { username: 'testuser', password: 'testpassword', role: 'gebruiker', id: 1, authorName: 'Test User' },
+        { username: 'gebruiker2', password: 'gebruiker123', role: 'gebruiker', id: 2, authorName: 'Gebruiker Lenaerts' },
+        { username: 'redacteur1', password: 'redacteur123', role: 'redacteur', id: 3, authorName: 'Redacteur Swinnen' },
+        { username: 'redacteur2', password: 'redacteur123', role: 'redacteur', id: 4, authorName: 'Redacteur Subron' },
+    ];
+
+    getCurrentUser() {
+        return { username: 'testuser', password: 'testpassword', role: 'gebruiker', id: 1, authorName: 'Test User' };
+    }
+
+    getUserById(userId: number) {
+        return this.users.find(user => user.id === userId);
     }
 }
 
@@ -50,7 +61,6 @@ describe('PostDetailComponent', () => {
     let component: PostDetailComponent;
     let fixture: ComponentFixture<PostDetailComponent>;
     let postServiceMock: MockPostService;
-    let authServiceMock: MockAuthService;
     let commentServiceMock: MockCommentService;
 
     beforeEach(async () => {
@@ -69,7 +79,6 @@ describe('PostDetailComponent', () => {
         component = fixture.componentInstance;
 
         postServiceMock = TestBed.inject(PostService);
-        authServiceMock = TestBed.inject(AuthService);
         commentServiceMock = TestBed.inject(CommentService);
 
         fixture.detectChanges();
@@ -150,12 +159,12 @@ describe('PostDetailComponent', () => {
     it('should delete a comment successfully', () => {
         spyOn(commentServiceMock, 'deleteComment').and.callThrough();
         spyOn(window, 'confirm').and.returnValue(true);
-
+      
         component.deleteComment(1);
-
+      
         expect(commentServiceMock.deleteComment).toHaveBeenCalledWith(1, 'testuser', 1);
         expect(component.comments.length).toBe(0);
-    });
+      });
 
     it('should edit a comment and save changes', () => {
         component.editComment(component.comments[0]);
